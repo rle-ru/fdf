@@ -1,3 +1,3 @@
 # fdf
- * Improve libft makefile
+ * Add a main makefile
  * Improve itoa
