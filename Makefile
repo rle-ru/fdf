@@ -6,7 +6,7 @@
 #    By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/26 14:17:52 by rle-ru            #+#    #+#              #
-#    Updated: 2019/05/01 08:22:20 by rle-ru           ###   ########.fr        #
+#    Updated: 2019/05/01 08:58:11 by rle-ru           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ LIBSPATH			=	.
 LIBS				:=	$(LIBSPATH)/libft				\
 
 INCDIR				:=	$(LIBS:%=%/includes) 				\
+						minilibx
 
 # Files
 
@@ -43,7 +44,7 @@ CC					=	gcc
 
 CFLAGS				+=	-Wall -Werror -Wextra
 
-INCLUDES			:=	$(addprefix -I ,$(INCDIR))
+INCLUDES			:=	$(addprefix -I ,$(INCDIR))	
 
 INCLIBS				:=	$(foreach LIB,$(LIBS),-L $(LIB) $(subst lib,-l,$(notdir $(LIB))))
 
@@ -53,7 +54,7 @@ all					:	libs $(NAME)
 
 $(NAME)				: 	$(OBJS) $(LIBFILES)
 						make -C minilibx
-						$(CC) -o $@ $(CFLAGS) $(INCLIBS) $(OBJS)
+						$(CC) -o $@ $(CFLAGS) $(INCLIBS) $(OBJS) -framework OpenGL -framework AppKit minilibx/libmlx.a
 
 # Make Libs
 
