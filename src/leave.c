@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 12:01:44 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/06 13:39:03 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/06 17:51:35 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,26 @@ static void		ft_usage(void)
 	ft_printf("Usage :   ./fdf map\n");
 }
 
-static void		ft_print_error(t_error ret, char *fname)
+static void		ft_print_error(t_error ret, t_fdf *fdf)
 {
 	if (ret == usage)
 		ft_usage();
-	if (ret == filepath)
-		ft_printf("Invalid file \"%s\"\n", fname);
-	if (ret == falloc)
+	else if (ret == filepath)
+		ft_printf("Invalid file \"%s\"\n", fdf->fname);
+	else if (ret == falloc)
 		ft_printf("A malloc failed (dafuk ?)");
+	else if (ret == badline)
+		ft_printf("Incorrect line : %d\n", fdf->nblines);
 }
 
 static void		ft_clear(t_fdf *fdf)
 {
-	(void)fdf;
+	free_lines(fdf);
 }
 
 int				ft_leave(t_error ret, t_fdf *fdf)
 {
-	ft_print_error(ret, fdf->fname);
+	ft_print_error(ret, fdf);
 	ft_clear(fdf);
 	return (0);
 }

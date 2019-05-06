@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/15 13:21:11 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/01 06:53:30 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/06 15:02:01 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int				get_next_line(const int fd, char **line)
 	int			ret;
 
 	buf = str[fd];
-	if (fd < 0 || read(fd, buf, 0) < 0 || !line)
+	if (fd < 0 || fd > 4095 || read(fd, buf, 0) < 0 || !line)
 		return (-1);
 	*line = ft_strnew(0);
 	while (1)

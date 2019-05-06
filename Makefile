@@ -6,7 +6,7 @@
 #    By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/26 14:17:52 by rle-ru            #+#    #+#              #
-#    Updated: 2019/05/06 13:58:39 by rle-ru           ###   ########.fr        #
+#    Updated: 2019/05/06 18:07:54 by rle-ru           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,10 @@ NAME				=	fdf
 SRCS_RAW			:=	main.c							\
 						open_file.c						\
 						init_fdf.c						\
+						parse_file.c					\
+						create_map.c					\
 						leave.c							\
+						free_lines.c					\
 
 # Directories
 
@@ -47,7 +50,7 @@ LIBFILES			:=	$(foreach LIB, $(LIBS), $(LIB)/$(notdir $(LIB)).a)
 
 CC					=	gcc
 
-CFLAGS				+=	-Wall -Werror -Wextra -flto -O2
+CFLAGS				+=	-Wall -Werror -Wextra -flto  -g
 
 INCLUDES			:=	$(addprefix -I ,$(INCDIR))	
 
