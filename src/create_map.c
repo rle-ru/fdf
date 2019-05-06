@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:06:09 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/06 18:29:07 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/06 21:00:32 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ static void		ft_split_line(t_fdf *fdf, int i)
 		while (fdf->lines[i].line[lpos] && fdf->lines[i].line[lpos] == ' ')
 			++lpos;
 		fdf->map[j] = ft_atoi(fdf->lines[i].line + lpos);
-		while (fdf->lines[i].line[lpos] && ft_isdigit(fdf->lines[i].line[lpos]))
+		while (fdf->lines[i].line[lpos]
+				&& (ft_isdigit(fdf->lines[i].line[lpos])
+					|| fdf->lines[i].line[lpos] == '-'))
 			++lpos;
 		++k;
 		++j;

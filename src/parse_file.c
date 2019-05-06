@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 14:06:33 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/06 20:15:21 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/06 20:58:16 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int		ft_count_x(char *line)
 	on_number = false;
 	while (line[i])
 	{
-		if (ft_isdigit(line[i]))
+		if (ft_isdigit(line[i]) || line[i] == '-')
 		{
 			if (on_number == false)
 				++x;
