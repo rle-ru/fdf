@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 12:01:44 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/06 17:51:35 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/06 18:42:07 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static void		ft_print_error(t_error ret, t_fdf *fdf)
 static void		ft_clear(t_fdf *fdf)
 {
 	free_lines(fdf);
+	ft_memdel((void**)&fdf->map);
 }
 
 int				ft_leave(t_error ret, t_fdf *fdf)
