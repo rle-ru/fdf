@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:38:14 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/06 20:25:54 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/06 21:17:34 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef	struct	s_fdf
 {
 	void		*mlx_ptr;
 	void		*window;
+	void		*img;
 	int			fd;
 	int			nblines;
 	char		*fname;
