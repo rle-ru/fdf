@@ -6,7 +6,7 @@
 #    By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/26 14:17:52 by rle-ru            #+#    #+#              #
-#    Updated: 2019/05/01 08:58:11 by rle-ru           ###   ########.fr        #
+#    Updated: 2019/05/06 13:58:39 by rle-ru           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,10 @@ NAME				=	fdf
 # Raw Sources
 
 SRCS_RAW			:=	main.c							\
+						open_file.c						\
+						init_fdf.c						\
+						leave.c							\
+
 # Directories
 
 SRCSDIR   			=	src
@@ -26,7 +30,8 @@ LIBSPATH			=	.
 LIBS				:=	$(LIBSPATH)/libft				\
 
 INCDIR				:=	$(LIBS:%=%/includes) 				\
-						minilibx
+						/usr/local/include					\
+						includes
 
 # Files
 
@@ -42,7 +47,7 @@ LIBFILES			:=	$(foreach LIB, $(LIBS), $(LIB)/$(notdir $(LIB)).a)
 
 CC					=	gcc
 
-CFLAGS				+=	-Wall -Werror -Wextra
+CFLAGS				+=	-Wall -Werror -Wextra -flto -O2
 
 INCLUDES			:=	$(addprefix -I ,$(INCDIR))	
 
@@ -53,14 +58,13 @@ INCLIBS				:=	$(foreach LIB,$(LIBS),-L $(LIB) $(subst lib,-l,$(notdir $(LIB))))
 all					:	libs $(NAME)
 
 $(NAME)				: 	$(OBJS) $(LIBFILES)
-						make -C minilibx
-						$(CC) -o $@ $(CFLAGS) $(INCLIBS) $(OBJS) -framework OpenGL -framework AppKit minilibx/libmlx.a
+						$(CC) -o $@ $(CFLAGS) $(INCLIBS) $(OBJS) -framework OpenGL -framework AppKit -L /usr/local/lib -lmlx
 
 # Make Libs
 
 .PHONY				:	libs
 libs				:
-						@$(foreach LIB, $(LIBS), make -C $(LIB);)
+						@$(foreach LIB, $(LIBS), make -j4 -C $(LIB);)
 
 # Objs Target
 
@@ -74,7 +78,6 @@ $(OBJS)				: 	$(OBJSDIR)/%.o : $(SRCSDIR)/%.c
 
 .PHONY				:	clean
 clean				:
-						make -C minilibx clean
 						@$(foreach LIB, $(LIBS), $(MAKE) clean -C $(LIB);)
 						rm -rf $(OBJSDIR)
 
@@ -85,3 +88,7 @@ fclean				:	clean
 
 .PHONY				:	re
 re					:	fclean all
+
+mlx					:	$(OBJS) libs
+						make -C minilibx
+						$(CC) -o $(NAME) $(CFLAGS) $(INCLIBS) $(OBJS) minilibx/libmlx.a -framework OpenGL -framework Appkit -L ./minilibx

@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 09:12:36 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/01 06:50:05 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/06 13:27:23 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
+# include "ft_printf.h"
 # define LEFT 1
 # define RIGHT 2
 # define BUFF_SIZE 32
