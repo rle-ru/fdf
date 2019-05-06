@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:38:14 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/06 18:39:11 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/06 20:25:54 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_error			ft_open_file(int ac, char **av, t_fdf *fdf);
 void			ft_init_fdf(t_fdf *fdf);
 t_error			ft_parse_file(t_fdf *fdf);
 t_error			ft_create_map(t_fdf *fdf);
-int				ft_leave(t_error ret, t_fdf *fdf);
+void			ft_leave(t_error ret, t_fdf *fdf);
 void			free_lines(t_fdf *fdf);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 08:11:48 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/06 18:19:52 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/06 20:25:29 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int		main(int ac, char **av)
 
 	ft_bzero(&fdf, sizeof(t_fdf));
 	if ((ret = ft_open_file(ac, av, &fdf)) != ok)
-		return (ft_leave(ret, &fdf));
+		ft_leave(ret, &fdf);
 	if ((ret = ft_parse_file(&fdf)))
-		return (ft_leave(ret, &fdf));
+		ft_leave(ret, &fdf);
 	ft_init_fdf(&fdf);
 	/*
 	**	mlx tests

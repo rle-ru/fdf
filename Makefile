@@ -6,7 +6,7 @@
 #    By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/26 14:17:52 by rle-ru            #+#    #+#              #
-#    Updated: 2019/05/06 18:07:54 by rle-ru           ###   ########.fr        #
+#    Updated: 2019/05/06 20:19:33 by rle-ru           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ LIBS				:=	$(LIBSPATH)/libft				\
 
 INCDIR				:=	$(LIBS:%=%/includes) 				\
 						/usr/local/include					\
-						includes
+						includes							\
+						minilibx
 
 # Files
 
@@ -94,4 +95,4 @@ re					:	fclean all
 
 mlx					:	$(OBJS) libs
 						make -C minilibx
-						$(CC) -o $(NAME) $(CFLAGS) $(INCLIBS) $(OBJS) minilibx/libmlx.a -framework OpenGL -framework Appkit -L ./minilibx
+						$(CC) -o $(NAME) $(CFLAGS) $(INCLIBS) -I minilibx/ $(OBJS) minilibx/libmlx.a -framework OpenGL -framework Appkit -L ./minilibx
