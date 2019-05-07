@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 09:12:36 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/06 13:27:23 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/07 10:02:01 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int				ft_toupper(int c);
 int				ft_tolower(int c);
 void			*ft_memalloc(size_t size);
 void			ft_memdel(void **ap);
+size_t			ft_countwords(char *s, char c);
 char			*ft_strnew(size_t size);
 void			ft_strdel(char **as);
 void			ft_strclr(char *s);

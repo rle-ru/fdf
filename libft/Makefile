@@ -6,7 +6,7 @@
 #    By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/22 10:58:33 by rle-ru            #+#    #+#              #
-#    Updated: 2019/05/01 07:55:05 by rle-ru           ###   ########.fr        #
+#    Updated: 2019/05/07 10:01:06 by rle-ru           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,6 +89,7 @@ SRCS_RAW	:=	\
 			put/ft_putendl_fd.c	\
 			put/ft_putnbr_fd.c	\
 										\
+			str/ft_countwords.c	\
 			str/ft_strlen.c		\
 			str/ft_strdup.c		\
 			str/ft_strcpy.c		\
