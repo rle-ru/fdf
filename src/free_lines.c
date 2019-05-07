@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 17:50:33 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/06 17:52:13 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/07 12:10:35 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,14 @@
 
 void	free_lines(t_fdf *fdf)
 {
-	int		i;
+	t_line	*cur;
+	t_line	*tmp;
 
-	i = 0;
-	if (fdf->lines)
-		while (i < fdf->nblines)
-			free(fdf->lines[i++].line);
-	ft_memdel((void**)&fdf->lines);
+	cur = fdf->lines;
+	while (cur != NULL)
+	{
+		tmp = cur;
+		cur = cur->next;
+		free(tmp);
+	}
 }

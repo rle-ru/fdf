@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 09:12:36 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/07 10:02:01 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/07 12:45:23 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "ft_printf.h"
 # define LEFT 1
 # define RIGHT 2
-# define BUFF_SIZE 32
+# define BUFF_SIZE 4096 * 4
 
 typedef struct	s_list
 {

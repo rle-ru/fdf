@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 14:06:33 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/07 10:05:21 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/07 12:07:28 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,21 @@
 #include "libft.h"
 #include "fdf.h"
 
-static t_error	ft_realloc(t_fdf *fdf)
-{
-	t_line	*new;
-
-	if (fdf->nblines < fdf->lines_capacity)
-		return (ok);
-	if (fdf->lines_capacity == 0)
-		fdf->lines_capacity = 16;
-	else
-		fdf->lines_capacity *= 2;
-	if (!(new = malloc(sizeof(t_line) * fdf->lines_capacity)))
-		return (falloc);
-	if (fdf->lines != NULL)
-		ft_memcpy(new, fdf->lines, sizeof(t_line) * fdf->nblines - 1);
-	free(fdf->lines);
-	fdf->lines = new;
-	return (ok);
-}
-
 static t_error	ft_check_line(t_fdf *fdf, char *line)
 {
-	if (ft_realloc(fdf) != ok)
-	{
-		free(line);
+	t_line		*new;
+
+	if (!(new = malloc(sizeof(t_line))))
 		return (falloc);
-	}
-	fdf->lines[fdf->nblines - 1].line = line;
-	if ((fdf->lines[fdf->nblines - 1].nbx = ft_countwords(line, ' ')) == 0)
-		return (badline);
-	if (fdf->lines[fdf->nblines - 1].nbx != fdf->lines[0].nbx)
+	if (fdf->last_line == NULL)
+		fdf->lines = new;
+	else
+		fdf->last_line->next = new;
+	fdf->last_line = new;
+	new->line = line;
+	new->next = NULL;
+	if ((new->nbx = ft_countwords(line, ' ')) == 0
+			|| new->nbx != fdf->lines->nbx)
 		return (badline);
 	return (ok);
 }
