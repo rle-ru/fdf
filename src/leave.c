@@ -6,12 +6,13 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 12:01:44 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/06 21:17:20 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/07 10:05:51 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "libft.h"
+#include "mlx.h"
 
 static void		ft_usage(void)
 {

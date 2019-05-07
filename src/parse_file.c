@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 14:06:33 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/06 20:58:16 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/07 10:05:21 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,32 +33,6 @@ static t_error	ft_realloc(t_fdf *fdf)
 	return (ok);
 }
 
-static int		ft_count_x(char *line)
-{
-	int		x;
-	int		i;
-	t_bool	on_number;
-
-	x = 0;
-	i = 0;
-	on_number = false;
-	while (line[i])
-	{
-		if (ft_isdigit(line[i]) || line[i] == '-')
-		{
-			if (on_number == false)
-				++x;
-			on_number = true;
-		}
-		else if (line[i] == ' ')
-			on_number = false;
-		else
-			return (0);
-		++i;
-	}
-	return (x);
-}
-
 static t_error	ft_check_line(t_fdf *fdf, char *line)
 {
 	if (ft_realloc(fdf) != ok)
@@ -67,7 +41,7 @@ static t_error	ft_check_line(t_fdf *fdf, char *line)
 		return (falloc);
 	}
 	fdf->lines[fdf->nblines - 1].line = line;
-	if ((fdf->lines[fdf->nblines - 1].nbx = ft_count_x(line)) == 0)
+	if ((fdf->lines[fdf->nblines - 1].nbx = ft_countwords(line, ' ')) == 0)
 		return (badline);
 	if (fdf->lines[fdf->nblines - 1].nbx != fdf->lines[0].nbx)
 		return (badline);
