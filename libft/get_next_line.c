@@ -6,12 +6,13 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/15 13:21:11 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/06 15:02:01 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/07 11:33:52 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "libft.h"
+#include <stdlib.h>
 
 static char		*gnl_strnjoinfree(char *s1, char *s2, size_t n)
 {
@@ -21,10 +22,10 @@ static char		*gnl_strnjoinfree(char *s1, char *s2, size_t n)
 	if (!s1 || !s2)
 		return (NULL);
 	len = ft_strlen(s1) + ft_strlen(s2);
-	if ((ret = ft_memalloc(sizeof(char) * (len + 1))) == NULL)
+	if ((ret = malloc(sizeof(char) * (len + 1))) == NULL)
 		return (NULL);
-	ret = ft_strcpy(ret, s1);
-	ret = ft_strncat(ret, s2, n);
+	ft_strcpy(ret, s1);
+	ft_strncat(ret, s2, n);
 	ft_strdel(&s1);
 	return (ret);
 }
@@ -48,9 +49,9 @@ int				get_next_line(const int fd, char **line)
 	int			ret;
 
 	buf = str[fd];
-	if (fd < 0 || fd > 4095 || read(fd, buf, 0) < 0 || !line)
+	if (fd < 0 || fd > 4095 || read(fd, buf, 0) < 0 || !line
+			|| !(*line = ft_strnew(0)))
 		return (-1);
-	*line = ft_strnew(0);
 	while (1)
 	{
 		if ((cur = ft_strchr(buf, 10)))
