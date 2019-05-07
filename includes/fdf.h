@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:38:14 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/07 12:14:05 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/07 13:16:36 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,12 @@ typedef struct		s_line
 	struct s_line	*next;
 }					t_line;
 
-typedef struct 		s_vector
+typedef struct		s_vector
 {
 	int				x;
 	int				y;
 	int				z;
 }					t_vector;
-
 
 typedef	struct		s_fdf
 {
