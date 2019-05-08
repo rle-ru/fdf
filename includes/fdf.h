@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:38:14 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/07 13:16:36 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/08 13:09:54 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ typedef struct		s_line
 	struct s_line	*next;
 }					t_line;
 
-typedef struct		s_vector
+typedef struct		s_point
 {
 	int				x;
 	int				y;
 	int				z;
-}					t_vector;
+}					t_map;
 
 typedef	struct		s_fdf
 {
@@ -52,8 +52,8 @@ typedef	struct		s_fdf
 	int				nblines;
 	t_line			*lines;
 	t_line			*last_line;
-	int				lines_capacity;
-	int				*map;
+	int				width;
+	t_map			*map;
 }					t_fdf;
 
 t_error				ft_open_file(int ac, char **av, t_fdf *fdf);
