@@ -6,90 +6,64 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 08:11:48 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/08 13:24:02 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/08 18:19:50 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "mlx.h" //
+#include <math.h>
 #include "fdf.h"
 
-// void	puter(t_fdf *fdf, int x, int y, int x2, int y2)
-// {
-// 	int	x3;
-// 	int	y3;
-// 	int	multiplier;
+void	bresenham(t_fdf *fdf, int ox, int oy, int tx, int ty)
+{
+	double		deltax;
+	double		deltay;
+	double	deltaerr;
+	double	error;
+	int		y;
+	int		x;
 
-// 	if (fdf->map[y * fdf->width + x + 1] == 0)
-// 		return ;
-// 	multiplier = 5;
-// 	if (x != fdf->width - 1 && fdf->map[y * fdf->width + x + 1])
-// 	{
-// 		x3 = (x + 1) * (100 / fdf->map[y * fdf->width + x + 1]);
-// 		x3 *= multiplier;
-// 		y3 = (y + 1) * (100 / fdf->map[y * fdf->width + x + 1]);
-// 		y3 *= multiplier;
-// 		while (x2 != x3 && y2 != y3)
-// 		{
-// 			if (x3 >= 0 && x3 <= 499 && y3 >= 0 && y3 < 499)
-// 				mlx_pixel_put(fdf->mlx_ptr, fdf->window, x3, y3, 0xFF0000);
-// 			if (x2 != x3)
-// 				x3 += x2 > x3 ? 1 : -1;
-// 			if (y2 != y3)
-// 				y3 += y2 > y3 ? 1 : -1;
-// 		}
-// 	}
-// 	if (y != fdf->nblines - 1 && fdf->map[(y + 1) * fdf->width + x + 1])
-// 	{
-// 		x3 = (x + 1) * (100 / fdf->map[y * fdf->width + x + 1]);
-// 		x3 *= multiplier;
-// 		y3 = (y + 1) * (100 / fdf->map[(y + 1) * fdf->width + x + 1]);
-// 		y3 *= multiplier;
-// 		while (x2 != x3 && y2 != y3)
-// 		{
-// 			if (x3 >= 0 && x3 <= 499 && y3 >= 0 && y3 < 499)
-// 				mlx_pixel_put(fdf->mlx_ptr, fdf->window, x2, y2, 0xFF0000);
-// 			if (x2 != x3)
-// 				x3 += x2 > x3 ? 1 : -1;
-// 			if (y2 != y3)
-// 				y3 += y2 > y3 ? 1 : -1;
-// 		}
-// 	}
-// }
+	deltax = tx - ox;
+	deltay = ty - oy;
+	deltaerr = 1.0;
+	if (deltax)
+		deltaerr = deltay / deltax;
+	deltaerr = deltaerr < 0 ? -deltaerr : deltaerr;
+	error = 0;
+	y = oy;
+	x = ox;
+	while (x != tx || y != ty)
+	{
+		if (x >= 0 && x < 500 && y >= 0 && y < 500)
+		{
+			mlx_pixel_put(fdf->mlx_ptr, fdf->window, x, y, 0xFF0000);
+			// ft_printf("x = %d; tx = %d\ny = %d; ty = %d\n", x, tx, y, ty);
+		}
+		error += deltaerr;
+		if (error >= 0.5)
+		{
+			if (deltay)
+				y += deltay < 0 ? -1 : 1;
+			error -= 1.0;
+		}
+		if (deltax)
+			x += deltax < 0 ? -1 : 1;
+		
+	}
+}
 
 void	put_line(t_fdf *fdf, int ox, int oy)
 {
-	int		tx;
-	int		ty;
 	int		cx;
 	int		cy;
 
-	if (ox < fdf->width)
-	{
-		cx = fdf->map[oy * fdf->width + ox].x;
-		cy = fdf->map[oy * fdf->width + ox].y;
-		tx = fdf->map[oy * fdf->width + ox + 1].x;
-		ty = fdf->map[oy * fdf->width + ox + 1].y;
-		while (cx != tx && cy != ty)
-		{
-			mlx_pixel_put(fdf->mlx_ptr, fdf->window, cx, cy, 0xFF0000);
-			cx += tx > cx ? 1 : -1;
-			cy += ty > cy ? 1 : -1;
-		}
-	}
-	if (oy < fdf->nblines)
-	{
-		cx = fdf->map[oy * fdf->width + ox].x;
-		cy = fdf->map[oy * fdf->width + ox].y;
-		tx = fdf->map[(oy + 1) * fdf->width + ox].x;
-		ty = fdf->map[(oy + 1) * fdf->width + ox].y;
-		while (cx != tx && cy != ty)
-		{
-			mlx_pixel_put(fdf->mlx_ptr, fdf->window, cx, cy, 0xFF0000);
-			cx += tx > cx ? 1 : -1;
-			cy += ty > cy ? 1 : -1;
-		}
-	}
+	cx = fdf->map[oy * fdf->width + ox].x;
+	cy = fdf->map[oy * fdf->width + ox].y;
+	if (ox < fdf->width - 1)
+		bresenham(fdf, cx, cy, fdf->map[oy * fdf->width + ox + 1].x, fdf->map[oy * fdf->width + ox + 1].y);
+	if (oy < fdf->nblines - 1)
+		bresenham(fdf, cx, cy, fdf->map[(oy + 1) * fdf->width + ox].x, fdf->map[(oy + 1) * fdf->width + ox].y);
 }
 
 int		put_pixels(t_fdf *fdf)
@@ -120,25 +94,20 @@ int		calc_map(t_fdf *fdf)
 {
 	int	y;
 	int	x;
-	int	z;
+	double	z;
 	int	mult;
+	int	dist;
 
-	mult = 2;
+	dist = 150;
+	mult = 10;
 	y = -1;
 	while (++y < fdf->nblines && (x = -1))
 		while (++x < fdf->width)
 		{
-			z = fdf->map[y * fdf->width + x].z;
-			if (z)
-			{
-				fdf->map[y * fdf->width + x].x = (x * (100 / z)) * mult;
-				fdf->map[y * fdf->width + x].y = (y * (100 / z)) * mult;
-			}
-			else
-			{
-				fdf->map[y * fdf->width + x].x = -1;
-				fdf->map[y * fdf->width + x].y = -1;
-			}
+			z = fdf->map[y * fdf->width + x].z + 0.0001 - fdf->cam.z;
+			ft_printf("C't'encule : %f\n", z);
+			fdf->map[y * fdf->width + x].x = ((float)x - fdf->cam.x / z);
+			fdf->map[y * fdf->width + x].y = ((float)y - fdf->cam.y / z);
 		}
 	return (0);
 }
@@ -154,7 +123,19 @@ int		main(int ac, char **av)
 	if ((ret = ft_parse_file(&fdf)))
 		ft_leave(ret, &fdf);
 	ft_init_fdf(&fdf);
+	fdf.cam.z = -10;
 	calc_map(&fdf);
+	// int	i = 0;
+	// while (i < fdf.nblines * fdf.width)
+	// {
+	// 	ft_printf("x : %d, y : %d\n", fdf.map[i].x, fdf.map[i].y);
+	// 	++i;
+	// }
+	// bresenham(&fdf, 10, 10, 10, 100);
+	// bresenham(&fdf, 10, 10, 100, 100);
+	// bresenham(&fdf, 10, 10, 100, 10);
+	// bresenham(&fdf, 100, 10, 100, 100);
+	// bresenham(&fdf, 100, 100, 10, 10);
 	put_pixels(&fdf);
 	mlx_loop(fdf.mlx_ptr);
 	ft_leave(ok, &fdf);
