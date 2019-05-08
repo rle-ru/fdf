@@ -6,7 +6,7 @@
 #    By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/26 14:17:52 by rle-ru            #+#    #+#              #
-#    Updated: 2019/05/08 14:30:56 by rle-ru           ###   ########.fr        #
+#    Updated: 2019/05/08 23:36:02 by rle-ru           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,12 @@ SRCS_RAW			:=	main.c							\
 						create_map.c					\
 						leave.c							\
 						free_lines.c					\
+						matrix.c						\
+						matrix_mul.c					\
+						matrix_vector.c					\
+						vector_op.c						\
+						rotation_matrix.c				\
+
 
 # Directories
 
@@ -51,7 +57,7 @@ LIBFILES			:=	$(foreach LIB, $(LIBS), $(LIB)/$(notdir $(LIB)).a)
 
 CC					=	gcc
 
-CFLAGS				+=	-Wall -Werror -Wextra -flto  -g
+CFLAGS				+=	-Wall -Werror -Wextra -flto  -g -fsanitize="address"
 
 INCLUDES			:=	$(addprefix -I ,$(INCDIR))	
 
