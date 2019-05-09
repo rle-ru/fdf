@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 22:52:29 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/09 02:03:02 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/09 17:48:01 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,11 @@ static t_matrix		rotato_x(double theta)
 	ft_bzero(&m, sizeof(t_matrix));
 	c = cos(theta);
 	s = sin(theta);
+
 	m.m[0][0] = 1;
 	m.m[1][1] = c;
-	m.m[2][1] = -s;
-	m.m[1][2] = s;
+	m.m[1][2] = -s;
+	m.m[2][1] = s;
 	m.m[2][2] = c;
 	m.m[3][3] = 1;
 	return (m);
@@ -42,9 +43,9 @@ static t_matrix		rotato_y(double theta)
 	c = cos(theta);
 	s = sin(theta);
 	m.m[0][0] = c;
-	m.m[2][0] = s;
+	m.m[0][2] = s;
 	m.m[1][1] = 1;
-	m.m[0][2] = -s;
+	m.m[2][0] = -s;
 	m.m[2][2] = c;
 	m.m[3][3] = 1;
 	return (m);
@@ -60,9 +61,9 @@ static t_matrix		rotato_z(double theta)
 	c = cos(theta);
 	s = sin(theta);
 	m.m[0][0] = c;
-	m.m[1][0] = -s;
+	m.m[0][1] = -s;
+	m.m[1][0] = s;
 	m.m[1][1] = c;
-	m.m[0][1] = s;
 	m.m[2][2] = 1;
 	m.m[3][3] = 1;
 	return (m);
@@ -74,18 +75,14 @@ void			rotator(t_fdf *fdf, t_vector3 a)
 	t_matrix	y;
 	t_matrix	z;
 
-	if (a.x)
-		x = rotato_x(a.x);
-	else
-		ft_memcpy(&x, &fdf->unit, sizeof(t_matrix));
-	if (a.y)
-		y = rotato_y(a.y);
-	else
-		ft_memcpy(&y, &fdf->unit, sizeof(t_matrix));
-	if (a.z)
-		z = rotato_z(a.z);
-	else
-		ft_memcpy(&z, &fdf->unit, sizeof(t_matrix));
-	x = mat_4_mul(3, x, y, z);
-	ft_memcpy(&fdf->cam.rotation, &x, sizeof(t_matrix));
+	x = a.x ? rotato_x(a.x) : fdf->unit;
+	y = a.y ? rotato_y(a.y) : fdf->unit;
+	z = a.z ? rotato_z(a.z) : fdf->unit;
+	fdf->cam.rotation = mat_4_mul(3, x, y, z);
+	t_point	p;
+	p.y = -1;
+	while (++p.y < 4 && (p.x = -1))
+		while (++p.x < 4)
+			ft_printf("%03d %03d = %f\n", p.x, p.y, fdf->cam.rotation.m[p.y][p.x]);
+	// fdf->cam.rotation = mat_4_mul(4, x, y, z, fdf->cam.projection);
 }
