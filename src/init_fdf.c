@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 11:09:08 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/09 17:17:41 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/09 23:21:32 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_init_fdf(t_fdf *fdf)
 	fdf->window = mlx_new_window(fdf->mlx_ptr, W_WIDTH, W_HEIGHT, "fdf");
 	fdf->cam.pos.z = -20;
 	init_matrixes(fdf);
-	draw_map(fdf);
+	// draw_map(fdf);
 	mlx_hook(fdf->window, 2, 1, key_hook, fdf);
 	mlx_hook(fdf->window, 17, 0, hook_leave, fdf);
 	mlx_loop_hook(fdf->mlx_ptr, draw_map, fdf);

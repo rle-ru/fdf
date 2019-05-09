@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 12:07:09 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/09 16:06:36 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/09 23:37:32 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	init_bre2(double *deltaerr, double *error, t_point *o, t_point *p)
 	p->y = o->y;
 	p->x = o->x;
 }
-
+#include "libft.h"//
 void		bresenham(t_fdf *fdf, t_point o, t_point t)
 {
 	double	deltax;
@@ -37,6 +37,7 @@ void		bresenham(t_fdf *fdf, t_point o, t_point t)
 
 	init_bre(&o, &t, &deltax, &deltay);
 	init_bre2(&deltaerr, &error, &o, &p);
+	ft_printf("tx %d ty %d\n",t.x,t.y);
 	if (deltax)
 		deltaerr = deltay / deltax;
 	deltaerr = deltaerr < 0 ? -deltaerr : deltaerr;
