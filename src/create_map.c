@@ -6,51 +6,55 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:06:09 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/08 22:44:04 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/09 01:19:49 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "fdf.h"
+#include <stdlib.h>
 
-static void		ft_split_line(t_fdf *fdf, int i, t_line *line)
+static void		ft_split_line(t_fdf *fdf, int y, t_line *line)
 {
-	int		k;
+	int		x;
 	int		lpos;
 
-	k = 0;
+	x = -1;
 	lpos = 0;
-	i *= fdf->lines->nbx;
-	while (k < line->nbx)
+	while (++x < fdf->width)
 	{
 		while (line->line[lpos] && line->line[lpos] == ' ')
 			++lpos;
-		fdf->map[i].z = ft_atoi(line->line + lpos);
+		fdf->map[y * fdf->width + x].z = ft_atoi(line->line + lpos);
+		fdf->map[y * fdf->width + x].y = y;
+		fdf->map[y * fdf->width + x].x = x;
 		while (line->line[lpos]
 				&& (ft_isdigit(line->line[lpos])
 					|| line->line[lpos] == '-'))
 			++lpos;
-		++k;
-		++i;
 	}
 }
 
 t_error			ft_create_map(t_fdf *fdf)
 {
-	int		i;
+	int		y;
 	t_line	*line;
+	t_line	*tmp;
 
-	i = 0;
+	y = -1;
 	if (!(fdf->map = malloc(sizeof(t_vector3) * fdf->nblines * fdf->lines->nbx)))
 		return (falloc);
 	if (!(fdf->project = malloc(sizeof(t_vector2) * fdf->nblines * fdf->lines->nbx)))
 		return (falloc);
+	fdf->width = fdf->lines->nbx;
 	line = fdf->lines;
-	while (i < fdf->nblines && line != NULL)
+	while (++y < fdf->nblines && line != NULL)
 	{
-		ft_split_line(fdf, i, line);
-		++i;
+		ft_split_line(fdf, y, line);
+		tmp = line;
 		line = line->next;
+		free(tmp->line);
+		free(tmp);
 	}
 	return (ok);
 }

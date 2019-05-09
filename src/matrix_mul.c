@@ -6,25 +6,37 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 22:05:52 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/08 23:59:45 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/09 01:41:31 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "libft.h"
+#include <stdarg.h>
 
-void	mat_4_mul(t_matrix *a, t_matrix b)
+t_matrix	mat_4_mul(int nb, ...)
 {
-	int	x;
-	int	y;
+	va_list		args;
+	t_matrix	m1;
+	t_matrix	m2;
 	t_matrix	m;
+	t_point		p;
 
-	y = -1;
-	while (++y < 4&& (x = -1))
-		while (++x < 4)
-			m[y][x] = (*a)[y][0] * b[0][x]
-				+ (*a)[y][1] * b[1][x]
-				+ (*a)[y][2] * b[2][x]
-				+ (*a)[y][3] * b[3][x];
-	ft_memcpy(a, &m, sizeof(t_matrix));
+	va_start(args, nb);
+	m1 = va_arg(args, t_matrix);
+	while (--nb)
+	{
+		m2 = va_arg(args, t_matrix);
+		p.y = -1;
+		while (++p.y < 4 && (p.x = -1))
+			while (++p.x)
+			{
+				m.m[p.y][p.x] = m1.m[p.y][0] * m2.m[0][p.x]
+					+ m1.m[p.y][1] * m2.m[1][p.x]
+					+ m1.m[p.y][2] * m2.m[2][p.x]
+					+ m1.m[p.y][3] * m2.m[3][p.x];
+			}
+	}
+	va_end(args);
+	return (m);
 }

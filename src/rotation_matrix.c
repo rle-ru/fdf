@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 22:52:29 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/08 23:23:07 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/09 02:03:02 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,52 +14,58 @@
 #include <math.h>
 #include "libft.h"
 
-static void		rotato_x(t_fdf *fdf, double theta)
+static t_matrix		rotato_x(double theta)
 {
 	double		c;
 	double		s;
-
-	ft_bzero(&fdf->cam.rot_x, sizeof(t_matrix));
+	t_matrix	m;
+	
+	ft_bzero(&m, sizeof(t_matrix));
 	c = cos(theta);
 	s = sin(theta);
-	fdf->cam.rot_x[0][0] = 1;
-	fdf->cam.rot_x[1][1] = c;
-	fdf->cam.rot_x[2][1] = -s;
-	fdf->cam.rot_x[1][2] = s;
-	fdf->cam.rot_x[2][2] = c;
-	fdf->cam.rot_x[3][3] = 1;
+	m.m[0][0] = 1;
+	m.m[1][1] = c;
+	m.m[2][1] = -s;
+	m.m[1][2] = s;
+	m.m[2][2] = c;
+	m.m[3][3] = 1;
+	return (m);
 }
 
-static void		rotato_y(t_fdf *fdf, double theta)
+static t_matrix		rotato_y(double theta)
 {
 	double		c;
 	double		s;
+	t_matrix	m;
 
-	ft_bzero(&fdf->cam.rot_y, sizeof(t_matrix));
+	ft_bzero(&m, sizeof(t_matrix));
 	c = cos(theta);
 	s = sin(theta);
-	fdf->cam.rot_y[0][0] = c;
-	fdf->cam.rot_y[2][0] = s;
-	fdf->cam.rot_y[1][1] = 1;
-	fdf->cam.rot_y[0][2] = -s;
-	fdf->cam.rot_y[2][2] = c;
-	fdf->cam.rot_y[3][3] = 1;
+	m.m[0][0] = c;
+	m.m[2][0] = s;
+	m.m[1][1] = 1;
+	m.m[0][2] = -s;
+	m.m[2][2] = c;
+	m.m[3][3] = 1;
+	return (m);
 }
 
-static void		rotato_z(t_fdf *fdf, double theta)
+static t_matrix		rotato_z(double theta)
 {
 	double		c;
 	double		s;
+	t_matrix	m;
 
+	ft_bzero(&m, sizeof(t_matrix));
 	c = cos(theta);
 	s = sin(theta);
-	ft_bzero(&fdf->cam.rot_z, sizeof(t_matrix));
-	fdf->cam.rot_z[0][0] = c;
-	fdf->cam.rot_z[1][0] = -s;
-	fdf->cam.rot_z[1][1] = c;
-	fdf->cam.rot_z[0][1] = s;
-	fdf->cam.rot_z[2][2] = 1;
-	fdf->cam.rot_z[3][3] = 1;
+	m.m[0][0] = c;
+	m.m[1][0] = -s;
+	m.m[1][1] = c;
+	m.m[0][1] = s;
+	m.m[2][2] = 1;
+	m.m[3][3] = 1;
+	return (m);
 }
 
 void			rotator(t_fdf *fdf, t_vector3 a)
@@ -69,27 +75,17 @@ void			rotator(t_fdf *fdf, t_vector3 a)
 	t_matrix	z;
 
 	if (a.x)
-	{
-		rotato_x(fdf, a.x);
-		ft_memcpy(&x, &fdf->cam.rot_x, sizeof(t_matrix));
-	}
+		x = rotato_x(a.x);
 	else
 		ft_memcpy(&x, &fdf->unit, sizeof(t_matrix));
 	if (a.y)
-	{
-		rotato_y(fdf, a.y);
-		ft_memcpy(&y, &fdf->cam.rot_y, sizeof(t_matrix));
-	}
+		y = rotato_y(a.y);
 	else
 		ft_memcpy(&y, &fdf->unit, sizeof(t_matrix));
 	if (a.z)
-	{
-		rotato_z(fdf, a.z);
-		ft_memcpy(&z, &fdf->cam.rot_z, sizeof(t_matrix));
-	}
+		z = rotato_z(a.z);
 	else
 		ft_memcpy(&z, &fdf->unit, sizeof(t_matrix));
-	mat_4_mul(&x, y);
-	mat_4_mul(&x, z);
+	x = mat_4_mul(3, x, y, z);
 	ft_memcpy(&fdf->cam.rotation, &x, sizeof(t_matrix));
 }

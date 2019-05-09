@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:38:14 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/08 23:32:56 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/09 02:00:29 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@ typedef enum		e_error
 	badline
 }					t_error;
 
+typedef struct		s_point
+{
+	int				x;
+	int				y;
+}					t_point;
+
 typedef struct		s_line
 {
 	char			*line;
@@ -48,7 +54,10 @@ typedef struct		s_line
 	struct s_line	*next;
 }					t_line;
 
-typedef double		t_matrix[4][4];
+typedef struct		s_matrix
+{
+	double			m[4][4];
+}					t_matrix;
 
 typedef struct		s_vector2
 {
@@ -76,9 +85,6 @@ typedef struct		s_cam
 	t_matrix		projection;
 	t_matrix		rotation;
 	t_vector3		rot_angles;
-	t_matrix		rot_x;
-	t_matrix		rot_y;
-	t_matrix		rot_z;
 }					t_cam;
 
 typedef	struct		s_fdf
@@ -105,8 +111,11 @@ t_error				ft_create_map(t_fdf *fdf);
 void				ft_leave(t_error ret, t_fdf *fdf);
 void				free_lines(t_fdf *fdf);
 void				init_matrixes(t_fdf *fdf);
+
+t_matrix			mat_4_mul(int nb, ...);
+
 t_vector3			mat_4_mul_v(t_matrix m, t_vector3 v);
-void				mat_4_mul(t_matrix *a, t_matrix b);
+
 t_vector3			vec_3_add(t_vector3 a, t_vector3 b);
 t_vector3			vec_3_sub(t_vector3 a, t_vector3 b);
 void				rotator(t_fdf *fdf, t_vector3 a);
