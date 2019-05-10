@@ -6,13 +6,14 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 11:58:16 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/10 13:52:05 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/10 17:02:40 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "mlx.h"
 #include "libft.h"
+#include "math.h"
 
 int		key_hook(int key, t_fdf *fdf)
 {
@@ -31,10 +32,12 @@ int		key_hook(int key, t_fdf *fdf)
 		fdf->cam.rot_angles.z += (key == K_LEFT ? 1 : -1) * speed * 0.5;
 	else if (key == K_SPACE)
 	{
-		fdf->cam.rot_angles.x = 0;
-		fdf->cam.rot_angles.z = 0;
 		fdf->cam.pos.z = -20;
-		fdf->cam.pos.y = 5;
+		fdf->cam.pos.y = 0;
+		fdf->cam.pos.x = 0;
+		fdf->cam.rot_angles.z = -M_PI;
+		fdf->cam.rot_angles.x = 0;
+		fdf->cam.rot_angles.y = 0;
 	}
 	else if (key == K_ESC)
 		ft_leave(ok, fdf);
