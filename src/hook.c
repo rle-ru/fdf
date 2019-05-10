@@ -18,7 +18,7 @@ int		key_hook(int key, t_fdf *fdf)
 {
 	double	speed;
 
-	speed = 0.03;
+	speed = 0.1;
 	if (key == K_Q || key == K_E)
 		fdf->cam.pos.z += (key == K_Q ? 1 : -1) * speed * 5;
 	else if (key == K_A || key == K_D)
@@ -34,7 +34,7 @@ int		key_hook(int key, t_fdf *fdf)
 		fdf->cam.rot_angles.x = 0;
 		fdf->cam.rot_angles.z = 0;
 		fdf->cam.pos.z = -20;
-		fdf->cam.pos.y = 0;
+		fdf->cam.pos.y = 5;
 	}
 	else if (key == K_ESC)
 		ft_leave(ok, fdf);
