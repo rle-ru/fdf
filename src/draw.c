@@ -6,12 +6,13 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 12:02:05 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/10 13:50:43 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/10 14:26:16 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "fdf.h"
+#include "math.h"
 #include "libft.h" //
 
 void	put_line(t_fdf *fdf, int ox, int oy)
@@ -21,17 +22,19 @@ void	put_line(t_fdf *fdf, int ox, int oy)
 
 	c.x = (int)fdf->project[oy * fdf->width + ox].x;
 	c.y = (int)fdf->project[oy * fdf->width + ox].y;
-	if (ox >= 0 && ox < fdf->width - 1)
+	if (!isnan(c.x) && ox >= 0 && ox < fdf->width - 1) 
 	{
 		o.x = (int)fdf->project[oy * fdf->width + ox + 1].x;
 		o.y = (int)fdf->project[oy * fdf->width + ox + 1].y;
-		bresenham(fdf, c, o);
+		if (!isnan(o.x))
+			bresenham(fdf, c, o);
 	}
-	if (oy >= 0 && oy < fdf->nblines - 1)
+	if (!isnan(c.y) && oy >= 0 && oy < fdf->nblines - 1)
 	{
 		o.x = (int)fdf->project[(oy + 1) * fdf->width + ox].x;
 		o.y = (int)fdf->project[(oy + 1) * fdf->width + ox].y;
-		bresenham(fdf, c, o);
+		if (!isnan(o.x))
+			bresenham(fdf, c, o);
 	}
 }
 
@@ -48,13 +51,16 @@ t_vector2	project_point(t_fdf *fdf, int x, int y)
 {
 	t_vector3	v;
 	
+	v = fdf->map[y * fdf->width + x];
 	v = vec_3_sub(fdf->map[y * fdf->width + x], fdf->cam.pos);
-	v = mat_4_mul_v(fdf->cam.projection, v);
 	v = mat_4_mul_v(fdf->cam.rotation, v);
-	v = mat_4_mul_v(fdf->unit, v);
+	//v = vec_3_sub(v, fdf->cam.pos);
+	if (v.z < 0.1)
+		return ((t_vector2){NAN, NAN});
+	v = mat_4_mul_v(fdf->cam.projection, v);
 	// if (v.z == 0)
 	// 	v.z += 0.0001;
-	return ((t_vector2){v.x / v.z * W_WIDTH, v.y / v.z * W_HEIGHT});
+	return ((t_vector2){(v.x + 0.5) / v.z * W_WIDTH, (v.y + 0.5) / v.z * W_HEIGHT});
 }
 
 int		put_pixels(t_fdf *fdf)
