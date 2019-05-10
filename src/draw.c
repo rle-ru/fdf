@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 12:02:05 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/10 14:26:16 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/10 15:17:00 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ t_vector2	project_point(t_fdf *fdf, int x, int y)
 	t_vector3	v;
 	
 	v = fdf->map[y * fdf->width + x];
-	v = vec_3_sub(fdf->map[y * fdf->width + x], fdf->cam.pos);
+	v.z *= 0.1;
+	v = vec_3_sub(v, fdf->cam.pos);
 	v = mat_4_mul_v(fdf->cam.rotation, v);
 	//v = vec_3_sub(v, fdf->cam.pos);
 	if (v.z < 0.1)
@@ -60,7 +61,7 @@ t_vector2	project_point(t_fdf *fdf, int x, int y)
 	v = mat_4_mul_v(fdf->cam.projection, v);
 	// if (v.z == 0)
 	// 	v.z += 0.0001;
-	return ((t_vector2){(v.x + 0.5) / v.z * W_WIDTH, (v.y + 0.5) / v.z * W_HEIGHT});
+	return ((t_vector2){(v.x + 0.25) / v.z * W_WIDTH, (v.y + 0.25) / v.z * W_HEIGHT});
 }
 
 int		put_pixels(t_fdf *fdf)

@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 21:37:04 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/10 14:30:48 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/10 15:02:11 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,6 @@ static void		projection_matrix(t_fdf *fdf)
 
 	a = tan(FOV / 2.0);
 	b = FAR - NEAR;
-	// fdf->cam.projection.m[0][0] = ((W_WIDTH / W_HEIGHT) * a);
-	// fdf->cam.projection.m[1][1] = a;
-	// fdf->cam.projection.m[2][2] = ((FAR + NEAR) / b);
-	// fdf->cam.projection.m[2][3] = ((2.0 * FAR * NEAR) / b);
-	// fdf->cam.projection.m[3][2] = 1.0;
 	fdf->cam.projection.m[0][0] = 1 / ((W_WIDTH / W_HEIGHT) * a);
 	fdf->cam.projection.m[1][1] = 1 / a;
 	fdf->cam.projection.m[2][2] = -((FAR + NEAR) / b);
