@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:38:14 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/09 20:57:30 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/10 09:36:33 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FDF_H
 # define W_HEIGHT 500.0
 # define W_WIDTH 500.0
-# define FOV 60.0 * M_PI / 180.0
+# define FOV 110.0 * M_PI / 180.0
 # define FAR 100.0
 # define NEAR 0.1
 # define K_SHIFT 257

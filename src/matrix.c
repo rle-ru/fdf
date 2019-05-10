@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 21:37:04 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/09 21:42:01 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/10 09:34:35 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static void		unit_matrix(t_fdf *fdf)
 	fdf->unit.m[2][2] = 1;
 	fdf->unit.m[3][3] = 1;
 }
+
+#include "libft.h" //
 
 static void		projection_matrix(t_fdf *fdf)
 {
@@ -38,6 +40,18 @@ static void		projection_matrix(t_fdf *fdf)
 	fdf->cam.projection.m[2][2] = ((FAR + NEAR) / b);
 	fdf->cam.projection.m[2][3] = ((2.0 * FAR * NEAR) / b);
 	fdf->cam.projection.m[3][2] = 1.0; // sense etre [3][2]
+	int	y;
+	int	x;
+
+	y = -1;
+	while (++y < 4 && (x = -1))
+	{
+		while (++x < 4)
+		{
+			ft_printf("%lf ", fdf->cam.projection.m[y][x]);
+		}
+		ft_putchar('\n');
+	}
 }
 
 void			init_matrixes(t_fdf *fdf)

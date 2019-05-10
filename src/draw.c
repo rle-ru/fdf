@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 12:02:05 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/09 23:38:24 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/10 11:38:41 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,36 @@ void	put_line(t_fdf *fdf, int ox, int oy)
 	}
 	if (oy >= 0 && oy < fdf->nblines - 1)
 	{
-		o.x = fdf->project[(oy + 1) * fdf->width + ox].x;
-		o.y = fdf->project[(oy + 1) * fdf->width + ox].y;
+		o.x = (int)fdf->project[(oy + 1) * fdf->width + ox].x;
+		o.y = (int)fdf->project[(oy + 1) * fdf->width + ox].y;
 		bresenham(fdf, c, o);
 	}
+}
+
+#include "math.h" //
+
+t_point	project(t_vector3 v)
+{
+	t_point	res;
+
+	res.x = (int)(v.x * (100 / v.z));
+	res.y = (int)(v.y * (100 / v.z));
+	return (res);
+}
+
+
+t_vector2	project_point(t_fdf *fdf, int x, int y)
+{
+	t_vector3	v;
+	
+	// (void)fdf;
+	v = vec_3_sub(fdf->map[y * fdf->width + x], fdf->cam.pos);
+	// v = mat_4_mul_v(fdf->cam.projection, v);
+	v = mat_4_mul_v(fdf->cam.rotation, v);
+	if (v.z == 0)
+		v.z += 0.0001;
+	// return ((t_vector2){(v.x * W_WIDTH) / (2.0 *  v.z) + W_WIDTH / 2.0, (v.y * W_HEIGHT) / (2.0 / v.z) + W_HEIGHT / 2.0});
+	return ((t_vector2){v.x * 100 / v.z, v.z * 100 / v.z});
 }
 
 void	put_line2(t_fdf *fdf, int ox, int oy)
@@ -42,30 +68,37 @@ void	put_line2(t_fdf *fdf, int ox, int oy)
 	t_vector3	v;
 
 	v = fdf->map[oy * fdf->width + ox];
-	c.x = v.x * 100 / v.z;
-	c.y = v.y * 100 / v.z;
-	// c.x = (int)fdf->map[oy * fdf->width + ox].x * (100 / (int)fdf->map[oy * fdf->width + ox].z);
-	// c.y = (int)fdf->map[oy * fdf->width + ox].y * (100 / (int)fdf->map[oy * fdf->width + ox].z);
+	if (!v.z)
+		v.z += 0.1;
+	c = project(v);
 	if (ox >= 0 && ox < fdf->width - 1)
 	{
 		v = fdf->map[oy * fdf->width + ox + 1];
-		int x  = (int)(v.x * 100 / v.z);
-		int y  = (int)(v.y * 100 / v.z);
-		// ++x;
-		// ++y;
-		// ft_printf("ox %d oy %d v.z %f\n",x,y,v.z);
-		o.x = x;
-		o.y = y;
-		// o.x = (int)fdf->map[oy * fdf->width + ox + 1].x * (100 / (int)fdf->map[oy * fdf->width + ox + 1].z);
-		// o.y = (int)fdf->map[oy * fdf->width + ox + 1].y * (100 / (int)fdf->map[oy * fdf->width + ox + 1].z);
-		// bresenham(fdf, c, o);
+		if (!v.z)
+			v.z += 0.1;
+		// t_vector2	vp;
+		// vp = project_point(fdf, ox + 1, oy);
+		// o.x = vp.x;
+		// o.y = vp.y;
+		// (map[i] - cam_pos) * matrix_projection * matrix_rotation;
+		// v.x * 100 / v.z;
+		// v.y * 100 / v.z;
+		o = project(v);
+		bresenham(fdf, c, o);
 	}
-	// if (oy >= 0 && oy < fdf->nblines - 1)
-	// {
-	// 	o.x = fdf->project[(oy + 1) * fdf->width + ox].x * (100 / (int)fdf->map[(oy + 1) * fdf->width + ox].z);
-	// 	o.y = fdf->project[(oy + 1) * fdf->width + ox].y * (100 / (int)fdf->map[(oy + 1) * fdf->width + ox].z);
-	// 	bresenham(fdf, c, o);
-	// }
+	if (oy >= 0 && oy < fdf->nblines - 1)
+	{
+		v = fdf->map[(oy + 1) * fdf->width + ox];
+		if (!v.z)
+			v.z += 0.1;
+		// t_vector2 vp;
+		// vp = project_point(fdf, ox, oy + 1);
+		// o.x = vp.x;
+		// o.y = vp.y;
+		o = project(v);
+		if (o.x >= 0 && o.y >= 0 && o.x < 500 && o.y < 500)
+			bresenham(fdf, c, o);
+	}
 }
 
 int		put_pixels(t_fdf *fdf)
@@ -76,23 +109,9 @@ int		put_pixels(t_fdf *fdf)
 	y = -1;
 	while (++y < fdf->nblines && (x = -1))
 		while (++x < fdf->width)
-			ft_printf("");
+			;
 			// put_line(fdf, x, y);
 	return (0);
-}
-
-t_vector2	project_point(t_fdf *fdf, int x, int y)
-{
-	t_vector3	v;
-	
-	// (void)fdf;
-	v = vec_3_sub(fdf->map[y * fdf->width + x], fdf->cam.pos);
-	// v = fdf->map[y * fdf->width + x];
-	v = mat_4_mul_v(fdf->cam.projection, v);
-	v = mat_4_mul_v(fdf->cam.rotation, v);
-	if (v.z == 0)
-		v.z += 0.0001;
-	return ((t_vector2){(v.x * W_WIDTH) / (2.0 *  v.z) + W_WIDTH / 2.0, (v.y * W_HEIGHT) / (2.0 / v.z) + W_HEIGHT / 2.0});
 }
 
 int		calc_map(t_fdf *fdf)
