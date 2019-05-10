@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 11:09:08 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/10 14:29:29 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/10 14:39:16 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ void	ft_init_fdf(t_fdf *fdf)
 {
 	fdf->mlx_ptr = mlx_init();
 	fdf->window = mlx_new_window(fdf->mlx_ptr, W_WIDTH, W_HEIGHT, "fdf");
-	fdf->cam.pos.z = 20;
-	fdf->cam.rot_angles.x = M_PI;
+	fdf->cam.pos.z = -20;
+	fdf->cam.rot_angles.z = -M_PI;
+	// fdf->cam.rot_angles.x = M_PI;
 	// fdf->cam.pos.x = -30;
 	// fdf->cam.pos.y = -30;
 	init_matrixes(fdf);
