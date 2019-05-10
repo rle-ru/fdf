@@ -19,14 +19,16 @@ int		key_hook(int key, t_fdf *fdf)
 	double	speed;
 
 	speed = 0.03;
-	if (key == K_W || key == K_S)
-		fdf->cam.pos.z += (key == K_W ? 1 : -1) * speed * 5;
+	if (key == K_Q || key == K_E)
+		fdf->cam.pos.z += (key == K_Q ? 1 : -1) * speed * 5;
 	else if (key == K_A || key == K_D)
-		fdf->cam.pos.y += (key == K_D ? 1 : -1) * speed * 5;
+		fdf->cam.pos.x += (key == K_A ? 1 : -1) * speed * 5;
+	else if (key == K_W || key == K_S)
+		fdf->cam.pos.y += (key == K_W ? 1 : -1) * speed * 5;
 	else if (key == K_UP || key == K_DOWN)
 		fdf->cam.rot_angles.x += (key == K_UP ? 1 : -1) * speed * 0.5;
 	else if (key == K_LEFT || key == K_RIGHT)
-		fdf->cam.rot_angles.z += (key == K_RIGHT ? 1 : -1) * speed * 0.5;
+		fdf->cam.rot_angles.z += (key == K_LEFT ? 1 : -1) * speed * 0.5;
 	else if (key == K_SPACE)
 	{
 		fdf->cam.rot_angles.x = 0;
@@ -36,7 +38,7 @@ int		key_hook(int key, t_fdf *fdf)
 	}
 	else if (key == K_ESC)
 		ft_leave(ok, fdf);
-	ft_printf("Key is %d\n", key);
+	// ft_printf("Key is %d\n", key);
 	rotator(fdf, fdf->cam.rot_angles);
 	return (0);
 }

@@ -29,6 +29,8 @@
 # define K_A 0
 # define K_D 2
 # define K_ESC 53
+# define K_Q 12
+# define K_E 14
 
 typedef enum		e_bool
 {
