@@ -6,12 +6,13 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 11:58:16 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/09 16:27:19 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/10 13:52:05 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "mlx.h"
+#include "libft.h"
 
 int		key_hook(int key, t_fdf *fdf)
 {
@@ -35,6 +36,7 @@ int		key_hook(int key, t_fdf *fdf)
 	}
 	else if (key == K_ESC)
 		ft_leave(ok, fdf);
+	ft_printf("Key is %d\n", key);
 	rotator(fdf, fdf->cam.rot_angles);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 22:52:29 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/10 09:31:30 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/10 13:52:35 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,4 @@ void			rotator(t_fdf *fdf, t_vector3 a)
 	fdf->cam.rotation = mat_4_mul(3, x, y, z);
 	t_point	p;
 	p.y = -1;
-	// while (++p.y < 4 && (p.x = -1))
-	// 	while (++p.x < 4)
-			// ft_printf("%03d %03d = %f\n", p.x, p.y, fdf->cam.rotation.m[p.y][p.x]);
-	// fdf->cam.rotation = mat_4_mul(4, x, y, z, fdf->cam.projection);
 }
