@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 12:02:05 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/10 20:06:54 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/13 13:04:21 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ t_vector2	project_point(t_fdf *fdf, int x, int y)
 	v = fdf->map[y * fdf->width + x];
 	v.z *= 0.1;
 	v = vec_3_sub(v, fdf->cam.pos);
-	v = mat_4_mul_v(fdf->cam.rotation, v);
+	if (!fdf->proj)
+		v = mat_4_mul_v(fdf->cam.rotation, v);
 	if (v.z < 0.1)
 		return ((t_vector2){NAN, NAN});
 	v = mat_4_mul_v(fdf->cam.projection[fdf->proj], v);
