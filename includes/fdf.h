@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:38:14 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/13 15:17:00 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/13 16:12:15 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ t_matrix			mat_4_mul(int nb, ...);
 void				bresenham(t_fdf *fdf, t_point o, t_point t, t_color color);
 void				put_line(t_fdf *fdf, int ox, int oy);
 t_vector3			mat_4_mul_v(t_matrix m, t_vector3 v);
-int					get_color(int from, int to, int a);
+int					get_color(int from, int to, double a);
 
 t_vector3			vec_3_add(t_vector3 a, t_vector3 b);
 t_vector3			vec_3_sub(t_vector3 a, t_vector3 b);

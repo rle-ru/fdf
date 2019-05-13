@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 12:07:09 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/13 15:30:35 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/13 16:15:22 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void		bresenham(t_fdf *fdf, t_point o, t_point t, t_color color)
 	t_point	d;
 	t_point	s;
 	t_point	e;
-	int		rel;
-	int		pos;
+	double	rel;
+	double	pos;
 
 	rel = (abs(t.x - o.x) + abs(t.y - o.y));
 	pos = 0;
@@ -30,14 +30,11 @@ void		bresenham(t_fdf *fdf, t_point o, t_point t, t_color color)
 	d.y = abs(t.y - o.y);
 	s.y = o.y < t.y ? 1 : -1;
 	e.x = (d.x > d.y ? d.x : -d.y) / 2;
-	(void)color;
 	while (o.x != t.x || o.y != t.y)
 	{
 		if (o.x >= 0 && o.x < 500 && o.y >= 0 && o.y < 500)
-			// mlx_pixel_put(fdf->mlx_ptr, fdf->window, o.x, o.y,
-			// 	get_color(color.from, color.to, -pos * 100 / (rel + 1 )));
-				mlx_pixel_put(fdf->mlx_ptr, fdf->window, o.x, o.y, 0xFF0000);
-				// get_color(color.from, color.to, -pos * 100 / (rel + 1 )));
+			mlx_pixel_put(fdf->mlx_ptr, fdf->window, o.x, o.y,
+				get_color(color.from, color.to, (double)(-pos / rel)));
 		e.y = e.x;
 		if (e.y > -d.x)
 		{

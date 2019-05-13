@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:06:09 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/13 15:24:23 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/13 15:53:39 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void		ft_split_line(t_fdf *fdf, int y, t_line *line)
 		fdf->map[y * fdf->width + x].x = x;
 		if (fdf->map[y * fdf->width + x].z > fdf->maxz)
 			fdf->maxz = fdf->map[y * fdf->width + x].z;
-		else if (fdf->map[y * fdf->width + x].z < fdf->maxz)
+		else if (fdf->map[y * fdf->width + x].z < fdf->minz)
 			fdf->minz = fdf->map[y * fdf->width + x].z;
 		while (line->line[lpos]
 				&& (ft_isdigit(line->line[lpos])

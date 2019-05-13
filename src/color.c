@@ -6,13 +6,13 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 14:51:56 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/13 15:11:54 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/13 16:11:40 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		get_color(int from, int to, int a)
+int		get_color(int from, int to, double a)
 {
 	int	r;
 	int	g;
