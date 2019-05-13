@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:38:14 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/13 16:12:15 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/13 19:21:09 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,6 @@
 # define W_RIGHT 500.0
 # define W_BOTTOM 500.0
 # define W_TOP -500.0
-# define K_SHIFT 257
-# define K_CTRL 256
-# define K_UP 126
-# define K_DOWN 125
-# define K_LEFT 123
-# define K_RIGHT 124
-# define K_SPACE 49
-# define K_W 13
-# define K_S 1
-# define K_A 0
-# define K_D 2
-# define K_ESC 53
-# define K_Q 12
-# define K_E 14
-# define K_ENTER 36
 # define C_GROUND 0xFF8000
 # define C_DEEP 0x003366
 # define C_SUMMIT 0xE0E0E0

@@ -6,14 +6,13 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 11:58:16 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/13 13:23:10 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/13 19:15:59 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "mlx.h"
-#include "libft.h"
 #include "math.h"
+#include "keys.h"
 
 static void	reset_cam(t_fdf *fdf)
 {
