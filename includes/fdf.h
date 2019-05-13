@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:38:14 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/13 19:21:09 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/13 19:25:52 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,13 +88,6 @@ typedef struct		s_cam
 	t_vector3		rot_angles;
 }					t_cam;
 
-typedef struct		s_color
-{
-	int				from;
-	int				to;
-	int				a;
-}					t_color;
-
 typedef	struct		s_fdf
 {
 	void			*mlx_ptr;
@@ -125,7 +118,7 @@ void				init_matrixes(t_fdf *fdf);
 int					key_hook(int key, t_fdf *fdf);
 int					draw_map(t_fdf *fdf);
 t_matrix			mat_4_mul(int nb, ...);
-void				bresenham(t_fdf *fdf, t_point o, t_point t, t_color color);
+void				bresenham(t_fdf *fdf, t_point o, t_point t, t_point color);
 void				put_line(t_fdf *fdf, int ox, int oy);
 t_vector3			mat_4_mul_v(t_matrix m, t_vector3 v);
 int					get_color(int from, int to, double a);
