@@ -6,17 +6,22 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:38:14 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/10 13:54:04 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/10 21:22:50 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
+# define MAX_PROJ 2
 # define W_HEIGHT 500.0
 # define W_WIDTH 500.0
 # define FOV 110.0 * M_PI / 180.0
-# define FAR 100.0
+# define FAR 10.0
 # define NEAR 0.1
+# define W_LEFT -500.0
+# define W_RIGHT 500.0
+# define W_BOTTOM 500.0
+# define W_TOP -500.0
 # define K_SHIFT 257
 # define K_CTRL 256
 # define K_UP 126
@@ -31,6 +36,7 @@
 # define K_ESC 53
 # define K_Q 12
 # define K_E 14
+# define K_ENTER 36
 
 typedef enum		e_bool
 {
@@ -88,7 +94,7 @@ typedef struct		s_map
 typedef struct		s_cam
 {
 	t_vector3		pos;
-	t_matrix		projection;
+	t_matrix		projection[2];
 	t_matrix		rotation;
 	t_vector3		rot_angles;
 }					t_cam;
@@ -108,6 +114,7 @@ typedef	struct		s_fdf
 	t_vector2		*project;
 	t_cam			cam;
 	t_matrix		unit;
+	int				proj;
 }					t_fdf;
 
 t_error				ft_open_file(int ac, char **av, t_fdf *fdf);

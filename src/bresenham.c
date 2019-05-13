@@ -6,51 +6,42 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 12:07:09 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/10 15:23:02 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/10 22:25:00 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "mlx.h"
+#include <stdlib.h>
 
-static void	init_bre(t_point *o, t_point *t, double *deltax, double *deltay)
+void	bresenham(t_fdf *fdf, t_point o, t_point t)
 {
-	*deltax = t->x - o->x;
-	*deltay = t->y - o->y;
-}
-
-static void	init_bre2(double *deltaerr, double *error, t_point *o, t_point *p)
-{
-	*deltaerr = 1.0;
-	*error = 0;
-	p->y = o->y;
-	p->x = o->x;
-}
-
-void		bresenham(t_fdf *fdf, t_point o, t_point t)
-{
-	double	deltax;
-	double	deltay;
-	double	deltaerr;
-	double	error;
-	t_point	p;
-
-	init_bre(&o, &t, &deltax, &deltay);
-	init_bre2(&deltaerr, &error, &o, &p);
-	if (deltax)
-		deltaerr = deltay / deltax;
-	deltaerr = deltaerr < 0 ? -deltaerr : deltaerr;
-	while (p.x != t.x || p.y != t.y)
+	int	dx;
+	int	sx;
+	int	dy;
+	int	sy;
+	int	err;
+	int	e2;
+	
+	dx = abs(t.x - o.x);
+	sx = o.x < t.x ? 1 : -1;
+	dy = abs(t.y - o.y);
+	sy = o.y < t.y ? 1 : -1;
+	err = (dx > dy ? dx : -dy) / 2;
+	while (o.x != t.x || o.y != t.y)
 	{
-		if (p.x >= 0 && p.x < 500 && p.y >= 0 && p.y < 500)
-			mlx_pixel_put(fdf->mlx_ptr, fdf->window, p.x, p.y, 0xFF0000);
-		if ((error += deltaerr) >= 0.5)
+		if (o.x >= 0 && o.x < 500 && o.y >= 0 && o.y < 500)
+			mlx_pixel_put(fdf->mlx_ptr, fdf->window, o.x, o.y, 0xFF0000);
+		e2 = err;
+		if (e2 > -dx)
 		{
-			if (p.y != t.y)
-				p.y += p.y > t.y ? -1 : 1;
-			error -= 1.0;
+			err -= dy;
+			o.x += sx;
 		}
-		if (p.x != t.x)
-			p.x += p.x > t.x ? -1 : 1;
+		if (e2 < dy)
+		{
+			err += dx;
+			o.y += sy;
+		}
 	}
 }

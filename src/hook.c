@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 11:58:16 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/10 17:02:40 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/10 20:59:52 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,28 @@ int		key_hook(int key, t_fdf *fdf)
 		fdf->cam.rot_angles.x = 0;
 		fdf->cam.rot_angles.y = 0;
 	}
+	else if (key == K_ENTER)
+	{
+		++fdf->proj;
+		if (fdf->proj >= MAX_PROJ)
+		fdf->proj = 0;
+		ft_printf("proj is %d\nmatr %f\n", fdf->proj, fdf->cam.projection[1].m[0][0]);
+		int i = 0;
+		while (i < 4)
+		{
+			int j = 0;
+			while (j < 4)
+			{
+				ft_printf("%f ", fdf->cam.projection[1].m[i][j]);
+				++j;
+			}
+			++i;
+			ft_printf("\n");
+		}
+	}
 	else if (key == K_ESC)
 		ft_leave(ok, fdf);
-	// ft_printf("Key is %d\n", key);
+	ft_printf("Key is %d\n", key);
 	rotator(fdf, fdf->cam.rot_angles);
 	return (0);
 }
