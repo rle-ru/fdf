@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 21:37:04 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/13 13:23:30 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/13 14:17:35 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void			init_matrixes(t_fdf *fdf)
 	unit_matrix(fdf);
 	perspective_matrix(fdf);
 	isometric_matrix(fdf);
-	rotator(fdf, (t_vector3){0, 0, -M_PI});
+	rotator(fdf, (t_vector3){0, 0, -M_PI, 0});
 	fdf->cam.projection[1] = mat_4_mul(2, fdf->cam.projection[1],
 		fdf->cam.rotation);
 	rotator(fdf, fdf->cam.rot_angles);

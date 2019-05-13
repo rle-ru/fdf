@@ -6,13 +6,29 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:06:09 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/13 13:28:39 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/13 15:24:23 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "fdf.h"
 #include <stdlib.h>
+
+static void		set_colors(t_fdf *fdf)
+{
+	int	i;
+
+	i = fdf->width  * fdf->nblines;
+	while (i--)
+	{
+		if (fdf->map[i].z < 0)
+			fdf->map[i].color = get_color(C_GROUND, C_SUMMIT,
+					-fdf->map[i].z * 100 / fdf->maxz);
+		else
+			fdf->map[i].color = get_color(C_GROUND, C_DEEP,
+					-fdf->map[i].z * 100 / fdf->minz);
+	}
+}
 
 static void		ft_split_line(t_fdf *fdf, int y, t_line *line)
 {
@@ -21,6 +37,8 @@ static void		ft_split_line(t_fdf *fdf, int y, t_line *line)
 
 	x = -1;
 	lpos = 0;
+	fdf->maxz = INT_MIN;
+	fdf->minz = INT_MAX;
 	while (++x < fdf->width)
 	{
 		while (line->line[lpos] && line->line[lpos] == ' ')
@@ -28,6 +46,10 @@ static void		ft_split_line(t_fdf *fdf, int y, t_line *line)
 		fdf->map[y * fdf->width + x].z = -ft_atoi(line->line + lpos);
 		fdf->map[y * fdf->width + x].y = y;
 		fdf->map[y * fdf->width + x].x = x;
+		if (fdf->map[y * fdf->width + x].z > fdf->maxz)
+			fdf->maxz = fdf->map[y * fdf->width + x].z;
+		else if (fdf->map[y * fdf->width + x].z < fdf->maxz)
+			fdf->minz = fdf->map[y * fdf->width + x].z;
 		while (line->line[lpos]
 				&& (ft_isdigit(line->line[lpos])
 					|| line->line[lpos] == '-'))
@@ -58,5 +80,6 @@ t_error			ft_create_map(t_fdf *fdf)
 		free(tmp->line);
 		free(tmp);
 	}
+	set_colors(fdf);
 	return (ok);
 }

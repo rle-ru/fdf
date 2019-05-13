@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 12:07:09 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/13 13:32:49 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/13 15:30:35 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,29 @@
 #include <stdlib.h>
 #include <math.h>
 
-void		bresenham(t_fdf *fdf, t_point o, t_point t)
+void		bresenham(t_fdf *fdf, t_point o, t_point t, t_color color)
 {
 	t_point	d;
 	t_point	s;
 	t_point	e;
+	int		rel;
+	int		pos;
 
+	rel = (abs(t.x - o.x) + abs(t.y - o.y));
+	pos = 0;
 	d.x = abs(t.x - o.x);
 	s.x = o.x < t.x ? 1 : -1;
 	d.y = abs(t.y - o.y);
 	s.y = o.y < t.y ? 1 : -1;
 	e.x = (d.x > d.y ? d.x : -d.y) / 2;
+	(void)color;
 	while (o.x != t.x || o.y != t.y)
 	{
 		if (o.x >= 0 && o.x < 500 && o.y >= 0 && o.y < 500)
-			mlx_pixel_put(fdf->mlx_ptr, fdf->window, o.x, o.y, 0xFF0000);
+			// mlx_pixel_put(fdf->mlx_ptr, fdf->window, o.x, o.y,
+			// 	get_color(color.from, color.to, -pos * 100 / (rel + 1 )));
+				mlx_pixel_put(fdf->mlx_ptr, fdf->window, o.x, o.y, 0xFF0000);
+				// get_color(color.from, color.to, -pos * 100 / (rel + 1 )));
 		e.y = e.x;
 		if (e.y > -d.x)
 		{
@@ -41,6 +49,7 @@ void		bresenham(t_fdf *fdf, t_point o, t_point t)
 			e.x += d.x;
 			o.y += s.y;
 		}
+		++pos;
 	}
 }
 
@@ -48,21 +57,25 @@ void		put_line(t_fdf *fdf, int ox, int oy)
 {
 	t_point	c;
 	t_point	o;
+	t_color	color;
 
 	c.x = (int)fdf->project[oy * fdf->width + ox].x;
 	c.y = (int)fdf->project[oy * fdf->width + ox].y;
+	color.from = fdf->map[oy * fdf->width + ox].color;
 	if (!isnan(c.x) && ox >= 0 && ox < fdf->width - 1)
 	{
+		color.to = fdf->map[oy * fdf->width + ox + 1].color;
 		o.x = (int)fdf->project[oy * fdf->width + ox + 1].x;
 		o.y = (int)fdf->project[oy * fdf->width + ox + 1].y;
 		if (!isnan(o.x))
-			bresenham(fdf, c, o);
+			bresenham(fdf, c, o, color);
 	}
 	if (!isnan(c.y) && oy >= 0 && oy < fdf->nblines - 1)
 	{
+		color.to = fdf->map[(oy + 1) * fdf->width + ox].color;
 		o.x = (int)fdf->project[(oy + 1) * fdf->width + ox].x;
 		o.y = (int)fdf->project[(oy + 1) * fdf->width + ox].y;
 		if (!isnan(o.x))
-			bresenham(fdf, c, o);
+			bresenham(fdf, c, o, color);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:38:14 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/13 13:26:53 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/13 15:17:00 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@
 # define K_Q 12
 # define K_E 14
 # define K_ENTER 36
+# define C_GROUND 0xFF8000
+# define C_DEEP 0x003366
+# define C_SUMMIT 0xE0E0E0
 
 typedef enum		e_bool
 {
@@ -82,6 +85,7 @@ typedef struct		s_vector3
 	double			x;
 	double			y;
 	double			z;
+	int				color;
 }					t_vector3;
 
 typedef struct		s_map
@@ -99,6 +103,13 @@ typedef struct		s_cam
 	t_vector3		rot_angles;
 }					t_cam;
 
+typedef struct		s_color
+{
+	int				from;
+	int				to;
+	int				a;
+}					t_color;
+
 typedef	struct		s_fdf
 {
 	void			*mlx_ptr;
@@ -110,6 +121,8 @@ typedef	struct		s_fdf
 	t_line			*lines;
 	t_line			*last_line;
 	int				width;
+	int				maxz;
+	int				minz;
 	t_vector3		*map;
 	t_vector2		*project;
 	t_cam			cam;
@@ -127,12 +140,14 @@ void				init_matrixes(t_fdf *fdf);
 int					key_hook(int key, t_fdf *fdf);
 int					draw_map(t_fdf *fdf);
 t_matrix			mat_4_mul(int nb, ...);
-void				bresenham(t_fdf *fdf, t_point o, t_point t);
+void				bresenham(t_fdf *fdf, t_point o, t_point t, t_color color);
 void				put_line(t_fdf *fdf, int ox, int oy);
 t_vector3			mat_4_mul_v(t_matrix m, t_vector3 v);
+int					get_color(int from, int to, int a);
 
 t_vector3			vec_3_add(t_vector3 a, t_vector3 b);
 t_vector3			vec_3_sub(t_vector3 a, t_vector3 b);
 void				rotator(t_fdf *fdf, t_vector3 a);
 int					hook_leave(t_fdf *fdf);
+
 #endif

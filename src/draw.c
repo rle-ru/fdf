@@ -6,22 +6,13 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 12:02:05 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/13 13:27:45 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/13 13:36:00 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "fdf.h"
 #include "math.h"
-
-t_point		project(t_vector3 v)
-{
-	t_point	res;
-
-	res.x = (int)(v.x * (100 / v.z));
-	res.y = (int)(v.y * (100 / v.z));
-	return (res);
-}
 
 t_vector2	project_point(t_fdf *fdf, int x, int y)
 {
