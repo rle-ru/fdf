@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 12:07:09 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/13 19:26:33 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/13 22:41:40 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void		bresenham(t_fdf *fdf, t_point o, t_point t, t_point color)
 	t_point	e;
 	double	rel;
 	double	pos;
+	int		colo;
 
 	rel = (abs(t.x - o.x) + abs(t.y - o.y));
 	pos = 0;
@@ -32,9 +33,16 @@ void		bresenham(t_fdf *fdf, t_point o, t_point t, t_point color)
 	e.x = (d.x > d.y ? d.x : -d.y) / 2;
 	while (o.x != t.x || o.y != t.y)
 	{
-		if (o.x >= 0 && o.x < 500 && o.y >= 0 && o.y < 500)
-			mlx_pixel_put(fdf->mlx_ptr, fdf->window, o.x, o.y,
-				get_color(color.x, color.y, (double)(-pos / rel)));
+		if (o.x >= 0 && o.x < W_WIDTH && o.y >= 0 && o.y < W_HEIGHT)
+		{
+			// colo = get_color(color.x, color.y, (double)(-pos / rel));
+			(void)color;
+			colo = 0xFFFF0000;
+			fdf->img.img[((o.y * 500) + o.x) * 4] = 0xFF;
+			fdf->img.img[((o.y * 500) + o.x) * 4 + 1] = (colo & 0xFF0000) >> 4;
+			fdf->img.img[((o.y * 500) + o.x) * 4 + 2] = (colo & 0xFF00) >> 2;
+			fdf->img.img[((o.y * 500) + o.x) * 4 + 3] = colo & 0xFF;
+		}
 		e.y = e.x;
 		if (e.y > -d.x)
 		{

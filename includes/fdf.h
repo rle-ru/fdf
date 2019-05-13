@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:38:14 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/13 19:25:52 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/13 22:26:00 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,15 @@ typedef enum		e_error
 	filepath,
 	badline
 }					t_error;
+
+typedef struct		s_img
+{
+	void			*img_ptr;
+	char			*img;
+	int				bpp;
+	int				stride;
+	int				endian;
+}					t_img;
 
 typedef struct		s_point
 {
@@ -92,7 +101,7 @@ typedef	struct		s_fdf
 {
 	void			*mlx_ptr;
 	void			*window;
-	void			*img;
+	t_img			img;
 	int				fd;
 	char			*fname;
 	int				nblines;
