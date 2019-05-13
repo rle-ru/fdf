@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 22:52:29 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/10 13:52:35 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/13 13:18:06 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,10 @@ static t_matrix		rotato_x(double theta)
 	double		c;
 	double		s;
 	t_matrix	m;
-	
+
 	ft_bzero(&m, sizeof(t_matrix));
 	c = cos(theta);
 	s = sin(theta);
-
 	m.m[0][0] = 1;
 	m.m[1][1] = c;
 	m.m[1][2] = -s;
@@ -69,7 +68,7 @@ static t_matrix		rotato_z(double theta)
 	return (m);
 }
 
-void			rotator(t_fdf *fdf, t_vector3 a)
+void				rotator(t_fdf *fdf, t_vector3 a)
 {
 	t_matrix	x;
 	t_matrix	y;
@@ -79,6 +78,4 @@ void			rotator(t_fdf *fdf, t_vector3 a)
 	y = a.y ? rotato_y(a.y) : fdf->unit;
 	z = a.z ? rotato_z(a.z) : fdf->unit;
 	fdf->cam.rotation = mat_4_mul(3, x, y, z);
-	t_point	p;
-	p.y = -1;
 }

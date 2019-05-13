@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:06:09 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/10 14:35:28 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/13 13:28:39 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,11 @@ t_error			ft_create_map(t_fdf *fdf)
 	t_line	*tmp;
 
 	y = -1;
-	if (!(fdf->map = malloc(sizeof(t_vector3) * fdf->nblines * fdf->lines->nbx)))
+	if (!(fdf->map = malloc(sizeof(t_vector3)
+				* fdf->nblines * fdf->lines->nbx)))
 		return (falloc);
-	if (!(fdf->project = malloc(sizeof(t_vector2) * fdf->nblines * fdf->lines->nbx)))
+	if (!(fdf->project = malloc(sizeof(t_vector2)
+				* fdf->nblines * fdf->lines->nbx)))
 		return (falloc);
 	fdf->width = fdf->lines->nbx;
 	line = fdf->lines;

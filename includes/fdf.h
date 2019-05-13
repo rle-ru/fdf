@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:38:14 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/10 21:22:50 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/13 13:26:53 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ int					key_hook(int key, t_fdf *fdf);
 int					draw_map(t_fdf *fdf);
 t_matrix			mat_4_mul(int nb, ...);
 void				bresenham(t_fdf *fdf, t_point o, t_point t);
-
+void				put_line(t_fdf *fdf, int ox, int oy);
 t_vector3			mat_4_mul_v(t_matrix m, t_vector3 v);
 
 t_vector3			vec_3_add(t_vector3 a, t_vector3 b);

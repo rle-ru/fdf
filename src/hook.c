@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 11:58:16 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/13 13:12:09 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/13 13:23:10 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,17 @@
 #include "libft.h"
 #include "math.h"
 
-int		key_hook(int key, t_fdf *fdf)
+static void	reset_cam(t_fdf *fdf)
+{
+	fdf->cam.pos.z = -20;
+	fdf->cam.pos.y = 0;
+	fdf->cam.pos.x = 0;
+	fdf->cam.rot_angles.z = -M_PI;
+	fdf->cam.rot_angles.x = 0;
+	fdf->cam.rot_angles.y = 0;
+}
+
+int			key_hook(int key, t_fdf *fdf)
 {
 	double	speed;
 
@@ -31,36 +41,12 @@ int		key_hook(int key, t_fdf *fdf)
 	else if (key == K_LEFT || key == K_RIGHT)
 		fdf->cam.rot_angles.z += (key == K_LEFT ? 1 : -1) * speed * 0.5;
 	else if (key == K_SPACE)
-	{
-		fdf->cam.pos.z = -20;
-		fdf->cam.pos.y = 0;
-		fdf->cam.pos.x = 0;
-		fdf->cam.rot_angles.z = -M_PI;
-		fdf->cam.rot_angles.x = 0;
-		fdf->cam.rot_angles.y = 0;
-	}
-	else if (key == K_ENTER)
-	{
-		++fdf->proj;
-		if (fdf->proj >= MAX_PROJ)
-		fdf->proj = 0;
-		ft_printf("proj is %d\nmatr %f\n", fdf->proj, fdf->cam.projection[1].m[0][0]);
-		int i = 0;
-		while (i < 4)
-		{
-			int j = 0;
-			while (j < 4)
-			{
-				ft_printf("%f ", fdf->cam.projection[1].m[i][j]);
-				++j;
-			}
-			++i;
-			ft_printf("\n");
-		}
-	}
+		reset_cam(fdf);
 	else if (key == K_ESC)
 		ft_leave(ok, fdf);
-	ft_printf("Key is %d\n", key);
+	else if (key == K_ENTER && ++fdf->proj)
+		if (fdf->proj >= MAX_PROJ)
+			fdf->proj = 0;
 	rotator(fdf, fdf->cam.rot_angles);
 	return (0);
 }

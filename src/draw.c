@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 12:02:05 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/13 13:04:21 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/13 13:27:45 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,7 @@
 #include "fdf.h"
 #include "math.h"
 
-void	put_line(t_fdf *fdf, int ox, int oy)
-{
-	t_point	c;
-	t_point	o;
-
-	c.x = (int)fdf->project[oy * fdf->width + ox].x;
-	c.y = (int)fdf->project[oy * fdf->width + ox].y;
-	if (!isnan(c.x) && ox >= 0 && ox < fdf->width - 1) 
-	{
-		o.x = (int)fdf->project[oy * fdf->width + ox + 1].x;
-		o.y = (int)fdf->project[oy * fdf->width + ox + 1].y;
-		if (!isnan(o.x))
-			bresenham(fdf, c, o);
-	}
-	if (!isnan(c.y) && oy >= 0 && oy < fdf->nblines - 1)
-	{
-		o.x = (int)fdf->project[(oy + 1) * fdf->width + ox].x;
-		o.y = (int)fdf->project[(oy + 1) * fdf->width + ox].y;
-		if (!isnan(o.x))
-			bresenham(fdf, c, o);
-	}
-}
-
-t_point	project(t_vector3 v)
+t_point		project(t_vector3 v)
 {
 	t_point	res;
 
@@ -49,7 +26,7 @@ t_point	project(t_vector3 v)
 t_vector2	project_point(t_fdf *fdf, int x, int y)
 {
 	t_vector3	v;
-	
+
 	v = fdf->map[y * fdf->width + x];
 	v.z *= 0.1;
 	v = vec_3_sub(v, fdf->cam.pos);
@@ -58,10 +35,11 @@ t_vector2	project_point(t_fdf *fdf, int x, int y)
 	if (v.z < 0.1)
 		return ((t_vector2){NAN, NAN});
 	v = mat_4_mul_v(fdf->cam.projection[fdf->proj], v);
-	return ((t_vector2){(v.x + 0.25) / v.z * W_WIDTH, (v.y + 0.25) / v.z * W_HEIGHT});
+	return ((t_vector2){(v.x + 0.25) / v.z * W_WIDTH,
+			(v.y + 0.25) / v.z * W_HEIGHT});
 }
 
-int		put_pixels(t_fdf *fdf)
+int			put_pixels(t_fdf *fdf)
 {
 	int	x;
 	int	y;
@@ -73,10 +51,11 @@ int		put_pixels(t_fdf *fdf)
 	return (0);
 }
 
-int		calc_map(t_fdf *fdf)
+int			calc_map(t_fdf *fdf)
 {
 	int	y;
 	int	x;
+
 	y = -1;
 	while (++y < fdf->nblines && (x = -1))
 		while (++x < fdf->width)
