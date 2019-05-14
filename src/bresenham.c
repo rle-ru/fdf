@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 12:07:09 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/13 22:41:40 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/14 13:55:17 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "mlx.h"
 #include <stdlib.h>
 #include <math.h>
+
+#include "libft.h"
 
 void		bresenham(t_fdf *fdf, t_point o, t_point t, t_point color)
 {
@@ -33,16 +35,16 @@ void		bresenham(t_fdf *fdf, t_point o, t_point t, t_point color)
 	e.x = (d.x > d.y ? d.x : -d.y) / 2;
 	while (o.x != t.x || o.y != t.y)
 	{
+		ft_printf("coucou %6d %6d\n", o.x, o.y);
 		if (o.x >= 0 && o.x < W_WIDTH && o.y >= 0 && o.y < W_HEIGHT)
 		{
-			// colo = get_color(color.x, color.y, (double)(-pos / rel));
+			colo = 0xFF0000;
 			(void)color;
-			colo = 0xFFFF0000;
-			fdf->img.img[((o.y * 500) + o.x) * 4] = 0xFF;
-			fdf->img.img[((o.y * 500) + o.x) * 4 + 1] = (colo & 0xFF0000) >> 4;
-			fdf->img.img[((o.y * 500) + o.x) * 4 + 2] = (colo & 0xFF00) >> 2;
-			fdf->img.img[((o.y * 500) + o.x) * 4 + 3] = colo & 0xFF;
+			// colo = get_color(color.x, color.y, (double)(-pos / rel));
+			fdf->img.img[((o.y * 500) + o.x)] = colo;
 		}
+		// else
+		// 	break ;
 		e.y = e.x;
 		if (e.y > -d.x)
 		{

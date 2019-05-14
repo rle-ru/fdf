@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 12:02:05 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/14 11:29:37 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/14 12:15:02 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ t_vector2	project_point(t_fdf *fdf, int x, int y)
 	if (v.z < 0.1)
 		return ((t_vector2){NAN, NAN});
 	v = mat_4_mul_v(fdf->cam.projection[fdf->proj], v);
+	if (!v.z)
+		v.z += 1e-6;
 	return ((t_vector2){(v.x + 0.25) / v.z * W_WIDTH,
 			(v.y + 0.25) / v.z * W_HEIGHT});
 }
@@ -57,7 +59,6 @@ int			calc_map(t_fdf *fdf)
 
 int			draw_map(t_fdf *fdf)
 {
-	mlx_clear_window(fdf->mlx_ptr, fdf->window);
 	calc_map(fdf);
 	ft_bzero(fdf->img.img, 500 * 500 * 4);
 	put_pixels(fdf);

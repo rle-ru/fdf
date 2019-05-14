@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:38:14 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/13 22:26:00 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/14 11:46:24 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef enum		e_error
 typedef struct		s_img
 {
 	void			*img_ptr;
-	char			*img;
+	int				*img;
 	int				bpp;
 	int				stride;
 	int				endian;
