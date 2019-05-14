@@ -6,15 +6,13 @@
 /*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:38:14 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/14 18:29:36 by dacuvill         ###   ########.fr       */
+/*   Updated: 2019/05/14 19:33:45 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 # define MAX_PROJ 2
-# define W_HEIGHT 1440.0
-# define W_WIDTH 2560.0
 # define FOV 110.0 * M_PI / 180.0
 # define FAR 10.0
 # define NEAR 0.1

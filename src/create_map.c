@@ -6,7 +6,7 @@
 /*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:06:09 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/14 18:26:10 by dacuvill         ###   ########.fr       */
+/*   Updated: 2019/05/14 19:32:03 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,30 @@ static void		ft_split_line(t_fdf *fdf, int y, t_line *line)
 	}
 }
 
+static void		ft_window_size(t_fdf *fdf)
+{
+	if (fdf->width < 20 && fdf->nblines < 20)
+	{
+		fdf->w_height = 500;
+		fdf->w_width = 500;
+	}
+	else if (fdf->width < 50 && fdf->nblines < 50)
+	{
+		fdf->w_height = 750;
+		fdf->w_width = 1000;
+	}
+	else if (fdf->width < 100 && fdf->nblines < 100)
+	{
+		fdf->w_height = 1000;
+		fdf->w_width = 1750;
+	}
+	else
+	{	
+		fdf->w_height = 1440;
+		fdf->w_width = 2560;
+	}
+}
+
 t_error			ft_create_map(t_fdf *fdf)
 {
 	int		y;
@@ -73,10 +97,7 @@ t_error			ft_create_map(t_fdf *fdf)
 				* fdf->nblines * fdf->lines->nbx)))
 		return (falloc);
 	fdf->width = fdf->lines->nbx;
-	// fdf->w_height = fdf->width * 100;
-	fdf->w_height = 1440;
-	// fdf->w_width = fdf->width * 100;
-	fdf->w_width = 2500;
+	ft_window_size(fdf);
 	line = fdf->lines;
 	while (++y < fdf->nblines && line != NULL)
 	{
