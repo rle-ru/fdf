@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 12:07:09 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/14 19:10:14 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/14 19:11:18 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void		bresenham(t_fdf *fdf, t_point o, t_point t, t_point color)
 			// color.x = get_color(color.x, color.y, (double)(-pos / rel));
 			// (void)color;
 			colo = C_SUMMIT;
-			fdf->img.img[((o.y * 500) + o.x)] = color.x;
+			fdf->img.img[((o.y * (int)fdf->w_width) + o.x)] = color.x;
 		}
 		else
 			break ;
