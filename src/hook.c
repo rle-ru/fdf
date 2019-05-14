@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 11:58:16 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/13 19:15:59 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/14 15:21:06 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int			key_hook(int key, t_fdf *fdf)
 {
 	double	speed;
 
-	speed = 0.1;
+	speed = 0.1 * fdf->nblines / 5;
 	if (key == K_Q || key == K_E)
 		fdf->cam.pos.z += (key == K_Q ? 1 : -1) * speed * 5;
 	else if (key == K_A || key == K_D)
@@ -36,9 +36,9 @@ int			key_hook(int key, t_fdf *fdf)
 	else if (key == K_W || key == K_S)
 		fdf->cam.pos.y += (key == K_W ? -1 : 1) * speed * 5;
 	else if (key == K_UP || key == K_DOWN)
-		fdf->cam.rot_angles.x += (key == K_UP ? 1 : -1) * speed * 0.5;
+		fdf->cam.rot_angles.x += (key == K_UP ? 1 : -1) * speed * 0.1;
 	else if (key == K_LEFT || key == K_RIGHT)
-		fdf->cam.rot_angles.z += (key == K_LEFT ? 1 : -1) * speed * 0.5;
+		fdf->cam.rot_angles.z += (key == K_LEFT ? 1 : -1) * speed * 0.1;
 	else if (key == K_SPACE)
 		reset_cam(fdf);
 	else if (key == K_ESC)
