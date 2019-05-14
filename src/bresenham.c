@@ -6,7 +6,11 @@
 /*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 12:07:09 by rle-ru            #+#    #+#             */
+<<<<<<< Updated upstream
 /*   Updated: 2019/05/14 18:38:10 by dacuvill         ###   ########.fr       */
+=======
+/*   Updated: 2019/05/14 18:25:13 by rle-ru           ###   ########.fr       */
+>>>>>>> Stashed changes
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +41,11 @@ void		bresenham(t_fdf *fdf, t_point o, t_point t, t_point color)
 	{
 		if (o.x >= 0 && o.x < fdf->w_width && o.y >= 0 && o.y < fdf->w_height)
 		{
-			if (color.x != color.y)
-				colo = get_color(color.x, color.y, (double)(-pos / rel));
-			else
-				colo = color.x;
-			fdf->img.img[((o.y * (int)fdf->w_width) + o.x)] = colo;
+			color.x = color.x != color.y ? get_color(color.x, color.y, (double)(-pos / rel)) : color.x;
+			// color.x = get_color(color.x, color.y, (double)(-pos / rel));
+			// (void)color;
+			colo = C_SUMMIT;
+			fdf->img.img[((o.y * 500) + o.x)] = color.x;
 		}
 		else
 			break ;
@@ -65,6 +69,7 @@ void		put_line(t_fdf *fdf, int ox, int oy)
 	t_point	c;
 	t_point	o;
 	t_point	color;
+	int		temp;
 
 	c.x = (int)fdf->project[oy * fdf->width + ox].x;
 	c.y = (int)fdf->project[oy * fdf->width + ox].y;
@@ -75,7 +80,17 @@ void		put_line(t_fdf *fdf, int ox, int oy)
 		o.x = (int)fdf->project[oy * fdf->width + ox + 1].x;
 		o.y = (int)fdf->project[oy * fdf->width + ox + 1].y;
 		if (!isnan(o.x))
-			bresenham(fdf, c, o, color);
+		{
+			if (c.x >= 0 && c.x < W_WIDTH && c.y >= 0 && c.y < W_HEIGHT)
+				bresenham(fdf, c, o, color);
+			else if (o.x >= 0 && o.x < W_WIDTH && o.y >= 0 && o.y < W_HEIGHT)
+			{
+				temp = color.y;
+				color.y = color.x;
+				color.x = temp;
+				bresenham(fdf, o, c, color);
+			}
+		}
 	}
 	if (!isnan(c.y) && oy >= 0 && oy < fdf->nblines - 1)
 	{
@@ -83,6 +98,16 @@ void		put_line(t_fdf *fdf, int ox, int oy)
 		o.x = (int)fdf->project[(oy + 1) * fdf->width + ox].x;
 		o.y = (int)fdf->project[(oy + 1) * fdf->width + ox].y;
 		if (!isnan(o.x))
-			bresenham(fdf, c, o, color);
+		{
+			if (c.x >= 0 && c.x < W_WIDTH && c.y >= 0 && c.y < W_HEIGHT)
+				bresenham(fdf, c, o, color);
+			else if (o.x >= 0 && o.x < W_WIDTH && o.y >= 0 && o.y < W_HEIGHT)
+			{
+				temp = color.y;
+				color.y = color.x;
+				color.x = temp;
+				bresenham(fdf, o, c, color);
+			}
+		}
 	}
 }

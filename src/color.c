@@ -6,13 +6,14 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 14:51:56 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/14 15:28:01 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/14 18:16:50 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
+
 int		get_color(int from, int to, double a)
 {
 	unsigned char	r;
