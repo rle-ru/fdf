@@ -6,13 +6,14 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 12:02:05 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/13 22:36:37 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/14 11:29:37 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "fdf.h"
 #include "math.h"
+#include "libft.h"
 
 t_vector2	project_point(t_fdf *fdf, int x, int y)
 {
@@ -58,9 +59,7 @@ int			draw_map(t_fdf *fdf)
 {
 	mlx_clear_window(fdf->mlx_ptr, fdf->window);
 	calc_map(fdf);
-	fdf->img.img_ptr = mlx_new_image(fdf->mlx_ptr, 500, 500);
-	fdf->img.img = mlx_get_data_addr(fdf->img.img_ptr, &fdf->img.bpp, &fdf->img.stride, &fdf->img.endian);
-	fdf->img.bpp /= 8;
+	ft_bzero(fdf->img.img, 500 * 500 * 4);
 	put_pixels(fdf);
 	mlx_put_image_to_window(fdf->mlx_ptr, fdf->window, fdf->img.img_ptr, 0, 0);
 	return (0);
