@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 12:02:05 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/14 15:01:47 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/14 18:17:37 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ t_vector2	project_point(t_fdf *fdf, int x, int y)
 	v = mat_4_mul_v(fdf->cam.projection[fdf->proj], v);
 	if (!v.z)
 		v.z += 1e-6;
-	return ((t_vector2){(v.x + 0.25) / v.z * W_WIDTH,
-			(v.y + 0.25) / v.z * W_HEIGHT});
+	return ((t_vector2){(v.x + 0.25) / v.z * fdf->w_width,
+			(v.y + 0.25) / v.z * fdf->w_height});
 }
 
 int			put_pixels(t_fdf *fdf)
@@ -60,7 +60,7 @@ int			calc_map(t_fdf *fdf)
 int			draw_map(t_fdf *fdf)
 {
 	calc_map(fdf);
-	ft_bzero(fdf->img.img, 500 * 500 * 4);
+	ft_bzero(fdf->img.img, (int)fdf->w_width * (int)fdf->w_height * 4);
 	put_pixels(fdf);
 	mlx_put_image_to_window(fdf->mlx_ptr, fdf->window, fdf->img.img_ptr, 0, 0);
 	return (0);

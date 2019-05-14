@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:38:14 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/14 15:31:59 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/14 18:29:36 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 # define MAX_PROJ 2
-# define W_HEIGHT 500.0
-# define W_WIDTH 500.0
+# define W_HEIGHT 1440.0
+# define W_WIDTH 2560.0
 # define FOV 110.0 * M_PI / 180.0
 # define FAR 10.0
 # define NEAR 0.1
@@ -115,6 +115,8 @@ typedef	struct		s_fdf
 	t_cam			cam;
 	t_matrix		unit;
 	int				proj;
+	double			w_height;
+	double			w_width;
 }					t_fdf;
 
 t_error				ft_open_file(int ac, char **av, t_fdf *fdf);

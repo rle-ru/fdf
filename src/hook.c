@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 11:58:16 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/14 15:21:06 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/14 16:40:13 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int			key_hook(int key, t_fdf *fdf)
 
 	speed = 0.1 * fdf->nblines / 5;
 	if (key == K_Q || key == K_E)
-		fdf->cam.pos.z += (key == K_Q ? 1 : -1) * speed * 5;
+		fdf->cam.pos.z += (key == K_Q ? -1 : 1) * speed * 5;
 	else if (key == K_A || key == K_D)
 		fdf->cam.pos.x += (key == K_A ? -1 : 1) * speed * 5;
 	else if (key == K_W || key == K_S)

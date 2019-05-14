@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:06:09 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/14 15:09:19 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/14 18:26:10 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,10 @@ t_error			ft_create_map(t_fdf *fdf)
 				* fdf->nblines * fdf->lines->nbx)))
 		return (falloc);
 	fdf->width = fdf->lines->nbx;
+	// fdf->w_height = fdf->width * 100;
+	fdf->w_height = 1440;
+	// fdf->w_width = fdf->width * 100;
+	fdf->w_width = 2500;
 	line = fdf->lines;
 	while (++y < fdf->nblines && line != NULL)
 	{
