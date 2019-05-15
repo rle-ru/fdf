@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 14:06:33 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/09 01:12:13 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/15 22:19:42 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@ static t_error	ft_check_line(t_fdf *fdf, char *line)
 
 	if (!(new = malloc(sizeof(t_line))))
 		return (falloc);
-	if (fdf->last_line == NULL)
-		fdf->lines = new;
+	if (fdf->parser.last_line == NULL)
+		fdf->parser.lines = new;
 	else
-		fdf->last_line->next = new;
-	fdf->last_line = new;
+		fdf->parser.last_line->next = new;
+	fdf->parser.last_line = new;
 	new->line = line;
 	new->next = NULL;
 	if ((new->nbx = ft_countwords(line, ' ')) == 0
-			|| new->nbx != fdf->lines->nbx)
+			|| new->nbx != fdf->parser.lines->nbx)
 		return (badline);
 	return (ok);
 }
@@ -41,9 +41,9 @@ t_error			ft_parse_file(t_fdf *fdf)
 	t_error	ret;
 
 	current_lines = 0;
-	while ((ret_gnl = get_next_line(fdf->fd, &line)) == 1)
+	while ((ret_gnl = get_next_line(fdf->parser.fd, &line)) == 1)
 	{
-		++fdf->nblines;
+		++fdf->height;
 		if ((ret = ft_check_line(fdf, line)) != ok)
 			return (ret);
 	}
@@ -51,7 +51,7 @@ t_error			ft_parse_file(t_fdf *fdf)
 		return (falloc);
 	if ((ret = ft_create_map(fdf)) != ok)
 		return (ret);
-	fdf->lines = NULL;
-	close(fdf->fd);
+	fdf->parser.lines = NULL;
+	close(fdf->parser.fd);
 	return (ok);
 }

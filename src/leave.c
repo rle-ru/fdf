@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 12:01:44 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/15 22:12:06 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/15 22:23:34 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,22 @@ static void		ft_print_error(t_error ret, t_fdf *fdf)
 	if (ret == usage)
 		ft_usage();
 	else if (ret == filepath)
-		ft_fdprintf(STDERR_FILENO, "Invalid file \"%s\"\n", fdf->fname);
+		ft_fdprintf(STDERR_FILENO, "Invalid file \"%s\"\n", fdf->parser.fname);
 	else if (ret == falloc)
 		ft_fdprintf(STDERR_FILENO, "A malloc failed (dafuk ?)");
 	else if (ret == badline)
-		ft_fdprintf(STDERR_FILENO, "Incorrect line : %d\n", fdf->nblines);
+		ft_fdprintf(STDERR_FILENO, "Incorrect line : %d\n", fdf->height);
 }
 
 static void		ft_clear(t_fdf *fdf)
 {
-	if (fdf->lines)
+	if (fdf->parser.lines)
 		free_lines(fdf);
 	ft_memdel((void**)&fdf->map);
-	if (fdf->window)
-		mlx_destroy_window(fdf->mlx_ptr, fdf->window);
-	if (fdf->img.img_ptr)
-		mlx_destroy_image(fdf->mlx_ptr, fdf->img.img_ptr);
+	if (fdf->canvas.window)
+		mlx_destroy_window(fdf->canvas.mlx_ptr, fdf->canvas.window);
+	if (fdf->canvas.img.img_ptr)
+		mlx_destroy_image(fdf->canvas.mlx_ptr, fdf->canvas.img.img_ptr);
 	if (fdf->map)
 		free(fdf->map);
 	if (fdf->project)

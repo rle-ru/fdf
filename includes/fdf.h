@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:38:14 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/15 22:01:44 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/15 22:27:55 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,26 +95,37 @@ typedef struct		s_cam
 	t_vector3		rot_angles;
 }					t_cam;
 
-typedef	struct		s_fdf
+typedef struct		s_parser
+{
+	char			*fname;
+	int				fd;
+	t_line			*lines;
+	t_line			*last_line;
+	int				maxz;
+	int				minz;
+}					t_parser;
+
+typedef struct		s_canvas
 {
 	void			*mlx_ptr;
 	void			*window;
 	t_img			img;
-	int				fd;
-	char			*fname;
-	int				nblines;
-	t_line			*lines;
-	t_line			*last_line;
-	int				width;
-	int				maxz;
-	int				minz;
-	t_vector3		*map;
-	t_vector2		*project;
-	t_cam			cam;
-	t_matrix		unit;
-	int				proj;
 	double			w_height;
 	double			w_width;
+}					t_canvas;
+
+typedef struct		s_fdf
+{
+	t_parser		parser;
+	t_canvas		canvas;
+	t_cam			cam;
+	t_vector3		*map;
+	t_vector2		*project;
+	int				height;
+	int				width;
+	t_matrix		unit;
+	int				proj;
+
 }					t_fdf;
 
 t_error				ft_open_file(int ac, char **av, t_fdf *fdf);
@@ -131,7 +142,6 @@ void				bresenham(t_fdf *fdf, t_point o, t_point t, t_point color);
 void				put_line(t_fdf *fdf, int ox, int oy);
 t_vector3			mat_4_mul_v(t_matrix m, t_vector3 v);
 int					get_color(int from, int to, double a);
-
 t_vector3			vec_3_add(t_vector3 a, t_vector3 b);
 t_vector3			vec_3_sub(t_vector3 a, t_vector3 b);
 void				rotator(t_fdf *fdf, t_vector3 a);

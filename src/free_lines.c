@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 17:50:33 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/07 13:06:51 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/15 22:24:08 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	free_lines(t_fdf *fdf)
 	t_line	*cur;
 	t_line	*tmp;
 
-	cur = fdf->lines;
+	cur = fdf->parser.lines;
 	while (cur != NULL)
 	{
 		tmp = cur;
@@ -27,6 +27,6 @@ void	free_lines(t_fdf *fdf)
 		cur = cur->next;
 		free(tmp);
 	}
-	fdf->last_line = NULL;
-	fdf->lines = NULL;
+	fdf->parser.last_line = NULL;
+	fdf->parser.lines = NULL;
 }

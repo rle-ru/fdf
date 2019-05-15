@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 12:07:09 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/15 21:59:27 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/15 22:25:20 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void		bresenham(t_fdf *fdf, t_point o, t_point t, t_point color)
 	e.x = (d.x > d.y ? d.x : -d.y) / 2;
 	while (o.x != t.x || o.y != t.y)
 	{
-		if (o.x >= 0 && o.x < fdf->w_width && o.y >= 0 && o.y < fdf->w_height)
-			fdf->img.img[((o.y * (int)fdf->w_width) + o.x)] = get_color(color.x, color.y, pos / rel);
+		if (o.x >= 0 && o.x < fdf->canvas.w_width && o.y >= 0 && o.y < fdf->canvas.w_height)
+			fdf->canvas.img.img[((o.y * (int)fdf->canvas.w_width) + o.x)] = get_color(color.x, color.y, pos / rel);
 		else
 			break ;
 		e.y = e.x;
@@ -69,9 +69,9 @@ void		put_line(t_fdf *fdf, int ox, int oy)
 		o.y = (int)fdf->project[oy * fdf->width + ox + 1].y;
 		if (!isnan(o.x))
 		{
-			if (c.x >= 0 && c.x < fdf->w_width && c.y >= 0 && c.y < fdf->w_height)
+			if (c.x >= 0 && c.x < fdf->canvas.w_width && c.y >= 0 && c.y < fdf->canvas.w_height)
 				bresenham(fdf, c, o, color);
-			else if (o.x >= 0 && o.x < fdf->w_width && o.y >= 0 && o.y < fdf->w_height)
+			else if (o.x >= 0 && o.x < fdf->canvas.w_width && o.y >= 0 && o.y < fdf->canvas.w_height)
 			{
 				temp = color.y;
 				color.y = color.x;
@@ -80,16 +80,16 @@ void		put_line(t_fdf *fdf, int ox, int oy)
 			}
 		}
 	}
-	if (!isnan(c.y) && oy >= 0 && oy < fdf->nblines - 1)
+	if (!isnan(c.y) && oy >= 0 && oy < fdf->height - 1)
 	{
 		color.y = fdf->map[(oy + 1) * fdf->width + ox].color;
 		o.x = (int)fdf->project[(oy + 1) * fdf->width + ox].x;
 		o.y = (int)fdf->project[(oy + 1) * fdf->width + ox].y;
 		if (!isnan(o.x))
 		{
-			if (c.x >= 0 && c.x < fdf->w_width && c.y >= 0 && c.y < fdf->w_height)
+			if (c.x >= 0 && c.x < fdf->canvas.w_width && c.y >= 0 && c.y < fdf->canvas.w_height)
 				bresenham(fdf, c, o, color);
-			else if (o.x >= 0 && o.x < fdf->w_width && o.y >= 0 && o.y < fdf->w_height)
+			else if (o.x >= 0 && o.x < fdf->canvas.w_width && o.y >= 0 && o.y < fdf->canvas.w_height)
 			{
 				temp = color.y;
 				color.y = color.x;
