@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:38:14 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/15 22:27:55 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/15 22:35:59 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ typedef struct		s_fdf
 	int				width;
 	t_matrix		unit;
 	int				proj;
-
+	double			speed;
 }					t_fdf;
 
 t_error				ft_open_file(int ac, char **av, t_fdf *fdf);

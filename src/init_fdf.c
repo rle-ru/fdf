@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 11:09:08 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/15 22:17:06 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/15 22:36:22 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	ft_init_fdf(t_fdf *fdf)
 		ft_leave(falloc, fdf);
 	if (!(fdf->canvas.img.img = (int*)mlx_get_data_addr(fdf->canvas.img.img_ptr, &fdf->canvas.img.bpp, &fdf->canvas.img.stride, &fdf->canvas.img.endian)))
 		ft_leave(falloc, fdf);
+	fdf->speed  = 0.1 * (fdf->height > 500 ? 500 : fdf->height) / 5;
 	init_matrixes(fdf);
 	mlx_hook(fdf->canvas.window, 2, 1, key_hook, fdf);
 	mlx_hook(fdf->canvas.window, 17, 0, hook_leave, fdf);
