@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:38:14 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/14 19:33:45 by dacuvill         ###   ########.fr       */
+/*   Updated: 2019/05/15 22:01:44 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,5 +136,6 @@ t_vector3			vec_3_add(t_vector3 a, t_vector3 b);
 t_vector3			vec_3_sub(t_vector3 a, t_vector3 b);
 void				rotator(t_fdf *fdf, t_vector3 a);
 int					hook_leave(t_fdf *fdf);
+double				get_gradient(double val, double first, double second);
 
 #endif

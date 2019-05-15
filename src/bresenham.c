@@ -6,17 +6,15 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 12:07:09 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/14 19:11:18 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/15 21:59:27 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "mlx.h"
 #include <stdlib.h>
-#include <math.h>
-
 #include "libft.h"
-#include <stdio.h>
+#include <math.h>
 
 void		bresenham(t_fdf *fdf, t_point o, t_point t, t_point color)
 {
@@ -25,7 +23,6 @@ void		bresenham(t_fdf *fdf, t_point o, t_point t, t_point color)
 	t_point	e;
 	double	rel;
 	double	pos;
-	int		colo;
 
 	rel = (ft_abs(t.x - o.x) + ft_abs(t.y - o.y));
 	pos = 0;
@@ -37,13 +34,7 @@ void		bresenham(t_fdf *fdf, t_point o, t_point t, t_point color)
 	while (o.x != t.x || o.y != t.y)
 	{
 		if (o.x >= 0 && o.x < fdf->w_width && o.y >= 0 && o.y < fdf->w_height)
-		{
-			color.x = color.x != color.y ? get_color(color.x, color.y, (double)(-pos / rel)) : color.x;
-			// color.x = get_color(color.x, color.y, (double)(-pos / rel));
-			// (void)color;
-			colo = C_SUMMIT;
-			fdf->img.img[((o.y * (int)fdf->w_width) + o.x)] = color.x;
-		}
+			fdf->img.img[((o.y * (int)fdf->w_width) + o.x)] = get_color(color.x, color.y, pos / rel);
 		else
 			break ;
 		e.y = e.x;
