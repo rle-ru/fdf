@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 12:01:44 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/13 22:35:26 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/15 22:12:06 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@ static void		ft_clear(t_fdf *fdf)
 		mlx_destroy_window(fdf->mlx_ptr, fdf->window);
 	if (fdf->img.img_ptr)
 		mlx_destroy_image(fdf->mlx_ptr, fdf->img.img_ptr);
+	if (fdf->map)
+		free(fdf->map);
+	if (fdf->project)
+		free(fdf->project);
 }
 
 int				ft_leave(t_error ret, t_fdf *fdf)
