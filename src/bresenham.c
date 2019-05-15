@@ -17,6 +17,7 @@
 
 #include "libft.h"
 #include <stdio.h>
+
 void		bresenham(t_fdf *fdf, t_point o, t_point t, t_point color)
 {
 	t_point	d;
@@ -77,9 +78,9 @@ void		put_line(t_fdf *fdf, int ox, int oy)
 		o.y = (int)fdf->project[oy * fdf->width + ox + 1].y;
 		if (!isnan(o.x))
 		{
-			if (c.x >= 0 && c.x < W_WIDTH && c.y >= 0 && c.y < W_HEIGHT)
+			if (c.x >= 0 && c.x < fdf->w_width && c.y >= 0 && c.y < fdf->w_height)
 				bresenham(fdf, c, o, color);
-			else if (o.x >= 0 && o.x < W_WIDTH && o.y >= 0 && o.y < W_HEIGHT)
+			else if (o.x >= 0 && o.x < fdf->w_width && o.y >= 0 && o.y < fdf->w_height)
 			{
 				temp = color.y;
 				color.y = color.x;
@@ -95,9 +96,9 @@ void		put_line(t_fdf *fdf, int ox, int oy)
 		o.y = (int)fdf->project[(oy + 1) * fdf->width + ox].y;
 		if (!isnan(o.x))
 		{
-			if (c.x >= 0 && c.x < W_WIDTH && c.y >= 0 && c.y < W_HEIGHT)
+			if (c.x >= 0 && c.x < fdf->w_width && c.y >= 0 && c.y < fdf->w_height)
 				bresenham(fdf, c, o, color);
-			else if (o.x >= 0 && o.x < W_WIDTH && o.y >= 0 && o.y < W_HEIGHT)
+			else if (o.x >= 0 && o.x < fdf->w_width && o.y >= 0 && o.y < fdf->w_height)
 			{
 				temp = color.y;
 				color.y = color.x;
