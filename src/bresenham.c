@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 12:07:09 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/16 01:45:41 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/16 20:43:15 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,15 @@ void		put_pixel(t_fdf *fdf, int x, int y, double op, int color)
 {
 	(void)op;
 	if (x < fdf->canvas.w_width && x >= 0 && y < fdf->canvas.w_height && y >= 0)
-		fdf->canvas.img.img[(int)(y * fdf->canvas.w_width + x)] = color;
-		// fdf->canvas.img.img[(int)(y * fdf->canvas.w_width + x)] = color | ((ipart(op * 255) << 24));
+		// fdf->canvas.img.img[(int)(y * fdf->canvas.w_width + x)] = color;
+		fdf->canvas.img.img[(int)(y * fdf->canvas.w_width + x)] = color | ((ipart(op * 255) << 24));
+}
+
+int			is_legit(t_fdf *fdf, int x, int y)
+{
+	if (x >= 0 && x < fdf->canvas.w_width && y >= 0 && y < fdf->canvas.w_height)
+		return (0);
+	return (1);
 }
 
 void		xiaolin(t_fdf *fdf, t_point o, t_point t, t_point color)
@@ -89,11 +96,25 @@ void		xiaolin(t_fdf *fdf, t_point o, t_point t, t_point color)
 	xpx11 = o.x;
 	xpx12 = t.x;
 	inter = o.y;
+	if (!dx)
+	{
+		x = xpx11;
+		while (--dy)
+		{
+			if (is_legit(fdf, o.x, o.y))
+				break ;
+			put_pixel(fdf, o.x, o.y, 0,get_color(color.x, color.y, pos / rel));
+			++pos;
+			++t.y;
+		}
+	}
 	if (steep)
 	{
 		x = xpx11;
 		while (x < xpx12)
 		{
+			if (is_legit(fdf, ipart(inter), x))
+				break ;
 			put_pixel(fdf, ipart(inter), x, rfpart(inter), get_color(color.x, color.y, pos / rel));
 			put_pixel(fdf, ipart(inter) - 1, x, fpart(inter), get_color(color.x, color.y, pos / rel));
 			inter += gradient;
@@ -106,6 +127,8 @@ void		xiaolin(t_fdf *fdf, t_point o, t_point t, t_point color)
 		x = xpx11;
 		while (x < xpx12)
 		{
+			if (is_legit(fdf, x, ipart(inter)))
+				break ;
 			put_pixel(fdf, x, ipart(inter), rfpart(inter), get_color(color.x, color.y, pos / rel));
 			put_pixel(fdf, x, ipart(inter) - 1, fpart(inter), get_color(color.x, color.y, pos / rel));
 			inter += gradient;
