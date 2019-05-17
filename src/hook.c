@@ -6,7 +6,7 @@
 /*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 11:58:16 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/17 16:58:28 by dacuvill         ###   ########.fr       */
+/*   Updated: 2019/05/17 17:46:17 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,14 @@ static void	reset_cam(t_fdf *fdf)
 	rotator(fdf, fdf->cam.rot_angles);
 }
 
+static void	ft_zoom(t_fdf *fdf, int key)
+{
+	if (key == K_Q && fdf->cam.pos.z > (fdf->width > fdf->height ? fdf->width : fdf->height) * -1)
+		fdf->cam.pos.z -= 1 * fdf->speed * 5;
+	else if (key == K_E && fdf->cam.pos.z < -10)
+		fdf->cam.pos.z += 1 * fdf->speed * 5;
+}
+
 static void	ft_scaling(t_fdf *fdf, int key)
 {
 	if (key == K_MINUS && fdf->relief > -1.0)
@@ -38,7 +46,7 @@ static void	ft_scaling(t_fdf *fdf, int key)
 int			key_hook(int key, t_fdf *fdf)
 {
 	if (key == K_Q || key == K_E)
-		fdf->cam.pos.z += (key == K_Q ? -1 : 1) * fdf->speed * 5;
+		ft_zoom(fdf, key);
 	else if (key == K_A || key == K_D)
 		fdf->cam.pos.x += (key == K_A ? -1 : 1) * fdf->speed * 5;
 	else if (key == K_W || key == K_S)
