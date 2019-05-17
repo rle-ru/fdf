@@ -6,7 +6,7 @@
 /*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 12:02:05 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/17 17:25:19 by dacuvill         ###   ########.fr       */
+/*   Updated: 2019/05/17 17:28:18 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,16 +59,16 @@ int			calc_map(t_fdf *fdf)
 
 static int	put_strings(t_fdf *fdf)
 {
-	char	jauge[26];
+	char	gauge[26];
 
-	ft_memset(jauge, '.', 25);
-	jauge[25] = 0;
-	jauge[0] = '-';
-	jauge[24] = '+';
-	jauge[1] = '[';
-	jauge[23] = ']';
-	jauge[((int)(fdf->relief * 10)) + 12] = '|';
-	mlx_string_put(fdf->canvas.mlx_ptr, fdf->canvas.window, 1, 1, 0xFFFFFF, jauge);
+	ft_memset(gauge, '.', 25);
+	gauge[25] = 0;
+	gauge[0] = '-';
+	gauge[24] = '+';
+	gauge[1] = '[';
+	gauge[23] = ']';
+	gauge[((int)(fdf->relief * 10)) + 12] = '|';
+	mlx_string_put(fdf->canvas.mlx_ptr, fdf->canvas.window, 1, 1, 0xFFFFFF, gauge);
 	return (0);
 }
 
