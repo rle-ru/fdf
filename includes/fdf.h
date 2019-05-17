@@ -6,13 +6,14 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:38:14 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/16 01:36:17 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/17 11:14:51 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 # define MAX_PROJ 2
+# define MAX_DRAW 2
 # define FOV 110.0 * M_PI / 180.0
 # define FAR 10.0
 # define NEAR 0.1
@@ -114,6 +115,11 @@ typedef struct		s_canvas
 	double			w_width;
 }					t_canvas;
 
+typedef struct		s_func
+{
+	void			(*f)();
+}					t_func;
+
 typedef struct		s_fdf
 {
 	t_parser		parser;
@@ -126,6 +132,8 @@ typedef struct		s_fdf
 	t_matrix		unit;
 	int				proj;
 	double			speed;
+	t_func			f[2];
+	int				drawer;
 }					t_fdf;
 
 t_error				ft_open_file(int ac, char **av, t_fdf *fdf);

@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 12:01:44 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/15 22:23:34 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/17 11:28:18 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void		ft_print_error(t_error ret, t_fdf *fdf)
 	else if (ret == filepath)
 		ft_fdprintf(STDERR_FILENO, "Invalid file \"%s\"\n", fdf->parser.fname);
 	else if (ret == falloc)
-		ft_fdprintf(STDERR_FILENO, "A malloc failed (dafuk ?)");
+		ft_fdprintf(STDERR_FILENO, "A malloc failed (dafuk ?)\n");
 	else if (ret == badline)
 		ft_fdprintf(STDERR_FILENO, "Incorrect line : %d\n", fdf->height);
 }

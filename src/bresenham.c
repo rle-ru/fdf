@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 12:07:09 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/16 20:43:15 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/17 11:39:39 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,6 @@ int			ipart(double x)
 	return ((int)x);
 }
 
-// int			round(double x)
-// {
-// 	return (ipart(x + 0.5));
-// }
-
 double		fpart(double x)
 {
 	return (x > 0 ? x - ipart(x) : x - (ipart(x) + 1));
@@ -49,7 +44,6 @@ void		put_pixel(t_fdf *fdf, int x, int y, double op, int color)
 {
 	(void)op;
 	if (x < fdf->canvas.w_width && x >= 0 && y < fdf->canvas.w_height && y >= 0)
-		// fdf->canvas.img.img[(int)(y * fdf->canvas.w_width + x)] = color;
 		fdf->canvas.img.img[(int)(y * fdf->canvas.w_width + x)] = color | ((ipart(op * 255) << 24));
 }
 
@@ -96,18 +90,18 @@ void		xiaolin(t_fdf *fdf, t_point o, t_point t, t_point color)
 	xpx11 = o.x;
 	xpx12 = t.x;
 	inter = o.y;
-	if (!dx)
-	{
-		x = xpx11;
-		while (--dy)
-		{
-			if (is_legit(fdf, o.x, o.y))
-				break ;
-			put_pixel(fdf, o.x, o.y, 0,get_color(color.x, color.y, pos / rel));
-			++pos;
-			++t.y;
-		}
-	}
+	// if (!dx)
+	// {
+	// 	x = xpx11;
+	// 	while (--dy)
+	// 	{
+	// 		if (is_legit(fdf, o.x, o.y))
+	// 			break ;
+	// 		put_pixel(fdf, o.x, o.y, 0,get_color(color.x, color.y, pos / rel));
+	// 		++pos;
+	// 		++t.y;
+	// 	}
+	// }
 	if (steep)
 	{
 		x = xpx11;
@@ -193,15 +187,13 @@ void		put_line(t_fdf *fdf, int ox, int oy)
 		if (!isnan(o.x))
 		{
 			if (c.x >= 0 && c.x < fdf->canvas.w_width && c.y >= 0 && c.y < fdf->canvas.w_height)
-				// bresenham(fdf, c, o, color);
-				xiaolin(fdf, c, o, color);
+				fdf->f[fdf->drawer].f(fdf, c, o, color);
 			else if (o.x >= 0 && o.x < fdf->canvas.w_width && o.y >= 0 && o.y < fdf->canvas.w_height)
 			{
 				temp = color.y;
 				color.y = color.x;
 				color.x = temp;
-				// bresenham(fdf, o, c, color);
-				xiaolin(fdf, o, c, color);
+				fdf->f[fdf->drawer].f(fdf, o, c, color);
 			}
 		}
 	}
@@ -213,15 +205,13 @@ void		put_line(t_fdf *fdf, int ox, int oy)
 		if (!isnan(o.x))
 		{
 			if (c.x >= 0 && c.x < fdf->canvas.w_width && c.y >= 0 && c.y < fdf->canvas.w_height)
-				// bresenham(fdf, c, o, color);
-				xiaolin(fdf, c, o, color);
+				fdf->f[fdf->drawer].f(fdf, c, o, color);
 			else if (o.x >= 0 && o.x < fdf->canvas.w_width && o.y >= 0 && o.y < fdf->canvas.w_height)
 			{
 				temp = color.y;
 				color.y = color.x;
 				color.x = temp;
-				// bresenham(fdf, o, c, color);
-				xiaolin(fdf, o, c, color);
+				fdf->f[fdf->drawer].f(fdf, o, c, color);
 			}
 		}
 	}
