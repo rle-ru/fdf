@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:06:09 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/17 16:29:24 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/17 20:31:43 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,25 +22,7 @@ static void		set_colors(t_fdf *fdf)
 	while (i--)
 	{
 		if (!fdf->map[i].color)
-		{
-			if (-fdf->map[i].z < 0)
-				fdf->map[i].color = get_color(C_DEEP, C_GROUND, get_gradient(-fdf->map[i].z,
-					fdf->parser.minz, 0));
-			if (-fdf->map[i].z >= 0)
-				fdf->map[i].color = get_color(C_GROUND, C_10, get_gradient(-fdf->map[i].z,
-					0, 20));
-			if (-fdf->map[i].z >= 10)
-				fdf->map[i].color = get_color(C_10, C_20, get_gradient(-fdf->map[i].z,
-					10, 20));
-			if (-fdf->map[i].z >= 20)
-				fdf->map[i].color = get_color(C_20, C_100, get_gradient(-fdf->map[i].z,
-					20, 100));
-			if (-fdf->map[i].z >= 100)
-				fdf->map[i].color = get_color(C_100, C_200, get_gradient(-fdf->map[i].z,
-					100, 200));
-			if (-fdf->map[i].z >= 200)
-				fdf->map[i].color = C_200;
-		}
+			select_color(fdf, i);
 	}
 }
 

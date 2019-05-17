@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 12:02:05 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/17 17:28:18 by dacuvill         ###   ########.fr       */
+/*   Updated: 2019/05/17 20:28:37 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,54 @@ static int	put_strings(t_fdf *fdf)
 	gauge[23] = ']';
 	gauge[((int)(fdf->relief * 10)) + 12] = '|';
 	mlx_string_put(fdf->canvas.mlx_ptr, fdf->canvas.window, 1, 1, 0xFFFFFF, gauge);
+	if (fdf->crea.mode)
+	{
+		mlx_string_put(fdf->canvas.mlx_ptr, fdf->canvas.window, 1, 20, 0xFFFFFF, ft_strjoin("x : ", ft_itoa(fdf->crea.current.x)));
+		mlx_string_put(fdf->canvas.mlx_ptr, fdf->canvas.window, 1, 40, 0xFFFFFF, ft_strjoin("y : ", ft_itoa(fdf->crea.current.y)));
+	}
 	return (0);
+}
+
+void		put_circle(t_fdf *fdf)
+{
+	if (fdf->crea.mode == false)
+		return ;
+	int	x;
+	int	y;
+	int	m;
+	t_vector2 v;
+	v = project_point(fdf, fdf->crea.current.x, fdf->crea.current.y);
+
+	x = 0;
+	y = 10;
+	m = y - 1;
+	while (y >= x)
+	{
+		put_pixel(fdf, v.x + x, v.y + y, 110, 0xFFFF);
+		put_pixel(fdf, v.x + y, v.y + x, 110, 0xFFFF);
+		put_pixel(fdf, v.x - x, v.y + y, 110, 0xFFFF);
+		put_pixel(fdf, v.x - y, v.y + x, 110, 0xFFFF);
+		put_pixel(fdf, v.x + x, v.y - y, 110, 0xFFFF);
+		put_pixel(fdf, v.x + y, v.y - x, 110, 0xFFFF);
+		put_pixel(fdf, v.x - x, v.y - y, 110, 0xFFFF);
+		put_pixel(fdf, v.x - y, v.y - x, 110, 0xFFFF);
+		if (m >= x * 2)
+		{
+			m = m - 2 * x + 1;
+			++x;
+		}
+		else if (m < 2 * (10 - y))
+		{
+			m = m + 2 * y - 1;
+			--y;
+		}
+		else
+		{
+			m = m + 2 * (y - x - 1);
+			--y;
+			++x;
+		}
+	}
 }
 
 int			draw_map(t_fdf *fdf)
@@ -77,6 +124,7 @@ int			draw_map(t_fdf *fdf)
 	calc_map(fdf);
 	ft_bzero(fdf->canvas.img.img, (int)fdf->canvas.w_width * (int)fdf->canvas.w_height * sizeof(int));
 	put_pixels(fdf);
+	put_circle(fdf);
 	mlx_put_image_to_window(fdf->canvas.mlx_ptr, fdf->canvas.window, fdf->canvas.img.img_ptr, 0, 0);
 	put_strings(fdf);
 	return (0);
