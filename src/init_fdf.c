@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_fdf.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 11:09:08 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/17 11:35:57 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/17 15:06:28 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	ft_init_fdf(t_fdf *fdf)
 {
 	fdf->f[0].f = &bresenham;
 	fdf->f[1].f = &xiaolin;
+	fdf->relief = 0.1;
 	fdf->canvas.mlx_ptr = mlx_init();
 	fdf->canvas.window = mlx_new_window(fdf->canvas.mlx_ptr, fdf->canvas.w_width, fdf->canvas.w_height, "fdf");
 	fdf->cam.pos.z = -20;

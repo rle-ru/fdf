@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 12:02:05 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/17 13:05:48 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/17 15:06:42 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_vector2	project_point(t_fdf *fdf, int x, int y)
 	t_vector3	v;
 
 	v = fdf->map[y * fdf->width + x];
-	v.z *= 0.1;
+	v.z *= fdf->relief;
 	v = vec_3_sub(v, fdf->cam.pos);
 	if (!fdf->proj)
 		v = mat_4_mul_v(fdf->cam.rotation, v);

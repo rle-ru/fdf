@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 11:58:16 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/17 13:31:46 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/17 15:09:46 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,18 @@ static void	reset_cam(t_fdf *fdf)
 	fdf->cam.rot_angles.z = -M_PI;
 	fdf->cam.rot_angles.x = 0;
 	fdf->cam.rot_angles.y = 0;
+	fdf->relief = 0.1;
 	rotator(fdf, fdf->cam.rot_angles);
 }
+
+static void	ft_scaling(t_fdf *fdf, int key)
+{
+	if (key == K_MINUS && fdf->relief > -1.0)
+		fdf->relief -= 0.1;
+	if (key == K_PLUS && fdf->relief < 1.0)
+		fdf->relief += 0.1;	
+}
+
 #include "libft.h"
 int			key_hook(int key, t_fdf *fdf)
 {
@@ -47,6 +57,8 @@ int			key_hook(int key, t_fdf *fdf)
 		reset_cam(fdf);
 	else if (key == K_ESC)
 		ft_leave(ok, fdf);
+	else if (key == K_PLUS || key == K_MINUS)
+		ft_scaling(fdf, key);
 	else if (key == K_PIPE && ++fdf->drawer)
 	{
 		if (fdf->drawer >= MAX_DRAW)
