@@ -6,7 +6,7 @@
 #    By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/22 10:58:33 by rle-ru            #+#    #+#              #
-#    Updated: 2019/05/07 10:01:06 by rle-ru           ###   ########.fr        #
+#    Updated: 2019/05/17 16:29:06 by rle-ru           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ INC					=	-I includes
 # File Variables
 
 SRCS_RAW	:=	\
-	printf/ft_printf.c 			\
+			convert/ft_atoibase.c		\
+			printf/ft_printf.c 			\
 			printf/next_identifier.c		\
 			printf/formats/str_to_str.c	\
 			printf/formats/int_to_str.c	\

@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 09:12:36 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/07 12:45:23 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/17 16:28:45 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,6 @@ long			ft_abs(long input);
 char			*ft_ltoa(long n);
 int				ft_isupper(char c);
 int				get_next_line(const int fd, char **line);
+int				ft_atoi_base(const char *str, int base);
 
 #endif
