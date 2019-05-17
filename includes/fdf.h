@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:38:14 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/17 11:14:51 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/17 12:46:48 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,13 @@
 # define W_RIGHT 500.0
 # define W_BOTTOM 500.0
 # define W_TOP -500.0
-# define C_GROUND 0xFF8000
+# define C_GROUND 0x37B337
 # define C_DEEP 0x4C99
-# define C_SUMMIT 0xE0E0E0
+# define C_SUMMIT 0xFF8000
+# define C_10 0xFFFF99
+# define C_20 0xCCCC00
+# define C_100 0xFF8000
+# define C_200 0xFF0000
 
 typedef enum		e_bool
 {
