@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:38:14 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/17 12:46:48 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/17 12:57:44 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # define C_SUMMIT 0xFF8000
 # define C_10 0xFFFF99
 # define C_20 0xCCCC00
-# define C_100 0xFF8000
-# define C_200 0xFF0000
+# define C_100 0xCC0000
+# define C_200 0x990000
 
 typedef enum		e_bool
 {
