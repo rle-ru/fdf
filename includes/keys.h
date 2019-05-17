@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 19:13:21 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/17 11:12:38 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/17 14:58:51 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # define K_PIPE 42
 # define K_SPACE 49
 # define K_ESC 53
+# define K_PLUS 69
+# define K_MINUS 78
 # define K_LEFT 123
 # define K_RIGHT 124
 # define K_DOWN 125
