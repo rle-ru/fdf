@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:06:09 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/17 12:56:53 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/17 15:46:22 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,76 @@ static void		set_colors(t_fdf *fdf)
 	i = fdf->width  * fdf->height;
 	while (i--)
 	{
-		if (-fdf->map[i].z < 0)
-			fdf->map[i].color = get_color(C_DEEP, C_GROUND, get_gradient(-fdf->map[i].z,
-				fdf->parser.minz, 0));
-		if (-fdf->map[i].z >= 0)
-			fdf->map[i].color = get_color(C_GROUND, C_10, get_gradient(-fdf->map[i].z,
-				0, 20));
-		if (-fdf->map[i].z >= 10)
-			fdf->map[i].color = get_color(C_10, C_20, get_gradient(-fdf->map[i].z,
-				10, 20));
-		if (-fdf->map[i].z >= 20)
-			fdf->map[i].color = get_color(C_20, C_100, get_gradient(-fdf->map[i].z,
-				20, 100));
-		if (-fdf->map[i].z >= 100)
-			fdf->map[i].color = get_color(C_100, C_200, get_gradient(-fdf->map[i].z,
-				100, 200));
-		if (-fdf->map[i].z >= 200)
-			fdf->map[i].color = C_200;
+		if (!fdf->map[i].color)
+		{
+			if (-fdf->map[i].z < 0)
+				fdf->map[i].color = get_color(C_DEEP, C_GROUND, get_gradient(-fdf->map[i].z,
+					fdf->parser.minz, 0));
+			if (-fdf->map[i].z >= 0)
+				fdf->map[i].color = get_color(C_GROUND, C_10, get_gradient(-fdf->map[i].z,
+					0, 20));
+			if (-fdf->map[i].z >= 10)
+				fdf->map[i].color = get_color(C_10, C_20, get_gradient(-fdf->map[i].z,
+					10, 20));
+			if (-fdf->map[i].z >= 20)
+				fdf->map[i].color = get_color(C_20, C_100, get_gradient(-fdf->map[i].z,
+					20, 100));
+			if (-fdf->map[i].z >= 100)
+				fdf->map[i].color = get_color(C_100, C_200, get_gradient(-fdf->map[i].z,
+					100, 200));
+			if (-fdf->map[i].z >= 200)
+				fdf->map[i].color = C_200;
+		}
 	}
 }
+
+static int		ft_atoi_boucle(const char *str, size_t i, int base)
+{
+	int		res;
+	int		j;
+	char	*listebases;
+
+	res = 0;
+	j = 0;
+	listebases = "0123456789ABCDEF";
+	while ((str[i] >= '0' && str[i] <= '9') || (str[i] >= 'a' && str[i] <= 'f'))
+	{
+		res = res * base;
+		if (str[i] >= '0' && str[i] <= '9')
+			res = res + str[i] - 48;
+		else
+		{
+			while (listebases[j] != str[i])
+				j++;
+			res = res + j;
+			j = 0;
+		}
+		i++;
+	}
+	return (res);
+}
+
+int				ft_atoi_base(const char *str, int base)
+{
+	size_t	i;
+	int		res;
+	int		neg;
+
+	i = 0;
+	res = 0;
+	neg = 1;
+	while (str[i] == ' ')
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		str[i] == '-' ? neg = -1 : neg;
+		i++;
+	}
+	res = ft_atoi_boucle(str, i, base);
+	return (res * neg);
+}
+
+
 
 static void		ft_split_line(t_fdf *fdf, int y, t_line *line)
 {
@@ -63,6 +114,11 @@ static void		ft_split_line(t_fdf *fdf, int y, t_line *line)
 				&& (ft_isdigit(line->line[lpos])
 					|| line->line[lpos] == '-'))
 			++lpos;
+		if (line->line[lpos] == ',' && line->line[lpos + 1] && line->line[lpos + 2])
+		{
+			fdf->map[y * fdf->width + x].color = ft_atoi_base(&line->line[lpos + 3], 16);
+			lpos += 8;
+		}
 	}
 }
 
@@ -100,7 +156,7 @@ t_error			ft_create_map(t_fdf *fdf)
 	fdf->width = fdf->parser.lines->nbx;
 	fdf->parser.maxz = INT_MIN;
 	fdf->parser.minz = INT_MAX;
-	if (!(fdf->map = malloc(sizeof(t_vector3)
+	if (!(fdf->map = ft_memalloc(sizeof(t_vector3)
 				* fdf->height * fdf->width)))
 		return (falloc);
 	if (!(fdf->project = malloc(sizeof(t_vector2)
