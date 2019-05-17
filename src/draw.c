@@ -6,7 +6,7 @@
 /*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 12:02:05 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/17 15:06:42 by dacuvill         ###   ########.fr       */
+/*   Updated: 2019/05/17 17:25:19 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,27 @@ int			calc_map(t_fdf *fdf)
 	return (0);
 }
 
+static int	put_strings(t_fdf *fdf)
+{
+	char	jauge[26];
+
+	ft_memset(jauge, '.', 25);
+	jauge[25] = 0;
+	jauge[0] = '-';
+	jauge[24] = '+';
+	jauge[1] = '[';
+	jauge[23] = ']';
+	jauge[((int)(fdf->relief * 10)) + 12] = '|';
+	mlx_string_put(fdf->canvas.mlx_ptr, fdf->canvas.window, 1, 1, 0xFFFFFF, jauge);
+	return (0);
+}
+
 int			draw_map(t_fdf *fdf)
 {
 	calc_map(fdf);
 	ft_bzero(fdf->canvas.img.img, (int)fdf->canvas.w_width * (int)fdf->canvas.w_height * sizeof(int));
 	put_pixels(fdf);
 	mlx_put_image_to_window(fdf->canvas.mlx_ptr, fdf->canvas.window, fdf->canvas.img.img_ptr, 0, 0);
+	put_strings(fdf);
 	return (0);
 }
