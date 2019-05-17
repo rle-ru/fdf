@@ -6,7 +6,7 @@
 /*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:38:14 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/17 15:05:44 by dacuvill         ###   ########.fr       */
+/*   Updated: 2019/05/17 15:24:27 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,6 @@ typedef struct		s_vector3
 	double			z;
 	int				color;
 }					t_vector3;
-
-typedef struct		s_map
-{
-	int				x;
-	int				y;
-	int				z;
-}					t_map;
 
 typedef struct		s_cam
 {

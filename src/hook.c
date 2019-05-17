@@ -6,7 +6,7 @@
 /*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 11:58:16 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/17 15:09:46 by dacuvill         ###   ########.fr       */
+/*   Updated: 2019/05/17 16:58:28 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 static void	reset_cam(t_fdf *fdf)
 {
-	fdf->cam.pos.z = -20;
-	fdf->cam.pos.y = 0;
-	fdf->cam.pos.x = 0;
+	fdf->cam.pos.z = (fdf->width > fdf->height ? fdf->width : fdf->height) * -1;
+	fdf->cam.pos.x = fdf->width >> 3;
+	fdf->cam.pos.y = fdf->height >> 3;	
 	fdf->cam.rot_angles.z = -M_PI;
 	fdf->cam.rot_angles.x = 0;
 	fdf->cam.rot_angles.y = 0;

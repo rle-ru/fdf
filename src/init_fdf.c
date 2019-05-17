@@ -6,7 +6,7 @@
 /*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 11:09:08 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/17 15:06:28 by dacuvill         ###   ########.fr       */
+/*   Updated: 2019/05/17 16:57:40 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "fdf.h"
 #include <math.h>
 
+#include "libft.h"
 void	ft_init_fdf(t_fdf *fdf)
 {
 	fdf->f[0].f = &bresenham;
@@ -21,7 +22,9 @@ void	ft_init_fdf(t_fdf *fdf)
 	fdf->relief = 0.1;
 	fdf->canvas.mlx_ptr = mlx_init();
 	fdf->canvas.window = mlx_new_window(fdf->canvas.mlx_ptr, fdf->canvas.w_width, fdf->canvas.w_height, "fdf");
-	fdf->cam.pos.z = -20;
+	fdf->cam.pos.z = (fdf->width > fdf->height ? fdf->width : fdf->height) * -1;
+	fdf->cam.pos.x = fdf->width >> 3;
+	fdf->cam.pos.y = fdf->height >> 3;
 	fdf->cam.rot_angles.z = -M_PI;
 	if (!(fdf->canvas.img.img_ptr = mlx_new_image(fdf->canvas.mlx_ptr, (int)fdf->canvas.w_width, (int)fdf->canvas.w_height)))
 		ft_leave(falloc, fdf);
