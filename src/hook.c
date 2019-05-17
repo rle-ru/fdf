@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 11:58:16 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/17 12:17:29 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/17 13:31:46 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void	reset_cam(t_fdf *fdf)
 	fdf->cam.rot_angles.z = -M_PI;
 	fdf->cam.rot_angles.x = 0;
 	fdf->cam.rot_angles.y = 0;
+	rotator(fdf, fdf->cam.rot_angles);
 }
 #include "libft.h"
 int			key_hook(int key, t_fdf *fdf)

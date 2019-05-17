@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 12:02:05 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/17 12:16:46 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/17 13:05:48 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int			calc_map(t_fdf *fdf)
 int			draw_map(t_fdf *fdf)
 {
 	calc_map(fdf);
-	ft_bzero(fdf->canvas.img.img, (int)fdf->canvas.w_width * (int)fdf->canvas.w_height * 4);
+	ft_bzero(fdf->canvas.img.img, (int)fdf->canvas.w_width * (int)fdf->canvas.w_height * sizeof(int));
 	put_pixels(fdf);
 	mlx_put_image_to_window(fdf->canvas.mlx_ptr, fdf->canvas.window, fdf->canvas.img.img_ptr, 0, 0);
 	return (0);
