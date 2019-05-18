@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 12:02:05 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/18 11:32:30 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/18 17:04:35 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,10 @@ static int	put_strings(t_fdf *fdf)
 	gauge[1] = '[';
 	gauge[23] = ']';
 	gauge[((int)(fdf->relief * 10)) + 12] = '|';
-	mlx_string_put(fdf->canvas.mlx_ptr, fdf->canvas.window, 1, 1, 0xFFFFFF, gauge);
+	mlx_string_put(fdf->canvas.mlx_ptr, fdf->canvas.window, 1, 52, 0x79ff4d, gauge);
+	mlx_string_put(fdf->canvas.mlx_ptr, fdf->canvas.window, 1, 1, 0x79ff4d, "WASD to move camera");
+	mlx_string_put(fdf->canvas.mlx_ptr, fdf->canvas.window, 1, 18, 0x79ff4d, "QE to zoom/dezoom");
+	mlx_string_put(fdf->canvas.mlx_ptr, fdf->canvas.window, 1, 35, 0x79ff4d, "ArrowKeys to rotate");
 	if (fdf->crea.mode)
 	{
 		mlx_string_put(fdf->canvas.mlx_ptr, fdf->canvas.window, 1, 20, 0xFFFFFF, ft_strjoin("x : ", ft_itoa(fdf->crea.current.x)));

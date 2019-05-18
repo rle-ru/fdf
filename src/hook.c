@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 11:58:16 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/18 11:28:59 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/18 16:55:33 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,6 @@ int			key_hook(int key, t_fdf *fdf)
 	else if (key == K_ENTER && ++fdf->proj)
 		if (fdf->proj >= MAX_PROJ)
 			fdf->proj = 0;
-	ft_printf("Key : %d\n", key);
+	//ft_printf("Key : %d\n", key);
 	return (0);
 }
