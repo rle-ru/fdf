@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 12:02:05 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/17 20:28:37 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/18 11:32:30 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_vector2	project_point(t_fdf *fdf, int x, int y)
 
 	v = fdf->map[y * fdf->width + x];
 	v.z *= fdf->relief;
-	v = vec_3_sub(v, fdf->cam.pos);
+	v = vec_3_sub(v, fdf->cam.rotpos);
 	if (!fdf->proj)
 		v = mat_4_mul_v(fdf->cam.rotation, v);
 	if (v.z < 0.1)
@@ -121,6 +121,7 @@ void		put_circle(t_fdf *fdf)
 
 int			draw_map(t_fdf *fdf)
 {
+	fdf->cam.rotpos = mat_4_mul_v(fdf->cam.rotation, fdf->cam.pos);
 	calc_map(fdf);
 	ft_bzero(fdf->canvas.img.img, (int)fdf->canvas.w_width * (int)fdf->canvas.w_height * sizeof(int));
 	put_pixels(fdf);
