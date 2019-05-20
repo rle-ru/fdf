@@ -6,7 +6,7 @@
 /*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 11:58:16 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/18 16:55:33 by dacuvill         ###   ########.fr       */
+/*   Updated: 2019/05/20 20:28:53 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ static void	crea(t_fdf *fdf, int key)
 
 	x = &(fdf->crea.current.x);
 	y = &(fdf->crea.current.y);
+	if (fdf->crea.mode == false)
+		return ;
 	if (key == K_I)
 		*y += (*y > 0) ? -1 : 0;
 	else if (key == K_K)

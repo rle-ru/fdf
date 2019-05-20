@@ -6,7 +6,7 @@
 /*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 12:02:05 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/18 17:04:35 by dacuvill         ###   ########.fr       */
+/*   Updated: 2019/05/20 19:05:28 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,10 @@ static int	put_strings(t_fdf *fdf)
 	mlx_string_put(fdf->canvas.mlx_ptr, fdf->canvas.window, 1, 35, 0x79ff4d, "ArrowKeys to rotate");
 	if (fdf->crea.mode)
 	{
-		mlx_string_put(fdf->canvas.mlx_ptr, fdf->canvas.window, 1, 20, 0xFFFFFF, ft_strjoin("x : ", ft_itoa(fdf->crea.current.x)));
-		mlx_string_put(fdf->canvas.mlx_ptr, fdf->canvas.window, 1, 40, 0xFFFFFF, ft_strjoin("y : ", ft_itoa(fdf->crea.current.y)));
+		mlx_string_put(fdf->canvas.mlx_ptr, fdf->canvas.window, fdf->canvas.w_width - 205, 1, 0x79ff4d, ft_strjoin("x : ", ft_itoa(fdf->crea.current.x)));
+		mlx_string_put(fdf->canvas.mlx_ptr, fdf->canvas.window, fdf->canvas.w_width - 205, 18, 0x79ff4d, ft_strjoin("y : ", ft_itoa(fdf->crea.current.y)));
+		mlx_string_put(fdf->canvas.mlx_ptr, fdf->canvas.window, fdf->canvas.w_width - 205, 35, 0x79ff4d, "IJKL to select pixel");
+		mlx_string_put(fdf->canvas.mlx_ptr, fdf->canvas.window, fdf->canvas.w_width - 215, 52, 0x79ff4d, "TG to change altitude");
 	}
 	return (0);
 }

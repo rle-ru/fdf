@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:06:09 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/17 20:31:43 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/20 17:40:02 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,18 +61,18 @@ static void		ft_window_size(t_fdf *fdf)
 {
 	if (fdf->width < 20 && fdf->height < 20)
 	{
-		fdf->canvas.w_height = 500;
-		fdf->canvas.w_width = 500;
-	}
-	else if (fdf->width < 50 && fdf->height < 50)
-	{
 		fdf->canvas.w_height = 750;
 		fdf->canvas.w_width = 1000;
 	}
-	else if (fdf->width < 100 && fdf->height < 100)
+	else if (fdf->width < 50 && fdf->height < 50)
 	{
 		fdf->canvas.w_height = 1000;
-		fdf->canvas.w_width = 1750;
+		fdf->canvas.w_width = 1500;
+	}
+	else if (fdf->width < 100 && fdf->height < 100)
+	{
+		fdf->canvas.w_height = 1200;
+		fdf->canvas.w_width = 2000;
 	}
 	else
 	{	
