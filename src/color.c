@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 14:51:56 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/17 20:31:26 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/21 19:41:29 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,24 +42,44 @@ int			get_color(int c1, int c2, double p)
 	return (r << 16 | g << 8 | b);
 }
 
-void		select_color(t_fdf *fdf, int i)
+static void	select_color2(t_fdf *fdf, int i)
 {
-	if (-fdf->map[i].z < 0)
-		fdf->map[i].color = get_color(C_DEEP, C_GROUND, get_gradient(-fdf->map[i].z,
-			fdf->parser.minz, 0));
-	if (-fdf->map[i].z >= 0)
-		fdf->map[i].color = get_color(C_GROUND, C_10, get_gradient(-fdf->map[i].z,
-			0, 20));
-	if (-fdf->map[i].z >= 10)
-		fdf->map[i].color = get_color(C_10, C_20, get_gradient(-fdf->map[i].z,
-			10, 20));
-	if (-fdf->map[i].z >= 20)
-		fdf->map[i].color = get_color(C_20, C_100, get_gradient(-fdf->map[i].z,
-			20, 100));
 	if (-fdf->map[i].z >= 100)
 		fdf->map[i].color = get_color(C_100, C_200, get_gradient(-fdf->map[i].z,
 			100, 200));
 	if (-fdf->map[i].z >= 200)
-		fdf->map[i].color = C_200;
+		fdf->map[i].color = get_color(C_200, C_350, get_gradient(-fdf->map[i].z,
+			200, 350));
+	if (-fdf->map[i].z >= 350)
+		fdf->map[i].color = get_color(C_350, C_500, get_gradient(-fdf->map[i].z,
+			350, 500));
+	if (-fdf->map[i].z >= 500)
+		fdf->map[i].color = C_500;
 }
 
+void		select_color(t_fdf *fdf, int i)
+{
+	if (-fdf->map[i].z < 100)
+	{
+		if (-fdf->map[i].z < 0)
+			fdf->map[i].color = get_color(C_DEEP, C_GROUND, get_gradient(-fdf->map[i].z,
+				fdf->parser.minz, 0));
+		if (-fdf->map[i].z >= 0)
+			fdf->map[i].color = get_color(C_GROUND, C_10, get_gradient(-fdf->map[i].z,
+				0, 20));
+		if (-fdf->map[i].z >= 10)
+			fdf->map[i].color = get_color(C_10, C_20, get_gradient(-fdf->map[i].z,
+				10, 20));
+		if (-fdf->map[i].z >= 20)
+			fdf->map[i].color = get_color(C_20, C_35, get_gradient(-fdf->map[i].z,
+				20, 35));
+		if (-fdf->map[i].z >= 35)
+			fdf->map[i].color = get_color(C_35, C_50, get_gradient(-fdf->map[i].z,
+				35, 50));
+		if (-fdf->map[i].z >= 50)
+			fdf->map[i].color = get_color(C_50, C_100, get_gradient(-fdf->map[i].z,
+				50, 100));
+	}
+	else
+		select_color2(fdf, i);
+}

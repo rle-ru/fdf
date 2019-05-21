@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:38:14 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/18 11:31:06 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/21 19:51:31 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,17 @@
 # define W_RIGHT 500.0
 # define W_BOTTOM 500.0
 # define W_TOP -500.0
-# define C_GROUND 0x37B337
+# define C_GROUND 0x996600
 # define C_DEEP 0x4C99
 # define C_SUMMIT 0xFF8000
-# define C_10 0xFFFF99
-# define C_20 0xCCCC00
-# define C_100 0xCC0000
-# define C_200 0x990000
+# define C_10 0x37b337
+# define C_20 0x309c30
+# define C_35 0x2A892A
+# define C_50 0x247524
+# define C_100 0x757575
+# define C_200 0x666666
+# define C_350 0xD9D9D9
+# define C_500 0xffffff
 
 typedef enum		e_bool
 {
