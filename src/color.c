@@ -6,7 +6,7 @@
 /*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 14:51:56 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/21 19:41:29 by dacuvill         ###   ########.fr       */
+/*   Updated: 2019/05/22 16:28:48 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ static void	select_color2(t_fdf *fdf, int i)
 		fdf->map[i].color = get_color(C_200, C_350, get_gradient(-fdf->map[i].z,
 			200, 350));
 	if (-fdf->map[i].z >= 350)
-		fdf->map[i].color = get_color(C_350, C_500, get_gradient(-fdf->map[i].z,
-			350, 500));
-	if (-fdf->map[i].z >= 500)
-		fdf->map[i].color = C_500;
+		fdf->map[i].color = get_color(C_350, C_550, get_gradient(-fdf->map[i].z,
+			350, 550));
+	if (-fdf->map[i].z >= 550)
+		fdf->map[i].color = C_550;
 }
 
 void		select_color(t_fdf *fdf, int i)

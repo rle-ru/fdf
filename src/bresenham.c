@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bresenham.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 12:07:09 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/17 11:39:39 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/23 16:18:47 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void		xiaolin(t_fdf *fdf, t_point o, t_point t, t_point color)
 	rel = (ft_abs(t.x - o.x) + ft_abs(t.y - o.y));
 	pos = 0;
 
-	(void)color;
 	steep = ft_abs(t.y - o.y) > ft_abs(t.y - o.x);
 	if (steep)
 	{
@@ -90,25 +89,13 @@ void		xiaolin(t_fdf *fdf, t_point o, t_point t, t_point color)
 	xpx11 = o.x;
 	xpx12 = t.x;
 	inter = o.y;
-	// if (!dx)
-	// {
-	// 	x = xpx11;
-	// 	while (--dy)
-	// 	{
-	// 		if (is_legit(fdf, o.x, o.y))
-	// 			break ;
-	// 		put_pixel(fdf, o.x, o.y, 0,get_color(color.x, color.y, pos / rel));
-	// 		++pos;
-	// 		++t.y;
-	// 	}
-	// }
 	if (steep)
 	{
 		x = xpx11;
-		while (x < xpx12)
+		while (x <= xpx12)
 		{
-			if (is_legit(fdf, ipart(inter), x))
-				break ;
+			//if (is_legit(fdf, ipart(inter), x))
+			//	break ;
 			put_pixel(fdf, ipart(inter), x, rfpart(inter), get_color(color.x, color.y, pos / rel));
 			put_pixel(fdf, ipart(inter) - 1, x, fpart(inter), get_color(color.x, color.y, pos / rel));
 			inter += gradient;
@@ -119,10 +106,10 @@ void		xiaolin(t_fdf *fdf, t_point o, t_point t, t_point color)
 	else
 	{
 		x = xpx11;
-		while (x < xpx12)
+		while (x <= xpx12)
 		{
-			if (is_legit(fdf, x, ipart(inter)))
-				break ;
+			//if (is_legit(fdf, x, ipart(inter)))
+			//	break ;
 			put_pixel(fdf, x, ipart(inter), rfpart(inter), get_color(color.x, color.y, pos / rel));
 			put_pixel(fdf, x, ipart(inter) - 1, fpart(inter), get_color(color.x, color.y, pos / rel));
 			inter += gradient;

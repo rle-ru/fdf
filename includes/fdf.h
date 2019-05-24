@@ -6,7 +6,7 @@
 /*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:38:14 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/21 19:51:31 by dacuvill         ###   ########.fr       */
+/*   Updated: 2019/05/24 13:24:29 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@
 # define W_RIGHT 500.0
 # define W_BOTTOM 500.0
 # define W_TOP -500.0
-# define C_GROUND 0x996600
+# define C_GROUND 0x6B4C2F
 # define C_DEEP 0x4C99
 # define C_SUMMIT 0xFF8000
-# define C_10 0x37b337
-# define C_20 0x309c30
-# define C_35 0x2A892A
-# define C_50 0x247524
-# define C_100 0x757575
+# define C_10 0x247524
+# define C_20 0x2A892A
+# define C_35 0x309C30
+# define C_50 0x37B337
+# define C_100 0x4FC94F
 # define C_200 0x666666
 # define C_350 0xD9D9D9
-# define C_500 0xffffff
+# define C_550 0xffffff
 
 typedef enum		e_bool
 {
@@ -165,8 +165,10 @@ t_vector3			vec_3_sub(t_vector3 a, t_vector3 b);
 void				rotator(t_fdf *fdf, t_vector3 a);
 int					hook_leave(t_fdf *fdf);
 double				get_gradient(double val, double first, double second);
-
 void				xiaolin(t_fdf *fdf, t_point o, t_point t, t_point color);
-void		put_pixel(t_fdf *fdf, int x, int y, double op, int color);
-void		select_color(t_fdf *fdf, int i);
+void				put_pixel(t_fdf *fdf, int x, int y, double op, int color);
+void				select_color(t_fdf *fdf, int i);
+void				reset_cam(t_fdf *fdf);
+int					put_pixels(t_fdf *fdf);
+
 #endif
