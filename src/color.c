@@ -6,7 +6,7 @@
 /*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 14:51:56 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/22 16:28:48 by dacuvill         ###   ########.fr       */
+/*   Updated: 2019/05/27 10:29:15 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,22 +44,22 @@ int			get_color(int c1, int c2, double p)
 
 static void	select_color2(t_fdf *fdf, int i)
 {
-	if (-fdf->map[i].z >= 100)
-		fdf->map[i].color = get_color(C_100, C_200, get_gradient(-fdf->map[i].z,
-			100, 200));
 	if (-fdf->map[i].z >= 200)
-		fdf->map[i].color = get_color(C_200, C_350, get_gradient(-fdf->map[i].z,
-			200, 350));
-	if (-fdf->map[i].z >= 350)
-		fdf->map[i].color = get_color(C_350, C_550, get_gradient(-fdf->map[i].z,
-			350, 550));
-	if (-fdf->map[i].z >= 550)
-		fdf->map[i].color = C_550;
+		fdf->map[i].color = get_color(C_200, C_300, get_gradient(-fdf->map[i].z,
+			200, 300));
+	if (-fdf->map[i].z >= 300)
+		fdf->map[i].color = get_color(C_300, C_450, get_gradient(-fdf->map[i].z,
+			300, 450));
+	if (-fdf->map[i].z >= 450)
+		fdf->map[i].color = get_color(C_450, C_650, get_gradient(-fdf->map[i].z,
+			450, 650));
+	if (-fdf->map[i].z >= 650)
+		fdf->map[i].color = C_650;
 }
 
 void		select_color(t_fdf *fdf, int i)
 {
-	if (-fdf->map[i].z < 100)
+	if (-fdf->map[i].z < 200)
 	{
 		if (-fdf->map[i].z < 0)
 			fdf->map[i].color = get_color(C_DEEP, C_GROUND, get_gradient(-fdf->map[i].z,
@@ -77,7 +77,7 @@ void		select_color(t_fdf *fdf, int i)
 			fdf->map[i].color = get_color(C_35, C_50, get_gradient(-fdf->map[i].z,
 				35, 50));
 		if (-fdf->map[i].z >= 50)
-			fdf->map[i].color = get_color(C_50, C_100, get_gradient(-fdf->map[i].z,
+			fdf->map[i].color = get_color(C_50, C_200, get_gradient(-fdf->map[i].z,
 				50, 100));
 	}
 	else

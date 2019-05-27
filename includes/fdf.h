@@ -6,7 +6,7 @@
 /*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:38:14 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/24 13:24:29 by dacuvill         ###   ########.fr       */
+/*   Updated: 2019/05/27 10:27:37 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@
 # define C_20 0x2A892A
 # define C_35 0x309C30
 # define C_50 0x37B337
-# define C_100 0x4FC94F
-# define C_200 0x666666
-# define C_350 0xD9D9D9
-# define C_550 0xffffff
+# define C_200 0x4FC94F
+# define C_300 0x666666
+# define C_450 0xD9D9D9
+# define C_650 0xffffff
 
 typedef enum		e_bool
 {
