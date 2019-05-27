@@ -14,4 +14,4 @@
 * Add multi key management
 * Fix other projections
 * Fix relative camera movements
-* Creative mode ?
+* Fix crash on /dev/null and on /dev/zero
