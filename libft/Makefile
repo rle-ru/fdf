@@ -6,7 +6,7 @@
 #    By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/22 10:58:33 by rle-ru            #+#    #+#              #
-#    Updated: 2019/05/17 16:29:06 by rle-ru           ###   ########.fr        #
+#    Updated: 2019/05/28 06:35:05 by rle-ru           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -139,7 +139,7 @@ DEPENDENCIES		:=	$(OBJS:%.o=%.d)
 
 CC					=	gcc
 
-CFLAGS				+=	-Wall -Werror -Wextra
+CFLAGS				+=	-Wall -Werror -Wextra -flto -O2
 
 # Main Target
 

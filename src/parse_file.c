@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 14:06:33 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/15 22:19:42 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/28 06:34:13 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ t_error			ft_parse_file(t_fdf *fdf)
 	}
 	if (ret_gnl == -1)
 		return (falloc);
+	if (fdf->parser.lines == NULL)
+		return (badline);
 	if ((ret = ft_create_map(fdf)) != ok)
 		return (ret);
 	fdf->parser.lines = NULL;
