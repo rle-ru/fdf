@@ -6,7 +6,7 @@
 /*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 14:51:56 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/27 10:29:15 by dacuvill         ###   ########.fr       */
+/*   Updated: 2019/05/28 17:57:00 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,23 +62,23 @@ void		select_color(t_fdf *fdf, int i)
 	if (-fdf->map[i].z < 200)
 	{
 		if (-fdf->map[i].z < 0)
-			fdf->map[i].color = get_color(C_DEEP, C_GROUND, get_gradient(-fdf->map[i].z,
-				fdf->parser.minz, 0));
+			fdf->map[i].color = get_color(C_DEEP, C_GROUND,
+				get_gradient(-fdf->map[i].z, fdf->parser.minz, 0));
 		if (-fdf->map[i].z >= 0)
-			fdf->map[i].color = get_color(C_GROUND, C_10, get_gradient(-fdf->map[i].z,
-				0, 20));
+			fdf->map[i].color = get_color(C_GROUND, C_10,
+				get_gradient(-fdf->map[i].z, 0, 20));
 		if (-fdf->map[i].z >= 10)
-			fdf->map[i].color = get_color(C_10, C_20, get_gradient(-fdf->map[i].z,
-				10, 20));
+			fdf->map[i].color = get_color(C_10, C_20,
+				get_gradient(-fdf->map[i].z, 10, 20));
 		if (-fdf->map[i].z >= 20)
-			fdf->map[i].color = get_color(C_20, C_35, get_gradient(-fdf->map[i].z,
-				20, 35));
+			fdf->map[i].color = get_color(C_20, C_35,
+				get_gradient(-fdf->map[i].z, 20, 35));
 		if (-fdf->map[i].z >= 35)
-			fdf->map[i].color = get_color(C_35, C_50, get_gradient(-fdf->map[i].z,
-				35, 50));
+			fdf->map[i].color = get_color(C_35, C_50,
+				get_gradient(-fdf->map[i].z, 35, 50));
 		if (-fdf->map[i].z >= 50)
-			fdf->map[i].color = get_color(C_50, C_200, get_gradient(-fdf->map[i].z,
-				50, 100));
+			fdf->map[i].color = get_color(C_50, C_200,
+				get_gradient(-fdf->map[i].z, 50, 100));
 	}
 	else
 		select_color2(fdf, i);

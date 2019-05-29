@@ -6,7 +6,7 @@
 /*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:38:14 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/27 10:27:37 by dacuvill         ###   ########.fr       */
+/*   Updated: 2019/05/28 18:06:43 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,9 +166,11 @@ void				rotator(t_fdf *fdf, t_vector3 a);
 int					hook_leave(t_fdf *fdf);
 double				get_gradient(double val, double first, double second);
 void				xiaolin(t_fdf *fdf, t_point o, t_point t, t_point color);
-void				put_pixel(t_fdf *fdf, int x, int y, double op, int color);
+void				put_pixel(t_fdf *fdf, int x, int y, int color);
 void				select_color(t_fdf *fdf, int i);
 void				reset_cam(t_fdf *fdf);
 int					put_pixels(t_fdf *fdf);
+void				put_circle(t_fdf *fdf);
+t_vector2			project_point(t_fdf *fdf, int x, int y);
 
 #endif

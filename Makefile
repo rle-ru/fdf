@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+         #
+#    By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/26 14:17:52 by rle-ru            #+#    #+#              #
-#    Updated: 2019/05/28 06:35:17 by rle-ru           ###   ########.fr        #
+#    Updated: 2019/05/29 18:31:31 by dacuvill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,25 +14,29 @@ NAME				=	fdf
 
 # Raw Sources
 
-SRCS_RAW			:=	main.c							\
-						open_file.c						\
-						init_fdf.c						\
-						parse_file.c					\
+SRCS_RAW			:=	bresenham.c						\
+						color.c							\
 						create_map.c					\
-						leave.c							\
+						draw.c							\
 						free_lines.c					\
+						hook.c							\
+						init_fdf.c						\
+						leave.c							\
+						main.c							\
 						matrix.c						\
 						matrix_mul.c					\
 						matrix_vector.c					\
+						open_file.c						\
+						parse_file.c					\
+						project_point.c					\
+						put_circle.c					\
+						put_line.c						\
+						put_pixel.c						\
 						put_pixels.c					\
-						vector_op.c						\
 						reset_cam.c						\
 						rotation_matrix.c				\
-						hook.c							\
-						draw.c							\
-						bresenham.c						\
-						color.c							\
-
+						vector_op.c						\
+						xiaolin.c						\
 
 # Directories
 
