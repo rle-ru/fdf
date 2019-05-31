@@ -6,7 +6,7 @@
 #    By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/26 14:17:52 by rle-ru            #+#    #+#              #
-#    Updated: 2019/05/29 18:31:31 by dacuvill         ###   ########.fr        #
+#    Updated: 2019/05/31 15:15:11 by dacuvill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRCS_RAW			:=	bresenham.c						\
 						put_pixels.c					\
 						reset_cam.c						\
 						rotation_matrix.c				\
+						swap.c							\
 						vector_op.c						\
 						xiaolin.c						\
 
@@ -67,7 +68,7 @@ LIBFILES			:=	$(foreach LIB, $(LIBS), $(LIB)/$(notdir $(LIB)).a)
 
 CC					=	gcc
 
-CFLAGS				+=	-Wall -Werror -Wextra -fsanitize="address" -flto -O2
+CFLAGS				+=	-Wall -Werror -Wextra -O2
 
 INCLUDES			:=	$(addprefix -I ,$(INCDIR))	
 

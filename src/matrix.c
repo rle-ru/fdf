@@ -6,7 +6,7 @@
 /*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 21:37:04 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/24 11:56:44 by dacuvill         ###   ########.fr       */
+/*   Updated: 2019/05/30 18:46:09 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ static void		perspective_matrix(t_fdf *fdf)
 
 	a = tan(FOV / 2.0);
 	b = FAR - NEAR;
-	fdf->cam.projection[0].m[0][0] = 1 / ((fdf->canvas.w_width /
-		fdf->canvas.w_height) * a);
+	fdf->cam.projection[0].m[0][0] = 1 / ((fdf->canvas.w_width
+		/ fdf->canvas.w_height) * a);
 	fdf->cam.projection[0].m[1][1] = 1 / a;
 	fdf->cam.projection[0].m[2][2] = -((FAR + NEAR) / b);
 	fdf->cam.projection[0].m[2][3] = -((2.0 * FAR * NEAR) / b);

@@ -6,7 +6,7 @@
 /*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:06:09 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/28 17:52:02 by dacuvill         ###   ########.fr       */
+/*   Updated: 2019/05/31 17:33:06 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,14 @@ static void		ft_split_line(t_fdf *fdf, int y, t_line *line)
 			++lpos;
 		fdf->map[y * fdf->width + x].z = -ft_atoi(line->line + lpos);
 		ft_split_line2(fdf, x, y);
-		while (line->line[lpos] && (ft_isdigit(line->line[lpos]) ||
-			line->line[lpos] == '-'))
+		while (line->line[lpos] && (ft_isdigit(line->line[lpos])
+			|| line->line[lpos] == '-'))
 			++lpos;
-		if (line->line[lpos] == ',' && line->line[lpos + 1] &&
-			line->line[lpos + 2])
+		if (line->line[lpos] == ',' && line->line[lpos + 1]
+			&& line->line[lpos + 2])
 		{
-			fdf->map[y * fdf->width + x].color =
-				ft_atoi_base(&line->line[lpos + 3], 16);
+			fdf->map[y * fdf->width +
+				x].color = ft_atoi_base(&line->line[lpos + 3], 16);
 			while (line->line[lpos] && line->line[lpos] != ' ')
 				++lpos;
 		}
