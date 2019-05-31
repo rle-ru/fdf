@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 11:58:16 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/24 13:12:37 by dacuvill         ###   ########.fr       */
+/*   Updated: 2019/05/31 23:58:58 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ static int	key_hook2(int key, t_fdf *fdf)
 		fdf->drawer = fdf->drawer >= MAX_DRAW ? 0 : fdf->drawer;
 	else if (key == K_C)
 		fdf->crea.mode ^= 1;
-	else if (key == K_I || key == K_J || key == K_K ||
-		key == K_L || key == K_T || key == K_G)
+	else if (key == K_I || key == K_J || key == K_K
+			|| key == K_L || key == K_T || key == K_G)
 		crea(fdf, key);
 	else if (key == K_ENTER && ++fdf->proj)
 		fdf->proj = fdf->proj >= MAX_PROJ ? 0 : fdf->proj;
@@ -85,14 +85,14 @@ int			key_hook(int key, t_fdf *fdf)
 		fdf->cam.pos.y += (key == K_W ? 1 : -1) * fdf->speed * 5;
 	else if (key == K_UP || key == K_DOWN)
 	{
-		fdf->cam.rot_angles.x += (key == K_UP ? 1 : -1) *
-		fdf->speed * 0.1 * (fdf->width > 200 ? 0.1 : 1);
+		fdf->cam.rot_angles.x += (key == K_UP ? 1 : -1)
+			* fdf->speed * 0.1 * (fdf->width > 200 ? 0.1 : 1);
 		rotator(fdf, fdf->cam.rot_angles);
 	}
 	else if (key == K_LEFT || key == K_RIGHT)
 	{
-		fdf->cam.rot_angles.z += (key == K_LEFT ? 1 : -1) *
-		fdf->speed * 0.1 * (fdf->width > 200 ? 0.1 : 1);
+		fdf->cam.rot_angles.z += (key == K_LEFT ? 1 : -1)
+			* fdf->speed * 0.1 * (fdf->width > 200 ? 0.1 : 1);
 		rotator(fdf, fdf->cam.rot_angles);
 	}
 	return (key_hook2(key, fdf));

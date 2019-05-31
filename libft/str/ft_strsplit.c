@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 08:32:38 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/07 10:07:02 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/05/31 23:48:19 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ char			**ft_strsplit(char const *s, char c)
 
 	i = 0;
 	j = 0;
-	if (!s || !(arr = (char**)ft_memalloc(sizeof(char*) *
-					(ft_countwords((char*)&s[i], c) + 1))))
+	if (!s || !(arr = (char**)ft_memalloc(sizeof(char*)
+			* (ft_countwords((char*)&s[i], c) + 1))))
 		return (0);
 	while (s[i])
 	{

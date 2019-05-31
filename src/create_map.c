@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:06:09 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/31 17:33:06 by dacuvill         ###   ########.fr       */
+/*   Updated: 2019/05/31 23:49:40 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ static void		ft_split_line(t_fdf *fdf, int y, t_line *line)
 		if (line->line[lpos] == ',' && line->line[lpos + 1]
 			&& line->line[lpos + 2])
 		{
-			fdf->map[y * fdf->width +
-				x].color = ft_atoi_base(&line->line[lpos + 3], 16);
+			fdf->map[y * fdf->width + x].color
+				= ft_atoi_base(&line->line[lpos + 3], 16);
 			while (line->line[lpos] && line->line[lpos] != ' ')
 				++lpos;
 		}

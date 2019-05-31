@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/26 14:17:52 by rle-ru            #+#    #+#              #
-#    Updated: 2019/05/31 15:15:11 by dacuvill         ###   ########.fr        #
+#    Updated: 2019/06/01 00:02:56 by rle-ru           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,7 @@ LIBFILES			:=	$(foreach LIB, $(LIBS), $(LIB)/$(notdir $(LIB)).a)
 
 CC					=	gcc
 
-CFLAGS				+=	-Wall -Werror -Wextra -O2
+CFLAGS				+=	-Wall -Werror -Wextra -O2 -flto
 
 INCLUDES			:=	$(addprefix -I ,$(INCDIR))	
 

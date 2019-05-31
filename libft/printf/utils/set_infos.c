@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/04 13:36:05 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/28 06:04:44 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/06/01 00:00:02 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void		set_zero_width(t_info *info)
 	info->result = info->flags & JUSTIFY
 		? ft_strcpy(new, info->result)
 		: ft_strcat(new, info->result);
-	if ((info->flags & TAG) && (info->flags & ZERO) &&
-		ft_strchr("xX", info->specifier))
+	if ((info->flags & TAG) && (info->flags & ZERO)
+			&& ft_strchr("xX", info->specifier))
 		info->result[1] = info->flags * TAGL ? 'x' : 'X';
 	if (info->flags & JUSTIFY)
 		info->result[length] = ' ';
@@ -58,8 +58,8 @@ void		set_width(t_info *info)
 	info->result = info->flags & JUSTIFY
 		? ft_strcpy(new, info->result)
 		: ft_strcat(new, info->result);
-	if ((info->flags & TAG) && (info->flags & ZERO) &&
-		ft_strchr("xX", info->specifier))
+	if ((info->flags & TAG) && (info->flags & ZERO)
+			&& ft_strchr("xX", info->specifier))
 		info->result[1] = info->flags * TAGL ? 'x' : 'X';
 	if (info->flags & JUSTIFY)
 		info->result[length] = ' ';
@@ -97,18 +97,18 @@ void		set_flags(t_info *info)
 		info->result = ft_strjoin_free("+", info->result, RIGHT);
 	else if (info->flags & BLANK && info->specifier != '%')
 		info->result = ft_strjoin_free(" ", info->result, RIGHT);
-	else if (info->flags & TAG && info->specifier == 'o' &&
-		info->result[0] != '0')
+	else if (info->flags & TAG && info->specifier == 'o'
+			&& info->result[0] != '0')
 		info->result = ft_strjoin_free("0", info->result, RIGHT);
-	else if (info->flags & TAGL && info->result[0] != '\0' &&
-		info->result[0] != '0' && (info->flags & ZERO) == 0 &&
-		(info->specifier == 'x' || info->specifier == 'p'))
+	else if (info->flags & TAGL && info->result[0] != '\0'
+			&& info->result[0] != '0' && (info->flags & ZERO) == 0
+			&& (info->specifier == 'x' || info->specifier == 'p'))
 		info->result = ft_strjoin_free("0x", info->result, RIGHT);
-	else if (info->flags & TAGU && info->specifier == 'X' &&
-		info->result[0] != '0' && info->result[0] != '\0' &&
-		(info->flags & ZERO) == 0)
+	else if (info->flags & TAGU && info->specifier == 'X'
+			&& info->result[0] != '0' && info->result[0] != '\0'
+			&& (info->flags & ZERO) == 0)
 		info->result = ft_strjoin_free("0X", info->result, RIGHT);
-	else if (info->flags & TAGL && info->specifier == 'p' &&
-		info->result[0] == '0')
+	else if (info->flags & TAGL && info->specifier == 'p'
+			&& info->result[0] == '0')
 		info->result = ft_strjoin_free("0x", info->result, RIGHT);
 }

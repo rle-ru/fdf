@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 12:02:05 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/28 17:14:23 by dacuvill         ###   ########.fr       */
+/*   Updated: 2019/05/31 23:48:51 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ int			draw_map(t_fdf *fdf)
 	while (++y < fdf->height && (x = -1))
 		while (++x < fdf->width)
 			fdf->project[y * fdf->width + x] = project_point(fdf, x, y);
-	ft_bzero(fdf->canvas.img.img, (int)fdf->canvas.w_width *
-		(int)fdf->canvas.w_height * sizeof(int));
+	ft_bzero(fdf->canvas.img.img, (int)fdf->canvas.w_width
+			* (int)fdf->canvas.w_height * sizeof(int));
 	put_pixels(fdf);
 	if (fdf->crea.mode)
 		put_circle(fdf);

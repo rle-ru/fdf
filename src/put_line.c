@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_line.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 18:25:24 by dacuvill          #+#    #+#             */
-/*   Updated: 2019/05/30 18:46:50 by dacuvill         ###   ########.fr       */
+/*   Updated: 2019/06/01 00:00:20 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static void	put_line2(t_fdf *fdf, t_point *c, t_point *o, t_point *color)
 
 	if (!isnan((*o).x))
 	{
-		if ((*c).x >= 0 && (*c).x < fdf->canvas.w_width &&
-			(*c).y >= 0 && (*c).y < fdf->canvas.w_height)
+		if ((*c).x >= 0 && (*c).x < fdf->canvas.w_width
+				&& (*c).y >= 0 && (*c).y < fdf->canvas.w_height)
 			fdf->f[fdf->drawer].f(fdf, *c, *o, *color);
 		else if ((*o).x >= 0 && (*o).x < fdf->canvas.w_width
 			&& (*o).y >= 0 && (*o).y < fdf->canvas.w_height)
