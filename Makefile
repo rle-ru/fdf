@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/26 14:17:52 by rle-ru            #+#    #+#              #
-#    Updated: 2019/06/01 16:30:37 by dacuvill         ###   ########.fr        #
+#    Updated: 2019/06/01 23:49:49 by rle-ru           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,7 @@ LIBFILES			:=	$(foreach LIB, $(LIBS), $(LIB)/$(notdir $(LIB)).a)
 
 CC					=	gcc
 
-CFLAGS				+=	-Wall -Werror -Wextra -O2 -flto
+CFLAGS				+=	-Wall -Werror -Wextra -flto -O2
 
 INCLUDES			:=	$(addprefix -I ,$(INCDIR))	
 
@@ -113,7 +113,7 @@ re					:	fclean all
 mlx					:	$(OBJS) libs
 						make -C minilibx
 						$(CC) -o $(NAME) $(CFLAGS) $(INCLIBS) -I minilibx/ $(OBJS) minilibx/libmlx.a -framework OpenGL -framework Appkit -L ./minilibx
-						./fdf ../42-FdF/maps/42.fdf
+						./fdf maps/42.fdf
 
 42					:	all
 						./fdf maps/42.fdf

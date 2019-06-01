@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   project_point.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 16:36:52 by dacuvill          #+#    #+#             */
-/*   Updated: 2019/06/01 20:29:12 by dacuvill         ###   ########.fr       */
+/*   Updated: 2019/06/01 22:38:12 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_vector2	project_point(t_fdf *fdf, int x, int y)
 
 	v = fdf->map[y * fdf->width + x];
 	v.z *= fdf->relief;
-	v = vec_3_sub(v, fdf->cam.rotpos);
+	v = vec_3_sub(v, fdf->cam.pos);
 	if (!fdf->proj)
 		v = mat_4_mul_v(fdf->cam.rotation, v);
 	if (v.z < 0.1)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 12:02:05 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/06/01 20:48:29 by dacuvill         ###   ########.fr       */
+/*   Updated: 2019/06/01 23:09:10 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int			draw_map(t_fdf *fdf)
 	int	x;
 
 	y = -1;
-	fdf->cam.rotpos = mat_4_mul_v(fdf->cam.rotation, fdf->cam.pos);
 	ft_bzero(fdf->depths, fdf->width * fdf->height * sizeof(double));
 	ft_bzero(fdf->canvas.zbuf, fdf->canvas.w_width * fdf->canvas.w_height * sizeof(double));
 	ft_bzero(fdf->canvas.img.img, (int)fdf->canvas.w_width
@@ -69,6 +68,7 @@ int			draw_map(t_fdf *fdf)
 		while (++x < fdf->width)
 			fdf->project[y * fdf->width + x] = project_point(fdf, x, y);
 	put_pixels(fdf);
+	face_filler(fdf);
 	if (fdf->crea.mode)
 		put_circle(fdf);
 	mlx_put_image_to_window(fdf->canvas.mlx_ptr, fdf->canvas.window,

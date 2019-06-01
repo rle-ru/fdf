@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:38:14 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/06/01 20:30:50 by dacuvill         ###   ########.fr       */
+/*   Updated: 2019/06/01 23:49:20 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ typedef struct		s_vector3
 typedef struct		s_cam
 {
 	t_vector3		pos;
-	t_vector3		rotpos;
 	t_matrix		projection[2];
 	t_matrix		rotation;
 	t_vector3		rot_angles;
