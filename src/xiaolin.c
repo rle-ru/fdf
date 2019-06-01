@@ -6,15 +6,13 @@
 /*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 18:29:56 by dacuvill          #+#    #+#             */
-/*   Updated: 2019/05/31 17:31:43 by dacuvill         ###   ########.fr       */
+/*   Updated: 2019/06/01 16:09:18 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "mlx.h"
-#include <stdlib.h>
 #include "libft.h"
-#include <math.h>
 
 static int	ipart(double x)
 {

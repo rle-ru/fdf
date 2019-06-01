@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+         #
+#    By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/26 14:17:52 by rle-ru            #+#    #+#              #
-#    Updated: 2019/06/01 00:02:56 by rle-ru           ###   ########.fr        #
+#    Updated: 2019/06/01 16:30:37 by dacuvill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ OBJSDIR   			=	obj
 
 LIBSPATH			=	.
 
-LIBS				:=	$(LIBSPATH)/libft				\
+LIBS				:=	$(LIBSPATH)/libft					\
 
 INCDIR				:=	$(LIBS:%=%/includes) 				\
 						/usr/local/include					\

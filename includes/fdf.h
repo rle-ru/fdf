@@ -6,7 +6,7 @@
 /*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:38:14 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/30 18:32:15 by dacuvill         ###   ########.fr       */
+/*   Updated: 2019/06/01 16:18:19 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,16 +130,16 @@ typedef struct		s_func
 
 typedef	struct		s_xiao
 {
-	int		steep;
-	int		xpx11;
-	int		xpx12;
-	int		x;
-	double	dx;
-	double	dy;
-	double	gradient;
-	double	inter;
-	double	rel;
-	double	pos;
+	int				steep;
+	int				xpx11;
+	int				xpx12;
+	int				x;
+	double			dx;
+	double			dy;
+	double			gradient;
+	double			inter;
+	double			rel;
+	double			pos;
 }					t_xiao;
 
 typedef struct		s_fdf
