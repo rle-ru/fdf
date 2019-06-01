@@ -6,7 +6,7 @@
 /*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 16:36:52 by dacuvill          #+#    #+#             */
-/*   Updated: 2019/05/28 17:31:14 by dacuvill         ###   ########.fr       */
+/*   Updated: 2019/06/01 20:29:12 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_vector2	project_point(t_fdf *fdf, int x, int y)
 	v = mat_4_mul_v(fdf->cam.projection[fdf->proj], v);
 	if (!v.z)
 		v.z += 1e-6;
+	fdf->depths[y * fdf->width + x] = v.z;
 	return ((t_vector2){(v.x + 0.25) / v.z * fdf->canvas.w_width,
 			(v.y + 0.25) / v.z * fdf->canvas.w_height});
 }

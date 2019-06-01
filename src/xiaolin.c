@@ -6,7 +6,7 @@
 /*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 18:29:56 by dacuvill          #+#    #+#             */
-/*   Updated: 2019/06/01 16:09:18 by dacuvill         ###   ########.fr       */
+/*   Updated: 2019/06/01 19:34:55 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,7 @@
 #include "mlx.h"
 #include "libft.h"
 
-static int	ipart(double x)
-{
-	return ((int)x);
-}
-
-static void	check_for_swap(t_xiao *xiao, t_point *o, t_point *t)
+static void		check_for_swap(t_xiao *xiao, t_point *o, t_point *t)
 {
 	if ((*xiao).steep)
 	{
@@ -33,37 +28,41 @@ static void	check_for_swap(t_xiao *xiao, t_point *o, t_point *t)
 	}
 }
 
-static void	xiaolin_while2(t_fdf *fdf, t_point *color, t_xiao *xiao)
+static void		xiaolin_while2(t_fdf *fdf, t_point *color, t_xiao *xiao)
 {
 	(*xiao).x = (*xiao).xpx11;
 	while ((*xiao).x <= (*xiao).xpx12)
 	{
-		put_pixel(fdf, (*xiao).x, ipart((*xiao).inter),
-			get_color((*color).x, (*color).y, (*xiao).pos / (*xiao).rel));
-		put_pixel(fdf, (*xiao).x, ipart((*xiao).inter) - 1,
-			get_color((*color).x, (*color).y, (*xiao).pos / (*xiao).rel));
+		(*xiao).color = get_color((*color).x, (*color).y, (*xiao).pos / (*xiao).rel);
+		(*xiao).color |= ((int)((1 - (*xiao).inter)  * 255) % 255) << 24;
+		put_pixel(fdf, (*xiao).x, (int)(*xiao).inter,
+			(*xiao).color);
+		put_pixel(fdf, (*xiao).x, (int)(*xiao).inter - 1,
+			(*xiao).color);
 		(*xiao).inter += (*xiao).gradient;
 		(*xiao).x++;
 		(*xiao).pos++;
 	}
 }
 
-static void	xiaolin_while1(t_fdf *fdf, t_point *color, t_xiao *xiao)
+static void		xiaolin_while1(t_fdf *fdf, t_point *color, t_xiao *xiao)
 {
 	(*xiao).x = (*xiao).xpx11;
 	while ((*xiao).x <= (*xiao).xpx12)
 	{
-		put_pixel(fdf, ipart((*xiao).inter), (*xiao).x,
-			get_color((*color).x, (*color).y, (*xiao).pos / (*xiao).rel));
-		put_pixel(fdf, ipart((*xiao).inter) - 1, (*xiao).x,
-			get_color((*color).x, (*color).y, (*xiao).pos / (*xiao).rel));
+		(*xiao).color = get_color((*color).x, (*color).y, (*xiao).pos / (*xiao).rel);
+		(*xiao).color |= ((int)((1 - (*xiao).inter)  * 255) % 255) << 24;
+		put_pixel(fdf, (int)(*xiao).inter, (*xiao).x, 
+			(*xiao).color);
+		put_pixel(fdf, (int)(*xiao).inter - 1, (*xiao).x,
+			(*xiao).color);
 		(*xiao).inter += (*xiao).gradient;
 		(*xiao).x++;
 		(*xiao).pos++;
 	}
 }
 
-void		xiaolin(t_fdf *fdf, t_point o, t_point t, t_point color)
+void			xiaolin(t_fdf *fdf, t_point o, t_point t, t_point color)
 {
 	t_xiao	xiao;
 

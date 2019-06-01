@@ -6,7 +6,7 @@
 /*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 12:01:44 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/31 15:26:35 by dacuvill         ###   ########.fr       */
+/*   Updated: 2019/06/01 20:01:19 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ static void		ft_clear(t_fdf *fdf)
 		free(fdf->map);
 	if (fdf->project)
 		free(fdf->project);
+	if (fdf->canvas.zbuf)
+		free(fdf->canvas.zbuf);
 }
 
 int				ft_leave(t_error ret, t_fdf *fdf)

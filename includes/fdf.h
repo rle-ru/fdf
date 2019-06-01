@@ -6,7 +6,7 @@
 /*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:38:14 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/06/01 16:18:19 by dacuvill         ###   ########.fr       */
+/*   Updated: 2019/06/01 20:30:50 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ typedef struct		s_canvas
 	t_img			img;
 	double			w_height;
 	double			w_width;
+	double			*zbuf;
 }					t_canvas;
 
 typedef struct		s_crea
@@ -130,6 +131,7 @@ typedef struct		s_func
 
 typedef	struct		s_xiao
 {
+	int				color;
 	int				steep;
 	int				xpx11;
 	int				xpx12;
@@ -148,6 +150,7 @@ typedef struct		s_fdf
 	t_canvas		canvas;
 	t_cam			cam;
 	t_vector3		*map;
+	double			*depths;
 	t_vector2		*project;
 	int				height;
 	int				width;
@@ -158,6 +161,7 @@ typedef struct		s_fdf
 	t_func			f[2];
 	int				drawer;
 	t_crea			crea;
+	double			current_depth;
 }					t_fdf;
 
 t_error				ft_open_file(int ac, char **av, t_fdf *fdf);
@@ -179,6 +183,10 @@ t_vector3			vec_3_sub(t_vector3 a, t_vector3 b);
 void				rotator(t_fdf *fdf, t_vector3 a);
 int					hook_leave(t_fdf *fdf);
 double				get_gradient(double val, double first, double second);
+
+/*
+**	Antialiasing
+*/
 void				xiaolin(t_fdf *fdf, t_point o, t_point t, t_point color);
 void				put_pixel(t_fdf *fdf, int x, int y, int color);
 void				select_color(t_fdf *fdf, int i);

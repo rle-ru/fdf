@@ -6,13 +6,14 @@
 /*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/01 11:09:08 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/24 11:54:32 by dacuvill         ###   ########.fr       */
+/*   Updated: 2019/06/01 20:33:09 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include "fdf.h"
 #include <math.h>
+#include <stdlib.h>
 
 void	ft_init_fdf(t_fdf *fdf)
 {
@@ -26,6 +27,11 @@ void	ft_init_fdf(t_fdf *fdf)
 	fdf->cam.pos.x = fdf->width >> 3;
 	fdf->cam.pos.y = fdf->height >> 3;
 	fdf->cam.rot_angles.z = -M_PI;
+	if (!(fdf->depths = malloc(sizeof(double) * fdf->width  * fdf->height)))
+		ft_leave(falloc, fdf);
+	if (!(fdf->canvas.zbuf = malloc(sizeof(double) * fdf->canvas.w_width
+		* fdf->canvas.w_height)))
+		ft_leave(falloc, fdf);
 	if (!(fdf->canvas.img.img_ptr = mlx_new_image(fdf->canvas.mlx_ptr,
 		(int)fdf->canvas.w_width, (int)fdf->canvas.w_height)))
 		ft_leave(falloc, fdf);

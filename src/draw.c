@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 12:02:05 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/31 23:48:51 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/06/01 20:48:29 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,13 @@ int			draw_map(t_fdf *fdf)
 
 	y = -1;
 	fdf->cam.rotpos = mat_4_mul_v(fdf->cam.rotation, fdf->cam.pos);
+	ft_bzero(fdf->depths, fdf->width * fdf->height * sizeof(double));
+	ft_bzero(fdf->canvas.zbuf, fdf->canvas.w_width * fdf->canvas.w_height * sizeof(double));
+	ft_bzero(fdf->canvas.img.img, (int)fdf->canvas.w_width
+			* (int)fdf->canvas.w_height * sizeof(int));
 	while (++y < fdf->height && (x = -1))
 		while (++x < fdf->width)
 			fdf->project[y * fdf->width + x] = project_point(fdf, x, y);
-	ft_bzero(fdf->canvas.img.img, (int)fdf->canvas.w_width
-			* (int)fdf->canvas.w_height * sizeof(int));
 	put_pixels(fdf);
 	if (fdf->crea.mode)
 		put_circle(fdf);
