@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 12:02:05 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/06/01 23:09:10 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/06/01 23:53:24 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ int			draw_map(t_fdf *fdf)
 		while (++x < fdf->width)
 			fdf->project[y * fdf->width + x] = project_point(fdf, x, y);
 	put_pixels(fdf);
-	face_filler(fdf);
 	if (fdf->crea.mode)
 		put_circle(fdf);
 	mlx_put_image_to_window(fdf->canvas.mlx_ptr, fdf->canvas.window,
