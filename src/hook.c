@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 11:58:16 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/06/02 15:17:28 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/06/02 15:22:52 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,10 @@ static void	crea(t_fdf *fdf, int key)
 		fdf->map[*y * fdf->width + *x].z -= 10;
 	else if (key == K_G)
 		fdf->map[*y * fdf->width + *x].z += 10;
-	else if (key == K_NUM4)
-		fdf->map[*y * fdf->width + *x].x -= 1;
-	else if (key == K_NUM6)
-		fdf->map[*y * fdf->width + *x].x += 1;
-	else if (key == K_NUM8)
-		fdf->map[*y * fdf->width + *x].y -= 1;
-	else if (key == K_NUM2)
-		fdf->map[*y * fdf->width + *x].y += 1;
+	else if (key == K_NUM4 || key == K_NUM6)
+		fdf->map[*y * fdf->width + *x].x += (key == K_NUM6) ? 1 : -1;
+	else if (key == K_NUM8 || key == K_NUM2)
+		fdf->map[*y * fdf->width + *x].y += (key == K_NUM2) ? 1 : -1;
 	select_color(fdf, *y * fdf->width + *x);
 }
 
