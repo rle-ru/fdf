@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:38:14 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/06/02 14:19:58 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/06/02 14:27:51 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,7 +190,7 @@ t_error				ft_create_map(t_fdf *fdf);
 int					ft_leave(t_error ret, t_fdf *fdf);
 
 /*
-** Free the line's map
+** Free the map's lines
 */
 void				free_lines(t_fdf *fdf);
 
@@ -280,7 +280,7 @@ void				select_color(t_fdf *fdf, int i);
 void				reset_cam(t_fdf *fdf);
 
 /*
-** 
+**	Calls line drawers
 */
 int					put_pixels(t_fdf *fdf);
 
@@ -290,7 +290,7 @@ int					put_pixels(t_fdf *fdf);
 void				put_circle(t_fdf *fdf);
 
 /*
-**
+**	Project a 3D point in 2D
 */
 t_vector2			project_point(t_fdf *fdf, int x, int y);
 
