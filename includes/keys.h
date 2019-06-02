@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 19:13:21 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/17 19:56:39 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/06/02 15:14:20 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@
 # define K_ESC 53
 # define K_PLUS 69
 # define K_MINUS 78
+# define K_NUM4 86
+# define K_NUM8 91
+# define K_NUM6 88
+# define K_NUM2 84
 # define K_LEFT 123
 # define K_RIGHT 124
 # define K_DOWN 125
