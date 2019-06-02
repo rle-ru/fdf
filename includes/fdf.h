@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 18:38:14 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/06/01 23:49:20 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/06/02 13:39:02 by dacuvill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,36 +163,139 @@ typedef struct		s_fdf
 	double			current_depth;
 }					t_fdf;
 
+/*
+** Open the file
+*/
 t_error				ft_open_file(int ac, char **av, t_fdf *fdf);
+
+/*
+** Initialize fdf struct
+*/
 void				ft_init_fdf(t_fdf *fdf);
+
+/*
+** Parse the file
+*/
 t_error				ft_parse_file(t_fdf *fdf);
+
+/*
+** Get the file's data to create the map into fdf struct
+*/
 t_error				ft_create_map(t_fdf *fdf);
+
+/*
+** Leave the file according to the situation
+*/
 int					ft_leave(t_error ret, t_fdf *fdf);
+
+/*
+** Free the line's map
+*/
 void				free_lines(t_fdf *fdf);
+
+/*
+** Initialize three different matrixes
+*/
 void				init_matrixes(t_fdf *fdf);
+
+/*
+** Manage keys input
+*/
 int					key_hook(int key, t_fdf *fdf);
+
+/*
+** Display the map on the mlx screen
+*/
 int					draw_map(t_fdf *fdf);
+
+/*
+** Multiply matrixes
+*/
 t_matrix			mat_4_mul(int nb, ...);
+
+/*
+** Put pixels between two points
+*/
 void				bresenham(t_fdf *fdf, t_point o, t_point t, t_point color);
+
+/*
+** Put lines on screen
+*/
 void				put_line(t_fdf *fdf, int ox, int oy);
+
+/*
+** Multiply a matrix with a vector
+*/
 t_vector3			mat_4_mul_v(t_matrix m, t_vector3 v);
+
+/*
+** Get pixel color
+*/
 int					get_color(int from, int to, double a);
+
+/*
+** Add two vectors
+*/
 t_vector3			vec_3_add(t_vector3 a, t_vector3 b);
+
+/*
+** Sub two vectors
+*/
 t_vector3			vec_3_sub(t_vector3 a, t_vector3 b);
+
+/*
+** Manage the rotation matrixes
+*/
 void				rotator(t_fdf *fdf, t_vector3 a);
+
+/*
+** Call ft_leave if a leave call is send
+*/
 int					hook_leave(t_fdf *fdf);
+
+/*
+** Return a color gradient
+*/
 double				get_gradient(double val, double first, double second);
 
 /*
-**	Antialiasing
+**	Manage antialiasing
 */
 void				xiaolin(t_fdf *fdf, t_point o, t_point t, t_point color);
+
+/*
+** Put a pixel on the window
+*/
 void				put_pixel(t_fdf *fdf, int x, int y, int color);
+
+/*
+** Select a color for a point, depending on its altitude
+*/
 void				select_color(t_fdf *fdf, int i);
+
+/*
+** Reset the cam position
+*/
 void				reset_cam(t_fdf *fdf);
+
+/*
+** 
+*/
 int					put_pixels(t_fdf *fdf);
+
+/*
+** Put a circle around a point in creative mode
+*/
 void				put_circle(t_fdf *fdf);
+
+/*
+**
+*/
 t_vector2			project_point(t_fdf *fdf, int x, int y);
+
+/*
+**	Swap two integer pointers
+*/
 void				swap(int *a, int *b);
 
 #endif
