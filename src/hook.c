@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 11:58:16 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/31 23:58:58 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/06/02 12:12:33 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,12 @@ int			key_hook(int key, t_fdf *fdf)
 	if (key == K_Q || key == K_E)
 		ft_zoom(fdf, key);
 	else if (key == K_A || key == K_D)
-		fdf->cam.pos.x += (key == K_A ? 1 : -1) * fdf->speed * 5;
+		fdf->cam.pos.x += (key == K_A ? -1 : 1) * fdf->speed * 5;
 	else if (key == K_W || key == K_S)
-		fdf->cam.pos.y += (key == K_W ? 1 : -1) * fdf->speed * 5;
+		fdf->cam.pos.y += (key == K_W ? -1 : 1) * fdf->speed * 5;
 	else if (key == K_UP || key == K_DOWN)
 	{
-		fdf->cam.rot_angles.x += (key == K_UP ? 1 : -1)
+		fdf->cam.rot_angles.x += (key == K_UP ? -1 : 1)
 			* fdf->speed * 0.1 * (fdf->width > 200 ? 0.1 : 1);
 		rotator(fdf, fdf->cam.rot_angles);
 	}

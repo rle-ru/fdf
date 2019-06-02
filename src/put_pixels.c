@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_pixels.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/24 13:25:16 by dacuvill          #+#    #+#             */
-/*   Updated: 2019/06/01 20:31:28 by dacuvill         ###   ########.fr       */
+/*   Updated: 2019/06/02 14:05:46 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,16 @@ int			put_pixels(t_fdf *fdf)
 	int	x;
 	int	y;
 
-	y = -1;
-	while (++y < fdf->height && (x = -1))
-		while (++x < fdf->width)
+	y = 0;
+	while (y < fdf->height)
+	{
+		x = 0;
+		while (x < fdf->width)
 		{
-			// z-buffer
-			fdf->current_depth = fdf->depths[y * fdf->width + x];
-			// z-buffer
 			put_line(fdf, x, y);
+			++x;
 		}
+		++y;
+	}
 	return (0);
 }

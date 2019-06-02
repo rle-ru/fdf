@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 12:02:05 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/06/01 23:53:24 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/06/02 13:35:43 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,6 @@ int			draw_map(t_fdf *fdf)
 	int	x;
 
 	y = -1;
-	ft_bzero(fdf->depths, fdf->width * fdf->height * sizeof(double));
-	ft_bzero(fdf->canvas.zbuf, fdf->canvas.w_width * fdf->canvas.w_height * sizeof(double));
 	ft_bzero(fdf->canvas.img.img, (int)fdf->canvas.w_width
 			* (int)fdf->canvas.w_height * sizeof(int));
 	while (++y < fdf->height && (x = -1))

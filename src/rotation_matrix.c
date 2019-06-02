@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 22:52:29 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/05/13 13:18:06 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/06/02 13:45:53 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,31 @@ static t_matrix		rotato_z(double theta)
 
 void				rotator(t_fdf *fdf, t_vector3 a)
 {
-	t_matrix	x;
-	t_matrix	y;
-	t_matrix	z;
+	t_bool		recalc;
 
-	x = a.x ? rotato_x(a.x) : fdf->unit;
-	y = a.y ? rotato_y(a.y) : fdf->unit;
-	z = a.z ? rotato_z(a.z) : fdf->unit;
-	fdf->cam.rotation = mat_4_mul(3, x, y, z);
+	recalc = false;
+	if (a.x != fdf->cam.pre_rot_angles.x)
+	{
+		fdf->rot_x = rotato_x(a.x);
+		fdf->cam.pre_rot_angles.x = a.x;
+		recalc = true;
+	}
+	if (a.y != fdf->cam.pre_rot_angles.y)
+	{
+		fdf->rot_y = rotato_y(a.y);
+		fdf->cam.pre_rot_angles.y = a.y;
+		recalc = true;
+	}
+	if (a.z != fdf->cam.pre_rot_angles.z)
+	{
+		fdf->rot_z = rotato_z(a.z);
+		fdf->cam.pre_rot_angles.z = a.z;
+		recalc = true;
+	}
+	
+	if (recalc == true)
+	{
+		
+		fdf->cam.rotation = mat_4_mul(4, fdf->rot_x, fdf->rot_y, fdf->rot_z, fdf->cam.projection[fdf->proj]);
+	}
 }

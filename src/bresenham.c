@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bresenham.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 12:07:09 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/06/01 20:52:02 by dacuvill         ###   ########.fr       */
+/*   Updated: 2019/06/02 13:44:59 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,20 +51,8 @@ void		bresenham(t_fdf *fdf, t_point o, t_point t, t_point color)
 		if (o.x >= 0 && o.x < fdf->canvas.w_width
 			&& o.y >= 0 && o.y < fdf->canvas.w_height)
 		{
-			if (fdf->canvas.zbuf[((o.y * (int)fdf->canvas.w_width)
-				+ o.x)] > fdf->current_depth)
-				break ;
-			if ((!fdf->canvas.zbuf[((o.y * (int)fdf->canvas.w_width)
-				+ o.x) == 0.0]
-				// || fdf->canvas.zbuf[((o.y * (int)fdf->canvas.w_width)
-				// + o.x)] > fdf->current_depth)
-				))
-			{
 				fdf->canvas.img.img[((o.y * (int)fdf->canvas.w_width)
 					+ o.x)] = get_color(color.x, color.y, pos / rel);
-				fdf->canvas.zbuf[((o.y * (int)fdf->canvas.w_width)
-					+ o.x)] = fdf->current_depth;
-			}
 		}
 		else
 			break ;
