@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 12:07:09 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/06/02 13:44:59 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/06/02 14:22:50 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,9 @@ void		bresenham(t_fdf *fdf, t_point o, t_point t, t_point color)
 	while (o.x != t.x || o.y != t.y)
 	{
 		if (o.x >= 0 && o.x < fdf->canvas.w_width
-			&& o.y >= 0 && o.y < fdf->canvas.w_height)
-		{
-				fdf->canvas.img.img[((o.y * (int)fdf->canvas.w_width)
+				&& o.y >= 0 && o.y < fdf->canvas.w_height)
+			fdf->canvas.img.img[((o.y * (int)fdf->canvas.w_width)
 					+ o.x)] = get_color(color.x, color.y, pos / rel);
-		}
 		else
 			break ;
 		bresenham2(&d, &o, &e, &s);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   xiaolin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dacuvill <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/29 18:29:56 by dacuvill          #+#    #+#             */
-/*   Updated: 2019/06/01 19:34:55 by dacuvill         ###   ########.fr       */
+/*   Updated: 2019/06/02 14:24:54 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ static void		xiaolin_while2(t_fdf *fdf, t_point *color, t_xiao *xiao)
 	(*xiao).x = (*xiao).xpx11;
 	while ((*xiao).x <= (*xiao).xpx12)
 	{
-		(*xiao).color = get_color((*color).x, (*color).y, (*xiao).pos / (*xiao).rel);
-		(*xiao).color |= ((int)((1 - (*xiao).inter)  * 255) % 255) << 24;
+		(*xiao).color = get_color((*color).x, (*color).y,
+				(*xiao).pos / (*xiao).rel);
+		(*xiao).color |= ((int)((1 - (*xiao).inter) * 255) % 255) << 24;
 		put_pixel(fdf, (*xiao).x, (int)(*xiao).inter,
 			(*xiao).color);
 		put_pixel(fdf, (*xiao).x, (int)(*xiao).inter - 1,
@@ -50,9 +51,10 @@ static void		xiaolin_while1(t_fdf *fdf, t_point *color, t_xiao *xiao)
 	(*xiao).x = (*xiao).xpx11;
 	while ((*xiao).x <= (*xiao).xpx12)
 	{
-		(*xiao).color = get_color((*color).x, (*color).y, (*xiao).pos / (*xiao).rel);
-		(*xiao).color |= ((int)((1 - (*xiao).inter)  * 255) % 255) << 24;
-		put_pixel(fdf, (int)(*xiao).inter, (*xiao).x, 
+		(*xiao).color = get_color((*color).x, (*color).y,
+				(*xiao).pos / (*xiao).rel);
+		(*xiao).color |= ((int)((1 - (*xiao).inter) * 255) % 255) << 24;
+		put_pixel(fdf, (int)(*xiao).inter, (*xiao).x,
 			(*xiao).color);
 		put_pixel(fdf, (int)(*xiao).inter - 1, (*xiao).x,
 			(*xiao).color);
