@@ -6,7 +6,7 @@
 /*   By: rle-ru <rle-ru@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/09 12:02:05 by rle-ru            #+#    #+#             */
-/*   Updated: 2019/06/02 13:35:43 by rle-ru           ###   ########.fr       */
+/*   Updated: 2019/06/02 14:29:10 by rle-ru           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,19 @@ int			draw_map(t_fdf *fdf)
 	int	y;
 	int	x;
 
-	y = -1;
+	y = 0;
 	ft_bzero(fdf->canvas.img.img, (int)fdf->canvas.w_width
 			* (int)fdf->canvas.w_height * sizeof(int));
-	while (++y < fdf->height && (x = -1))
-		while (++x < fdf->width)
+	while (y < fdf->height)
+	{
+		x = 0;
+		while (x < fdf->width)
+		{
 			fdf->project[y * fdf->width + x] = project_point(fdf, x, y);
+			++x;
+		}
+		++y;
+	}
 	put_pixels(fdf);
 	if (fdf->crea.mode)
 		put_circle(fdf);
